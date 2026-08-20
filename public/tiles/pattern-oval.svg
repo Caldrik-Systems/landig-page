@@ -1,0 +1,10 @@
+<svg width="300" height="128" viewBox="0 0 300 128" xmlns="http://www.w3.org/2000/svg">
+  <title>Minimalist Concentric Ovals</title>
+  <desc>Two centered concentric ellipses with a translucent blue stroke, designed for a dark tech aesthetic.</desc>
+  <g fill="none" stroke="#5170ff" stroke-width="1" stroke-opacity="0.28">
+    <!-- Outer Ellipse: 240px x 90px -->
+    <ellipse cx="150" cy="64" rx="120" ry="45" />
+    <!-- Inner Ellipse: 130px x 50px -->
+    <ellipse cx="150" cy="64" rx="65" ry="25" />
+  </g>
+</svg>

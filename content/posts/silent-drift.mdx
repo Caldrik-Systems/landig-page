@@ -1,0 +1,68 @@
+---
+title: "Silent drift: the production failure nobody monitors for"
+excerpt: "AI systems don't fail loudly. They drift. We look at three patterns we've seen in production and how each one was caught."
+date: "2026-08-05"
+category: "Reliability"
+image: "/tiles/blog-silent-drift.jpg"
+---
+
+There's a failure mode in production AI systems that doesn't show up in your error logs, doesn't trigger your alerting, and doesn't surface in any dashboard you're currently looking at.
+
+The system keeps running. Requests complete successfully. HTTP 200 all the way down.
+
+Meanwhile, the outputs have quietly become wrong.
+
+This is drift. And it's the failure mode that most enterprise AI teams are completely unprepared for.
+
+## Why drift is different from bugs
+
+Traditional software fails predictably. A function throws an exception. A database query times out. A dependency goes down. These failures are loud, they're logged, and your on-call engineer gets paged.
+
+AI systems fail differently. The model doesn't crash when it gets confused — it generates a plausible-sounding answer. The RAG pipeline doesn't throw an error when the retrieval quality degrades — it returns results, just not the right ones. The system returns 200 OK while the approval routes to the wrong team.
+
+No alert fires. No exception raised. The failure is invisible until a human notices something feels off — which, in a workflow designed to reduce human review, might be never.
+
+## Three drift patterns we've seen
+
+**Pattern 1: The model moves under you**
+
+Model providers ship updates silently. A system prompt that produced precise, structured outputs on GPT-4-0613 starts producing verbose, loosely-structured outputs after a model refresh. Nobody announced the change. The model version string is the same. The outputs are different.
+
+We caught this for a client processing supplier invoices. The extraction accuracy dropped from 97% to 89% over 11 days. The change was a silent model update. The catch was an eval pipeline running nightly against a fixed baseline.
+
+**Pattern 2: The source of truth shifts**
+
+RAG systems are only as good as their retrieval source. When the underlying document corpus changes — a policy update, a schema migration, a data team refactor — the retrieved context changes too. The model is doing its job correctly. The inputs it's working from are no longer the right inputs.
+
+For a healthcare client, this showed up as a claims processing system that started referencing outdated formulary entries after a quarterly database update. Outputs were coherent and confident. The drug lists were three months stale.
+
+**Pattern 3: The edge case distribution shifts**
+
+When a workflow goes live, users interact with it in ways the design team didn't anticipate. Over time, the distribution of inputs shifts — more edge cases, more unusual formats, more queries that fall outside the original training distribution. A system that performed at 94% on the launch distribution might perform at 81% six months later on the live distribution.
+
+This one is the hardest to catch because there's no single event to trace it to. It accumulates gradually. The only way to detect it is to continuously sample live inputs and evaluate them against your baseline.
+
+## What monitoring actually looks like
+
+Monitoring for drift isn't your standard APM setup. Latency and error rate don't tell you anything useful about output quality.
+
+What you need:
+
+- **An eval pipeline** that runs on a schedule against a fixed golden dataset
+- **Sampling of live inputs** with periodic human review or automated scoring
+- **Alerts on metric degradation** — not just errors, but quality scores dropping below threshold
+- **Version pinning where possible** — lock to a specific model version until you've validated the update
+
+This isn't a monitoring tool you buy. It's a system you build as part of the deployment, not as an afterthought.
+
+## The cost of not monitoring
+
+We were brought in to diagnose a BFSI client's AI-assisted loan review system six months after launch. The system was processing roughly 400 applications a week. Nobody had built drift detection.
+
+When we ran their current model against their original acceptance baseline, it passed 79% of cases. At launch it had passed 96%. Seventeen percentage points of regression, accumulated over six months, completely invisible.
+
+The cases that were failing weren't being flagged for human review. They were being passed through.
+
+We don't know exactly how many incorrect decisions were made in that window. Neither does the client.
+
+That's the cost of not monitoring.

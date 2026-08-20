@@ -1,0 +1,59 @@
+---
+title: "Why most RAG pipelines fail in production for BFSI"
+excerpt: "Retrieval-Augmented Generation looks great in demos. Here's what breaks when it meets real banking documents at scale."
+date: "2026-08-19"
+category: "BFSI"
+image: "/tiles/blog-compliance-audit.jpg"
+---
+
+RAG — Retrieval-Augmented Generation — is the architecture every enterprise AI project lands on eventually. Feed a query to a retrieval system, pull the most relevant documents, hand them to a language model, get a grounded answer. Clean, logical, demonstrable in a 15-minute proof of concept.
+
+Then it hits production.
+
+Here are the four places we've seen RAG pipelines break, specifically in BFSI contexts, and what to do about each.
+
+## 1. The chunking strategy was designed for demos, not documents
+
+Most RAG tutorials chunk documents by a fixed number of tokens — 512, 1024, whatever felt right. This works on Wikipedia. It does not work on a 200-page loan agreement where the relevant clause for a specific question spans three sections separated by 40 pages of boilerplate.
+
+A fixed-token chunking strategy for structured financial documents will reliably cut across the exact boundary the retrieval system needs to stay on. The retrieved chunk is technically relevant — it's the right section — but it's missing the preceding definition or the following exception that changes the meaning entirely.
+
+**What actually works:** semantic chunking based on document structure — section boundaries, clause numbering, table boundaries. For BFSI documents specifically, this usually means a pre-processing step that parses the document structure before any embedding happens.
+
+## 2. The embedding model has never seen Indian financial terminology
+
+Most production RAG pipelines use a general-purpose embedding model — OpenAI's `text-embedding-ada-002`, or a Sentence Transformers variant trained on English web text. These models encode semantic similarity based on their training distribution.
+
+That training distribution does not include RBI circulars, SEBI regulations, insurance policy wordings, or the specific terminology used in Indian banking documentation.
+
+When you search for "KYC norms applicable to NRI accounts under FEMA", the embedding model produces a vector that's semantically close to "identity verification for overseas customers" — which might retrieve the wrong document entirely.
+
+**What actually works:** fine-tuning or domain-specific embedding models on a corpus of relevant regulatory and financial documents, or at minimum evaluating retrieval quality specifically on domain-specific queries before going live.
+
+## 3. The retrieval quality is never measured
+
+Most teams evaluate RAG pipelines by looking at outputs and asking "does this seem right?" This is not evaluation. This is a demo.
+
+Real retrieval evaluation requires:
+
+- A set of known queries with known correct source documents
+- A metric that tells you whether the right document was retrieved (not whether the answer sounded good)
+- A regular run of this evaluation so you know when retrieval quality degrades
+
+In our experience, retrieval quality is the single most common failure mode in production RAG systems — and the least commonly monitored. Teams instrument latency, error rates, and sometimes output quality. Almost nobody instruments whether the retrieval step is actually finding the right documents.
+
+**What actually works:** build a retrieval eval set of 50–100 representative queries with ground truth sources before go-live. Run it on a schedule. Alert when recall drops.
+
+## 4. The knowledge base goes stale
+
+A RAG system is only as current as the documents it retrieves from. In BFSI, this is a critical operational risk.
+
+RBI issues circulars that supersede previous guidance. Policy wordings get updated at renewal. Regulatory amendments come into effect on specific dates. A RAG system that was accurate on day one may be confidently retrieving outdated information six months later — and the model, having no way to know the document is stale, will cite it with full confidence.
+
+**What actually works:** every document in the knowledge base needs a validity period, a source authority, and an update process. This is not a technical problem — it's a data governance problem that requires someone on the business side to own the currency of the knowledge base. Build the update process and the ownership model before you build the retrieval system.
+
+---
+
+The pattern across all four failure modes is the same: RAG looks simple until it meets real documents, real domain language, real operational processes, and real time.
+
+The engineering work is in the seams — chunking strategy, domain-specific embeddings, retrieval evaluation, knowledge base governance. None of it shows up in the demo. All of it determines whether the system works in production.

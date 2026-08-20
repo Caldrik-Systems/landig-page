@@ -1,0 +1,77 @@
+---
+title: "Building AI systems that survive a compliance audit"
+excerpt: "Auditability isn't a feature you add at the end. We walk through the logging and traceability decisions that make the difference."
+date: "2026-07-28"
+category: "BFSI"
+image: "/tiles/blog-compliance-audit.jpg"
+---
+
+The compliance team will eventually audit your AI system. The question is whether you built it knowing that, or whether you're retrofitting traceability after the fact.
+
+In our experience working with BFSI and healthcare enterprises in India, the gap between an AI system that passes an audit and one that fails almost always comes down to decisions made in the first two weeks of an engagement — not the last two.
+
+Here's what those decisions look like.
+
+## What auditors actually ask for
+
+Most engineering teams imagine a compliance audit as a review of model behaviour — a regulator asking whether the AI makes biased decisions or produces harmful outputs.
+
+That's not what happens in practice, at least not first.
+
+What a SEBI or RBI-adjacent audit process asks for first is traceability:
+
+- For this decision on this date, what input did the system receive?
+- What output did it produce?
+- What was the model, version, and configuration at that time?
+- Was a human involved, and if so, who reviewed it and when?
+- If the output was wrong, can you demonstrate what changed?
+
+These are logging and audit trail questions. They're answered by your infrastructure, not by your model.
+
+## The three decisions that determine auditability
+
+**1. Log inputs and outputs at the boundary, not just errors**
+
+Most teams log exceptions. Auditors want logs of every inference — what went in, what came out, with a timestamp and a correlation ID that ties it to the downstream action.
+
+This means logging at the application boundary, before and after the model call, in a format that's queryable. Not just metrics. The actual input text and output text, stored with appropriate data controls.
+
+For regulated industries, this log needs a retention policy, access controls, and ideally tamper-evidence. It's not an application log — it's a record.
+
+**2. Version everything that touches the output**
+
+When an output is challenged six months later, you need to be able to reconstruct the exact conditions under which it was produced. That means:
+
+- Model version (pinned, not floating)
+- Prompt template version (in version control, with a hash)
+- Retrieval source version (document corpus snapshot or changelog)
+- Application configuration version
+
+If any of these is undetermined, you can't reconstruct the output. You can't defend it. You can't demonstrate that the system would produce the same output again under the same conditions.
+
+This is non-trivial. Most teams don't think about retrieval source versioning until an auditor asks which version of the policy document was retrieved for a specific decision.
+
+**3. Build the human review trail into the system, not around it**
+
+For high-stakes decisions — loan approvals, claims assessments, patient risk flagging — regulators expect to see evidence of human oversight. "An AI system reviewed it" is not sufficient. The question is: which human, when, with what information, and what did they decide?
+
+The system needs to capture this explicitly. Not as a paper trail bolted on after the fact, but as a first-class part of the workflow. The review UI, the reviewer identity, the timestamp, and the outcome all need to write to the same audit log as the model inference.
+
+## What we build into every engagement
+
+When Caldrik designs an AI system for a regulated client, the audit trail is part of the schema from day one:
+
+- Every inference writes to an immutable log with input hash, output hash, model version, and prompt version
+- Retrieval sources are snapshotted or versioned so any historical query can be reconstructed
+- Human review actions are captured in the same log with reviewer ID and decision
+- Retention policy, access controls, and deletion procedures are defined before go-live
+
+This adds approximately two to three weeks to a typical engagement. It also means the system is defensible when the audit comes — and in regulated industries, the audit always comes.
+
+## The question to ask before you build
+
+Before you start any AI system in a regulated context, ask this: if this system makes a wrong decision two years from now, can we reconstruct exactly what happened?
+
+If the answer is no — if you'd have to say "we think the model did X but we can't be certain" — you're not ready to deploy in a regulated environment.
+
+Auditability isn't a compliance checkbox. It's the engineering discipline that separates a system you can stand behind from one you hope nobody looks at too closely.

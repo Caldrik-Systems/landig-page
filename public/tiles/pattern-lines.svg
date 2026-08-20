@@ -1,0 +1,10 @@
+<svg width="300" height="128" viewBox="0 0 300 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Abstract Tech Lines</title>
+  <desc>Four minimal, thin horizontal parallel lines for a modern tech interface.</desc>
+  <g stroke="#5170ff" stroke-width="1.2" stroke-opacity="0.28">
+    <line x1="16" y1="25.6" x2="284" y2="25.6" />
+    <line x1="16" y1="51.2" x2="284" y2="51.2" />
+    <line x1="16" y1="76.8" x2="284" y2="76.8" />
+    <line x1="16" y1="102.4" x2="284" y2="102.4" />
+  </g>
+</svg>

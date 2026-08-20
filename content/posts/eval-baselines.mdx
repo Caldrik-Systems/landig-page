@@ -1,0 +1,62 @@
+---
+title: "Why eval baselines matter more than model selection"
+excerpt: "The model you choose matters less than the criteria you use to evaluate it. Here's how we build acceptance baselines before any code ships."
+date: "2026-08-12"
+category: "AI Engineering"
+image: "/tiles/blog-eval-baselines.jpg"
+---
+
+Every AI project starts the same way. Someone picks a model.
+
+GPT-4o for the reasoning task. Claude for the long documents. Gemini because the GCP discount made the CFO happy. Then the team spends three weeks on integration, ships to staging, and realises nobody wrote down what "good" looks like.
+
+This is how AI projects fail silently.
+
+## The wrong question
+
+"Which model should we use?" is the wrong first question. It's the question that feels strategic but is actually a procurement decision dressed up as engineering.
+
+The right first question is: **what does this system have to do correctly, every time, for us to ship it?**
+
+That question forces you to write acceptance criteria before you write code. And acceptance criteria — specific, measurable, tied to real inputs — is what an eval baseline is.
+
+## What a baseline actually looks like
+
+A baseline is not a benchmark. It's not a leaderboard score.
+
+A baseline for a loan document extraction system looks like this:
+
+- Given these 47 real loan agreements (anonymised), the system must extract the correct interest rate in at least 96% of cases
+- Given these 12 edge cases where the rate is expressed as a range, the system must flag ambiguity rather than hallucinate a single value
+- Latency under 4 seconds at p95
+
+That's it. Three criteria, derived from the actual workflow, written before any model is touched.
+
+Now you can evaluate any model — or any version of any model — against the same bar. Model updates don't catch you off guard. Regressions are detected immediately. You know when the system is good enough to ship and when it isn't.
+
+## Why teams skip this
+
+Two reasons. First, building baselines requires real data, and real data requires someone from the business to label it. That conversation is uncomfortable — it means admitting the system isn't magic, it's software, and software needs test cases.
+
+Second, baselines slow down the demo. A team chasing an internal deadline would rather show a working prototype on handpicked inputs than admit they don't know how it performs on the real distribution.
+
+Both of these are institutional pressures, not engineering decisions. And both of them create the conditions for silent failure in production.
+
+## What we do
+
+At Caldrik, the first two weeks of any engagement are baseline-first. We work with the client team to:
+
+1. Identify the 30–50 most representative inputs from the actual workflow
+2. Label the correct output for each — this is the ground truth
+3. Define the acceptance threshold: the minimum performance the business can tolerate
+4. Build the eval pipeline that runs automatically on every model or prompt change
+
+By the time we choose a model, we already know how to measure it. Model selection becomes a two-hour exercise, not a three-week debate.
+
+## The compounding benefit
+
+Baselines don't just help at launch. They protect you over time.
+
+When the model provider ships a silent update — and they will — your eval pipeline catches the regression before it reaches production. When your retrieval source changes, you know immediately which queries are affected. When a new team member wants to "improve" a prompt, you have the criteria to tell them whether the improvement is real.
+
+This is what it means to engineer AI like infrastructure. Not set-and-forget. Measured, monitored, maintained.

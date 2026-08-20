@@ -1,0 +1,12 @@
+<svg width="300" height="128" viewBox="0 0 300 128" xmlns="http://www.w3.org/2000/svg">
+  <title>Minimalist Tech Dot Grid</title>
+  <desc>A clean 12x5 grid of blue dots with 30% opacity on a transparent background.</desc>
+  <defs>
+    <!-- 300px / 12 columns = 25px width -->
+    <!-- 128px / 5 rows = 25.6px height -->
+    <pattern id="dotGrid" width="25" height="25.6" patternUnits="userSpaceOnUse">
+      <circle cx="12.5" cy="12.8" r="2" fill="#5170ff" fill-opacity="0.3" />
+    </pattern>
+  </defs>
+  <rect width="300" height="128" fill="url(#dotGrid)" />
+</svg>
