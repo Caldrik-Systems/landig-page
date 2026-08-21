@@ -58,7 +58,7 @@ export default function Focus() {
                   </p>
                   <p className="font-mono text-sm text-brand">{s.callout}</p>
                   {"compliance" in s && (
-                    <p className="text-xs text-gray-600 leading-6">{(s as typeof s & { compliance: string }).compliance}</p>
+                    <p className="text-xs text-gray-400 leading-6">{(s as typeof s & { compliance: string }).compliance}</p>
                   )}
                 </div>
 
