@@ -5,6 +5,7 @@ const sectors = [
     description:
       "AI lives alongside systems a decade older than it. Every output may face an audit.",
     callout: "every output traceable, every eval run logged",
+    compliance: "Built for the RBI IT Governance Framework and DPDP Act — audit trails, data localisation, and access controls engineered in from day one.",
   },
   {
     index: "02",
@@ -56,6 +57,9 @@ export default function Focus() {
                     {s.description}
                   </p>
                   <p className="font-mono text-sm text-brand">{s.callout}</p>
+                  {"compliance" in s && (
+                    <p className="text-xs text-gray-600 leading-6">{(s as typeof s & { compliance: string }).compliance}</p>
+                  )}
                 </div>
 
               </div>

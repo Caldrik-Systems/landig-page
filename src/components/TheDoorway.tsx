@@ -55,6 +55,12 @@ export default function TheDoorway() {
             <p className="text-sm text-gray-500">
               No pitch. Just a technical opinion.
             </p>
+            <p className="text-sm text-gray-600">
+              Not ready yet?{" "}
+              <a href="/insights" className="text-gray-400 underline underline-offset-4 hover:text-white transition-colors">
+                Start with our thinking →
+              </a>
+            </p>
           </div>
 
           {/* Right — form */}
