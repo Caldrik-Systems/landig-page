@@ -5,13 +5,14 @@ const sectors = [
     description:
       "AI lives alongside systems a decade older than it. Every output may face an audit.",
     callout: "every output traceable, every eval run logged",
-    compliance: "Built for the RBI IT Governance Framework and DPDP Act — audit trails, data localisation, and access controls engineered in from day one.",
+    compliance: "We understand the importance of RBI IT Governance and DPDP requirements — audit trails, data localisation, and access controls are scoped in from day one, not retrofitted.",
   },
   {
     index: "02",
     name: "Healthcare",
     description: 'Accuracy is clinical. "Mostly right" isn\'t a category.',
     callout: "acceptance criteria, before anything ships",
+    compliance: "Patient data privacy and clinical accuracy requirements are scoped in from day one — not treated as constraints after the system is built.",
   },
   {
     index: "03",
