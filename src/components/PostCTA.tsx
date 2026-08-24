@@ -78,7 +78,7 @@ type PostCTAProps = {
 };
 
 export default function PostCTA({ category, ctaHeadline, ctaDescription }: PostCTAProps) {
-  const fallback = (category && categoryDefaults[category]) ?? defaultCTA;
+  const fallback = (category && categoryDefaults[category]) || defaultCTA;
   const headline = ctaHeadline ?? fallback.headline;
   const description = ctaDescription ?? fallback.description;
 

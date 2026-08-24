@@ -25,7 +25,6 @@ export function NotFound({
   title = "Page not found",
   description = "This page doesn't exist — or it was moved. Head back and we'll get you sorted.",
 }: NotFoundProps) {
-  const router = useRouter();
   const [query, setQuery] = useState("");
 
   async function handleSearch(e: React.FormEvent) {
