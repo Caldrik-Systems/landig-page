@@ -1,0 +1,33 @@
+---
+title: "RBI FREE-AI Framework: From Vision to Bank Rules"
+excerpt: "The RBI FREE-AI framework is moving from principles to draft rules just as Indian banks scale agentic AI. What that means for architecture."
+date: "2026-08-23"
+category: "BFSI"
+image: "/tiles/BFSI.png"
+ctaHeadline: "Building for the FREE-AI framework?"
+ctaDescription: "We design agentic AI systems for Indian banks with kill-switch logic, model versioning, and human-override checkpoints built in from day one — not retrofitted for the audit."
+---
+
+For a year, the RBI FREE-AI framework has read mostly as intent. The FREE-AI Committee's report, released on August 13, 2025, gave Indian banks seven "sutras" and six pillars — public trust, disclosure, bias-testing, board-level accountability — but explicitly left the mechanics to future master directions and circulars. That deferred period is ending.
+
+In late June 2026, the RBI released draft guidance on model risk management that reads like FREE-AI's principles translated into engineering requirements: board-approved **Model Risk Management Frameworks (MRMF)**, mandatory **human-override and kill-switch arrangements** for AI models, and seven named risk-control dimensions — explainability, hallucination boundaries, bias, overfitting, spurious correlations, output variability, and data drift. Comments closed July 24, 2026; the rules are not yet final, but the direction is no longer ambiguous.
+
+The timing matters because of what banks are simultaneously trying to do. A FICCI-IBA-BCG report published August 12, 2026, *Winning in the AI Era*, found that GenAI adoption among Indian banks jumped from 10% of institutions running use cases in 2024, to 44% in 2025, and 86% this year — and it explicitly urges banks to move past copilots into agentic AI that redesigns unstructured, judgment-heavy workflows rather than just automating structured ones. Loan origination alone still runs through 25-plus documents and six to eight layers of manual review, with operating and collection costs eating 40–50% of what it costs to serve small-ticket credit. That's the productivity case agentic AI in banking is being sold on — extending past loan processing into fraud detection and collections. It's arriving at the exact moment regulators are specifying how autonomous decision systems must be governed.
+
+## LLMOps for banks: why kill switches are an architecture decision, not a policy add-on
+
+The instinct in a compliance-led organisation is to treat the MRMF draft as a documentation exercise — write the policy, file the disclosures, move on. That undersells what "kill-switch arrangements" actually demand of a system that takes autonomous action.
+
+An agent that can initiate a transaction, adjust a credit limit, or trigger a collections workflow needs **interruptibility, state checkpoints, and audit logging built into its execution graph from the start**. Retrofitting a human-override point onto an agentic pipeline designed purely for throughput is closer to a rebuild than a patch, because it changes how the system holds state between tool calls — not just what dashboard sits on top of it.
+
+This is the practical difference between AI engineering and AI strategy work: LLMOps for Indian banks increasingly means versioned model registries, human-in-the-loop checkpoints, and decommissioning hooks designed in, not audited in after deployment.
+
+## The vendor accountability clause GCCs can't outsource away
+
+One detail in the draft deserves more attention than it's getting: **independent validation is required even where a vendor has already certified a third-party model**. Combined with FREE-AI's emphasis on entity accountability, this closes a loophole many Indian banks lean on — treating a purchased or GCC-built model as someone else's compliance problem.
+
+It isn't. Whatever the model's origin, the regulated entity carries the validation burden. That has direct implications for how banks structure vendor contracts and in-house GCC mandates going into 2027.
+
+---
+
+None of this is finalised, and the RBI could soften specific thresholds before issuing binding master directions. But the trajectory of the FREE-AI framework — from sutras to named technical controls in an active draft — is consistent enough that waiting for the final circular before building the underlying architecture looks like the riskier bet.
