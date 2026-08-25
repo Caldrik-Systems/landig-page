@@ -74,8 +74,8 @@ export default function Footer() {
         {/* Divider */}
         <div className="border-t border-white/[0.08]" />
 
-        {/* Bottom row — copyright left, nav right */}
-        <div className="flex items-start justify-between gap-8 pt-6">
+        {/* Bottom row — stacks on mobile, side-by-side on sm+ */}
+        <div className="flex flex-col gap-6 pt-6 sm:flex-row sm:items-start sm:justify-between">
 
           {/* Left — copyright */}
           <div className="space-y-1 text-sm text-gray-500">
@@ -84,15 +84,15 @@ export default function Footer() {
           </div>
 
           {/* Right — nav links stacked */}
-          <div className="text-right space-y-1.5">
-            <nav className="flex items-center justify-end gap-5 text-sm text-gray-400">
+          <div className="space-y-1.5 sm:text-right">
+            <nav className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-400 sm:justify-end">
               <a href="/#problem" className="hover:text-white transition-colors">Problem</a>
               <a href="/#how-we-work" className="hover:text-white transition-colors">How We Work</a>
               <a href="/#services" className="hover:text-white transition-colors">Services</a>
               <a href="/#focus" className="hover:text-white transition-colors">Focus</a>
               <a href="/insights" className="hover:text-white transition-colors">Insights</a>
             </nav>
-            <div className="flex items-center justify-end gap-5 text-sm text-gray-600">
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-600 sm:justify-end">
               <a href="/privacy" className="hover:text-gray-400 transition-colors">Privacy</a>
               <a href="/terms" className="hover:text-gray-400 transition-colors">Terms &amp; Conditions</a>
             </div>
