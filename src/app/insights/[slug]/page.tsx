@@ -81,7 +81,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
       {/* Cover image */}
       <div className="relative w-full h-64 sm:h-80 md:h-96">
-        <Image src={post.image} alt={post.title} fill className="object-cover" priority />
+        <Image src={post.image} alt={post.title} fill sizes="100vw" className="object-cover" priority />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#080f19]" />
       </div>
 

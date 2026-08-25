@@ -25,7 +25,8 @@ const posts = await Promise.all(
     const slug = file.replace(/\.mdx$/, "");
     const raw = fs.readFileSync(path.join(POSTS_DIR, file), "utf-8");
     const { data, content } = matter(raw);
-    const contentHtml = String(await processor.process(content));
+    const contentHtml = String(await processor.process(content))
+      .replace(/<img /g, '<img loading="lazy" ');
     return { slug, ...data, contentHtml };
   })
 );
