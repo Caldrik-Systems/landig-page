@@ -53,9 +53,6 @@ export default function Navigation() {
               {link.name}
             </a>
           ))}
-          <a href="/insights" className="text-sm/6 font-semibold text-white">
-            Insights
-          </a>
         </div>
 
         <a href={href("doorway")} className="hidden bg-brand rounded-full px-4 py-1.5 text-sm/6 font-semibold text-white md:block">
@@ -89,13 +86,6 @@ export default function Navigation() {
                 {link.name}
               </a>
             ))}
-            <a
-              href="/insights"
-              onClick={() => setMobileMenuOpen(false)}
-              className="rounded-lg px-3 py-2 text-base font-semibold text-white hover:bg-white/5"
-            >
-              Insights
-            </a>
             <a
               href={href("doorway")}
               onClick={() => setMobileMenuOpen(false)}
