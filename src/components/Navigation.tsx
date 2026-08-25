@@ -30,7 +30,7 @@ export default function Navigation() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        isSolid ? "liquid-glass bg-gray-900/70 border-b border-white/10" : "bg-transparent"
+        isSolid ? "liquid-glass bg-gray-900/50 border-b border-white/10" : "bg-transparent"
       }`}
     >
       <svg className="absolute h-0 w-0" aria-hidden="true">

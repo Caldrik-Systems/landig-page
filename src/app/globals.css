@@ -62,8 +62,9 @@ body {
 }
 
 .liquid-glass {
-  -webkit-backdrop-filter: blur(16px) saturate(1.4);
-  backdrop-filter: blur(16px) saturate(1.4);
+  will-change: backdrop-filter;
+  -webkit-backdrop-filter: blur(20px) saturate(1.8) brightness(0.9);
+  backdrop-filter: blur(20px) saturate(1.8) brightness(0.9);
   /* Progressive enhancement: browsers without SVG-filter-in-backdrop-filter
      support (Safari, Firefox) treat this whole declaration as invalid and
      keep the plain blur above instead of falling through to no blur. */
