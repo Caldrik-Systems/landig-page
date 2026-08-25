@@ -42,15 +42,28 @@ function EmailIcon() {
   );
 }
 
+const navLinks = [
+  { href: "/#problem", label: "Problem" },
+  { href: "/#how-we-work", label: "How We Work" },
+  { href: "/#services", label: "Services" },
+  { href: "/#focus", label: "Focus" },
+  { href: "/insights", label: "Insights" },
+];
+
+const legalLinks = [
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms & Conditions" },
+];
+
 export default function Footer() {
   return (
-    <footer className="relative bg-[#080f19] px-6 lg:px-8 pt-8 pb-10">
+    <footer className="relative bg-[#080f19] px-6 lg:px-8 pt-10 pb-12">
       <FooterGrid />
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative mx-auto max-w-7xl space-y-8">
 
-        {/* Top row — logo left, icon buttons right */}
-        <div className="flex items-center justify-between pb-6">
-          <Image src="/logo-white.svg" alt="Caldrik" width={140} height={31} />
+        {/* Logo + social icons */}
+        <div className="flex items-center justify-between">
+          <Image src="/logo-white.svg" alt="Caldrik" width={130} height={29} />
           <div className="flex items-center gap-2">
             <a
               href="mailto:hello@caldrik.co"
@@ -71,34 +84,45 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="border-t border-white/[0.08]" />
 
-        {/* Bottom row — stacks on mobile, side-by-side on sm+ */}
-        <div className="flex flex-col gap-6 pt-6 sm:flex-row sm:items-start sm:justify-between">
+        {/* Nav links — 2-col grid on mobile, single row on md+ */}
+        <nav className="grid grid-cols-2 gap-x-4 gap-y-3 sm:flex sm:flex-wrap sm:gap-x-6 sm:gap-y-2">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
 
-          {/* Left — copyright */}
-          <div className="space-y-1 text-sm text-gray-500">
-            <p>© 2026 Caldrik Systems · India</p>
-            <p className="text-gray-600">Caldrik is a brand of Revenance Techsol Private Limited. All rights reserved.</p>
+        <div className="border-t border-white/[0.08]" />
+
+        {/* Copyright + legal */}
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="space-y-1">
+            <p className="text-sm text-gray-500">© 2026 Caldrik Systems · India</p>
+            <p className="text-xs text-gray-600 leading-relaxed max-w-xs sm:max-w-none">
+              Caldrik is a brand of Revenance Techsol Private Limited.
+              <span className="hidden sm:inline"> All rights reserved.</span>
+            </p>
           </div>
-
-          {/* Right — nav links stacked */}
-          <div className="space-y-1.5 sm:text-right">
-            <nav className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-400 sm:justify-end">
-              <a href="/#problem" className="hover:text-white transition-colors">Problem</a>
-              <a href="/#how-we-work" className="hover:text-white transition-colors">How We Work</a>
-              <a href="/#services" className="hover:text-white transition-colors">Services</a>
-              <a href="/#focus" className="hover:text-white transition-colors">Focus</a>
-              <a href="/insights" className="hover:text-white transition-colors">Insights</a>
-            </nav>
-            <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-600 sm:justify-end">
-              <a href="/privacy" className="hover:text-gray-400 transition-colors">Privacy</a>
-              <a href="/terms" className="hover:text-gray-400 transition-colors">Terms &amp; Conditions</a>
-            </div>
+          <div className="flex gap-5 sm:flex-col sm:items-end sm:gap-1.5">
+            {legalLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-gray-600 hover:text-gray-400 transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
-
         </div>
+
       </div>
     </footer>
   );
