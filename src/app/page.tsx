@@ -25,7 +25,7 @@ export default function Home() {
       {isDev && <Partners />}
       <Focus />
       <HonestLine />
-      {isDev && <Insights />}
+      <Insights />
       <TheDoorway />
       <Footer />
     </div>
