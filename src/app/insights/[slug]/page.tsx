@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
 import type { Metadata } from "next";
 import Navigation from "@/components/Navigation";
@@ -105,10 +104,11 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           {post.excerpt}
         </p>
 
-        {/* MDX content */}
-        <div className="prose prose-invert prose-p:text-gray-400 prose-p:leading-7 prose-headings:text-white prose-headings:font-bold prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-4 prose-strong:text-white prose-a:text-[#5170ff] prose-a:no-underline hover:prose-a:underline prose-li:text-gray-400 prose-li:leading-7 max-w-none">
-          <MDXRemote source={post.content} />
-        </div>
+        {/* Post content */}
+        <div
+          className="prose prose-invert prose-p:text-gray-400 prose-p:leading-7 prose-headings:text-white prose-headings:font-bold prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-4 prose-strong:text-white prose-a:text-[#5170ff] prose-a:no-underline hover:prose-a:underline prose-li:text-gray-400 prose-li:leading-7 max-w-none"
+          dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+        />
       </article>
 
       <div className="mx-auto w-full max-w-7xl px-6 lg:px-8 pb-24">

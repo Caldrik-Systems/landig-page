@@ -11,10 +11,10 @@ export type PostMeta = {
   ctaDescription?: string;
 };
 
-export type Post = PostMeta & { content: string };
+export type Post = PostMeta & { contentHtml: string };
 
 export function getAllPosts(): PostMeta[] {
-  return postsData.map(({ content: _content, ...meta }) => meta as PostMeta);
+  return postsData.map(({ contentHtml: _html, ...meta }) => meta as PostMeta);
 }
 
 export function getPost(slug: string): Post | null {
