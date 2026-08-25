@@ -40,5 +40,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# generated at build time
+src/lib/posts-data.json
+
 # tailwindplus downloader output
 tailwindplus-components.json
