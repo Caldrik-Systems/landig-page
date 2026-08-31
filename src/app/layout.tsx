@@ -6,7 +6,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import "./globals.css";
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const GA_ID = "G-HHRDT7KR9V";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
