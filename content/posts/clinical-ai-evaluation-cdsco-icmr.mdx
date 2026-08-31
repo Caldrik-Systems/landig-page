@@ -1,0 +1,43 @@
+---
+title: "AI Evaluation Framework for Clinical Accuracy: What CDSCO and ICMR Actually Require"
+excerpt: "CDSCO's new MDSW guidance and ICMR's AI ethics code both assume evaluation doesn't stop at launch. Here's what to build."
+date: "2026-08-31"
+category: "Healthcare"
+image: "/tiles/blog-clinical-ai-evaluation.jpg"
+ctaHeadline: "Building an evaluation framework for clinical AI in India?"
+ctaDescription: "We design continuous evaluation systems for healthcare AI — gold-standard datasets built for India's population spread, ICMR-aligned clinician-in-the-loop review, and drift monitoring with defined escalation paths that hold up against CDSCO's MDSW expectations, built in before deployment, not audited in after."
+---
+
+Most clinical AI evaluation in India stops the day the model ships. A team runs a validation set, hits 92% sensitivity, signs off, and moves on. Then the model meets real patient data — a different scanner vendor, different documentation habits across a multi-hospital chain, a patient population that doesn't match the training cohort — and the number quietly stops being true. An AI evaluation framework for clinical accuracy has to account for that: accuracy isn't a property a model has once. It's a property a system has to keep earning, and India's regulators are now writing that expectation into the rules.
+
+On July 30, 2026, the Central Drugs Standard Control Organisation (CDSCO) finalised its guidance on Medical Device Software (MDSW) under the Medical Devices Rules, 2017 — the first time India's device regulator has directly addressed AI-enabled software as a distinct category, alongside SaMD and SiMD. The guidance brings India's approach in line with other major device markets on classification and registration, but the part that matters for evaluation teams is what it signals about lifecycle obligations: documentation, change management, and real-world performance monitoring for AI/ML-enabled software, not just a one-time premarket validation. A model that clears its classification review on day one still has to answer for its behaviour on day 400.
+
+This lands on top of a framework healthcare AI teams in India already have to satisfy. The Indian Council of Medical Research (ICMR) published its "Ethical Guidelines for Application of Artificial Intelligence in Biomedical Research and Healthcare" in 2023, and it's the most direct sector-specific instrument bridging the Digital Personal Data Protection (DPDP) Act's legal requirements and what clinical AI evaluation actually has to look like in practice. Where the DPDP Act requires "appropriate security measures" for processing health data, ICMR specifies encryption, anonymisation, access controls, and privacy impact assessments. Where the DPDP Act requires consent, ICMR specifies what informed consent means for an AI-assisted diagnosis: explaining the model's role alongside the clinician's, disclosing the risk of algorithmic error, and preserving the patient's right to opt out.
+
+## Why a one-time benchmark doesn't hold
+
+A benchmark answers one question: did the model perform well on this dataset, at this moment. It doesn't answer whether the model still performs well six months later, when a hospital network onboards a new EHR template, a new patient demographic shows up in the data, or a regional disease presentation shifts with a new treatment protocol. In a country with the demographic and clinical practice variation India has across states and hospital tiers, "representative of the deployment population" is a moving target, not a fixed dataset you build once. ICMR's own guidance makes this explicit: training and evaluation data has to be representative of the Indian population and free from bias — a standard that data pulled from a single urban tertiary hospital rarely meets on its own.
+
+## What a defensible framework actually requires
+
+A continuous evaluation framework for clinical AI in the Indian regulatory context rests on four pillars:
+
+**Gold-standard datasets that get refreshed, not just built once** — and that reflect India's population spread. The initial validation set has to be clinician-adjudicated and representative across the demographic and geographic range the system will actually serve, with a refresh cadence built in, because that representativeness erodes as patient populations and clinical practice evolve.
+
+**Clinician-in-the-loop review with the specific consent mechanics ICMR requires.** This isn't a generic human-oversight principle — ICMR's guidelines treat "human in the loop" as essential and tie it directly to informed consent: patients need to know when AI is involved, what its error risk looks like, and that they can opt out. A defensible framework builds that disclosure and escalation path into the workflow, not into a policy document nobody in the clinic has read.
+
+**Metrics that go beyond raw accuracy.** Sensitivity and specificity matter, but so does calibration (does a 90% confidence score actually mean 90% correct 90% of the time), subgroup performance across the population splits ICMR flags as a bias risk, and failure mode classification — is the model wrong in ways that are clinically dangerous, or wrong in ways that are clinically inconsequential.
+
+**Continuous monitoring with a defined escalation path**, matching what CDSCO's MDSW guidance now expects. Monitoring dashboards exist in most healthcare AI deployments; the harder part is deciding, in advance, what a drift signal triggers — a retraining cycle, a temporary rollback to human-only review, or an immediate clinical hold. Without that decision made ahead of time, a drift alert just becomes another dashboard nobody acts on, and a gap CDSCO's real-world performance monitoring expectations are specifically designed to close.
+
+## Where this breaks in practice
+
+The most common failure isn't a bad model — it's a good model with no plan for what happens after deployment. A team builds the gold-standard dataset, validates against it, and treats the resulting accuracy number as permanent. Six months in, nobody is monitoring for drift because nobody assigned ownership of it, and the data auditor role the DPDP Act requires of Significant Data Fiduciaries hasn't been connected to model performance at all — only to data handling. The model is still running. Nobody can say with confidence whether it's still right, or whether the consent and audit trail ICMR expects would survive a review.
+
+This is also where AI hallucination risk compounds the problem. A model that generates plausible-sounding but incorrect clinical text doesn't fail loudly — it fails quietly, in a chart note or a summarised recommendation that a busy clinician has no structural reason to double-check. An evaluation framework that only measures classification accuracy misses this failure mode entirely; it needs a dedicated hallucination-detection layer with its own metrics and its own escalation criteria.
+
+## Building the framework before the pilot, not after
+
+An AI readiness assessment — done properly — surfaces most of this before a single model touches a patient record: whether the organisation has a gold-standard dataset strategy that accounts for India's population diversity, whether clinical stakeholders are structurally positioned to review flagged outputs, whether informed consent language actually meets ICMR's bar, and whether there's a monitoring and escalation plan that satisfies what CDSCO now expects post-market. Skipping that step is why so many healthcare AI pilots in India either stall in committee or quietly degrade in production without anyone noticing until an audit forces the question.
+
+None of this is exotic engineering. It's the same discipline applied to a system that touches patient outcomes rather than a marketing dashboard — which is exactly why India's regulators are no longer treating it as optional, and neither should the teams building it.
