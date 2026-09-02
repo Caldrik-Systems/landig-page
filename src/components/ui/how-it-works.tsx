@@ -73,7 +73,7 @@ function DiscoverVisual() {
         </div>
       ))}
       {phase < lines.length && (
-        <span className="inline-block h-[10px] w-[6px] translate-y-[1px] animate-pulse bg-brand/80" />
+        <span aria-hidden className="inline-block h-[10px] w-[6px] translate-y-[1px] animate-pulse bg-brand/80" style={{ willChange: "opacity" }} />
       )}
     </div>
   );
