@@ -7,7 +7,7 @@ export default function TheDoorway() {
   const inputCls =
     "w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#5170ff]/50 transition-colors";
   const labelCls =
-    "block text-xs font-medium tracking-wide text-gray-500 uppercase";
+    "block text-xs font-medium tracking-wide text-gray-400 uppercase";
 
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
@@ -52,10 +52,10 @@ export default function TheDoorway() {
             <p className="text-lg leading-8 text-gray-400 max-w-sm">
               Share one workflow. We&apos;ll tell you if AI fits — and what it would take.
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-400">
               No pitch. Just a technical opinion.
             </p>
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-gray-400">
               <p>Not ready yet?</p>
               <a href="/insights" className="text-gray-400 underline underline-offset-4 hover:text-white transition-colors">
                 Start with our thinking →
@@ -109,7 +109,7 @@ export default function TheDoorway() {
               <div className="space-y-1.5">
                 <label className={labelCls}>
                   The workflow{" "}
-                  <span className="normal-case font-normal text-gray-600">— in a sentence (optional)</span>
+                  <span className="normal-case font-normal text-gray-400">— in a sentence (optional)</span>
                 </label>
                 <textarea
                   name="workflow"
@@ -126,7 +126,7 @@ export default function TheDoorway() {
                   required
                   className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/20 bg-white/5 accent-[#5170ff]"
                 />
-                <span className="text-xs text-gray-500 leading-relaxed">
+                <span className="text-xs text-gray-400 leading-relaxed">
                   Yes, I&apos;d like Caldrik to contact me regarding AI engineering
                   services and related offerings by email or telephone.
                 </span>

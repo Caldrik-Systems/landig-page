@@ -104,7 +104,7 @@ export default function Footer() {
         {/* Copyright + legal */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="space-y-1">
-            <p className="text-sm text-gray-500">© 2026 Caldrik Systems · India</p>
+            <p className="text-sm text-gray-400">© 2026 Caldrik Systems · India</p>
             <p className="text-xs text-gray-600 leading-relaxed max-w-xs sm:max-w-none">
               Caldrik is a brand of Revenance Techsol Private Limited.
               <span className="hidden sm:inline"> All rights reserved.</span>

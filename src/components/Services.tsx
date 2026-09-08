@@ -265,8 +265,8 @@ function ServicePanel({ s, i, isActive }: { s: typeof services[0]; i: number; is
         </div>
       </div>
 
-      {/* Right: mockup */}
-      <div className="shrink-0 w-[42%] border-l border-dashed border-white/[0.10] bg-white/[0.015]">
+      {/* Right: mockup — decorative UI representation, not real content */}
+      <div aria-hidden="true" className="shrink-0 w-[42%] border-l border-dashed border-white/[0.10] bg-white/[0.015]">
         <Mockup />
       </div>
     </div>
