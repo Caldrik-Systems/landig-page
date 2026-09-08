@@ -216,7 +216,7 @@ function ServicePanel({ s, i, isActive }: { s: typeof services[0]; i: number; is
 
   return (
     <div
-      aria-hidden={!isActive}
+      inert={!isActive || undefined}
       className={cn(
         "absolute inset-0 flex flex-row transition-all duration-300",
         isActive
