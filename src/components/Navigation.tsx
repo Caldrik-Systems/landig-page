@@ -43,8 +43,7 @@ export default function Navigation() {
 
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 px-6 py-3 lg:px-8">
         <a href="/" className="-m-1.5 p-1.5">
-          <span className="sr-only">Caldrik</span>
-          <img alt="Caldrik" src="/logo-white.svg" className="h-8 w-auto" />
+          <img alt="Caldrik" src="/logo-white.svg" className="h-8 w-auto" width="120" height="32" />
         </a>
 
         <div className="hidden md:flex md:flex-1 md:items-center md:justify-center md:gap-x-8">
