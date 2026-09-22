@@ -5,7 +5,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 
 const GA_ID = "G-HHRDT7KR9V";
-const CLARITY_ID = "REPLACE_WITH_CLARITY_ID";
+const CLARITY_ID = "ymae9ssuz9";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
