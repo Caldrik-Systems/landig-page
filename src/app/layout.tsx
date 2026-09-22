@@ -5,6 +5,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 
 const GA_ID = "G-HHRDT7KR9V";
+const CLARITY_ID = "ymae9ssuz9";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -153,6 +154,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://www.clarity.ms" />
+        <link rel="dns-prefetch" href="https://www.clarity.ms" />
       </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }} />
@@ -169,6 +172,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               gtag('config', '${GA_ID}');
             `}</Script>
           </>
+        )}
+        {CLARITY_ID && (
+          <Script id="clarity-init" strategy="afterInteractive">{`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "${CLARITY_ID}");
+          `}</Script>
         )}
       </body>
     </html>
