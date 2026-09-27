@@ -1,0 +1,54 @@
+---
+title: "RBI Technology Risk Framework for Banks: What the 10-Point Checklist Actually Requires of AI Systems"
+excerpt: "RBI's Deputy Governor laid out a ten-point technology risk checklist for banks and named AI in credit and fraud decisioning as a direct source of that risk. Here's what it actually requires of AI systems already in production."
+date: "2026-09-27"
+category: "BFSI"
+image: "/tiles/blog-rbi-tech-risk-framework.jpg"
+ctaHeadline: "Getting ahead of RBI's technology risk expectations?"
+ctaDescription: "We build AI systems for Indian banks — credit, fraud, and decisioning — with model validation, drift monitoring, and human-override checkpoints designed against RBI's ten-point framework from day one, not assembled after a supervisory review flags the gap."
+---
+
+On September 24, 2026, RBI Deputy Governor Rohit Jain stood in front of the SBI Banking & Economic Conclave in Mumbai and told the room something most bank boards have been treating as an IT problem: a bank's ability to keep essential services running now depends on its technology as well as its finances. The speech — "From Digital Banking to Resilient Banking: Technology, Cyber Security and AI as Pillars of Trust" — laid out an RBI technology risk framework for banks built around ten specific requirements, and it named AI in credit decisioning and fraud detection as a direct source of that risk, not an efficiency layer sitting safely outside it. For most Indian banks running AI in production today, this checklist is not a formality. It's a test most deployments would fail if it were graded tomorrow.
+
+## Technology risk is now a first-order enterprise risk, not an IT line item
+
+Jain's framing was blunt: "Technology may be outsourced, but not the accountability." He called for banks to treat technology architecture risk as a first-order enterprise risk, comparable in importance to traditional balance-sheet risk — a designation that moves technology governance out of the CIO's reporting line and onto the board's own risk register. That reclassification matters for anyone running AI governance banking India programs, because it means an AI model's validation status, monitoring coverage, and override mechanism are now board-level exposures, not engineering backlog items.
+
+## The ten requirements RBI now expects boards to meet
+
+The speech grouped bank technology risk management into ten specific areas. Paraphrased against their intent:
+
+1. **Governance that produces outcomes**, not just frameworks on paper — the test of governance is how it translates into results when something goes wrong.
+2. **Visibility across the technology estate** — knowing what assets and exposures actually exist before you can manage them.
+3. **Timely remediation of vulnerabilities and legacy systems**, prioritised by severity and potential impact.
+4. **Identity and access management** — strong authentication, appropriate privilege scoping, and active monitoring of who can touch what.
+5. **Controls that demonstrably work**, not controls that are merely deployed. Jain's distinction: presence isn't the same as effectiveness.
+6. **Controls that keep pace with technology change** — risk processes that lag a system's actual rate of change are already obsolete.
+7. **Third-party and vendor dependency management** — understanding what happens when an external dependency fails, and how resilient that arrangement really is.
+8. **Post-incident learning that reduces recurrence**, not just documents what happened.
+9. **Realistic resilience and recovery testing**, done regularly rather than as an annual exercise.
+10. **Underlying architecture and capacity constraints**, addressed at the root rather than patched around.
+
+None of these ten points mention AI by name. All ten apply directly to any AI system making or influencing decisions inside a bank.
+
+## Where this checklist lands hardest: credit, fraud, and RBI AI model validation
+
+Jain was specific about where AI sits in this picture: "automated outputs can influence credit decisions, fraud alerts, customer access, pricing and service delivery," and that influence requires "appropriate validation, monitoring, human oversight and clear accountability." He also flagged a subtler risk — that AI can help bad actors "scale impersonation and other attacks" — which puts fraud-detection models in the position of defending against the same class of technology attacking them.
+
+This is where RBI AI model validation stops being an abstract compliance phrase and becomes an engineering requirement with a shape: a validation record that predates deployment, a monitoring pipeline that runs after it, and a human decision point that isn't buried three menus deep in an ops dashboard. A credit-scoring model with a validation report from eighteen months ago and no drift monitoring since doesn't meet requirement six — its controls haven't kept pace with the model's own retraining cycles, let alone the market it scores against.
+
+## The vendor dependency point most banks haven't priced in
+
+Requirement seven — third-party and external dependency management — is the one banks running vendor-built or GCC-built AI models are most likely to underestimate. It sits alongside the same accountability logic RBI has been building since the FREE-AI Committee's report last year: whatever the model's origin, the regulated entity carries the validation burden. A fraud-detection model licensed from a vendor, or a credit model built by a captive GCC, still needs the bank's own validation, monitoring, and override arrangement wrapped around it. "Our vendor certified it" is not a control; it's a dependency that requirement seven expects the bank to have already stress-tested.
+
+## What a checklist-ready AI system actually looks like
+
+Meeting this ten-point structure isn't a documentation exercise any more than the RBI's parallel draft rules on Model Risk Management Frameworks were. It requires:
+
+- A **model validation record** completed before deployment and re-triggered on a defined schedule, not left to expire silently.
+- A **monitoring layer** tracking drift, output variability, and bias across the model's actual production population — not just the validation set it shipped with.
+- A **human override point** built into the execution path itself, with clear ownership of who acts on an alert and what action they're authorised to take.
+- **Documented third-party dependency mapping**, so a vendor or GCC-sourced model's failure modes are known quantities, not discovered during an incident.
+- **Post-incident review tied to model behaviour**, feeding back into the validation and monitoring cycle rather than sitting in a separate compliance file.
+
+Built this way, the checklist stops being ten separate audit questions and becomes one coherent answer: here is how this system fails, here is who is watching for it, and here is what happens next.
