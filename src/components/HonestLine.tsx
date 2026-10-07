@@ -71,7 +71,15 @@ function HonestGrid() {
   );
 }
 
-export default function HonestLine() {
+const DEFAULT_QUOTE = "A discovery that recommends not building is still a deliverable.";
+
+type HonestLineProps = {
+  quote?: string;
+  /** Renders the quote large and centred, replacing the default statement panel. */
+  featured?: boolean;
+};
+
+export default function HonestLine({ quote = DEFAULT_QUOTE, featured = false }: HonestLineProps = {}) {
   return (
     <section id="honest" className="bg-[#080f19] pt-16 md:pt-24 pb-0 px-6 lg:px-8" style={{ paddingBottom: 0 }}>
       <div className="mx-auto max-w-7xl">
@@ -84,6 +92,19 @@ export default function HonestLine() {
         >
           <HonestGrid />
 
+          {featured ? (
+            <div className="relative mx-auto max-w-4xl py-4 text-center">
+              <p
+                className="text-3xl font-medium leading-snug text-gray-700 italic md:text-4xl lg:text-5xl text-balance"
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              >
+                {`“${quote}”`}
+              </p>
+              <p className="mt-5 text-[11px] font-semibold tracking-[0.18em] uppercase text-[#5170ff]/60">
+                — Caldrik
+              </p>
+            </div>
+          ) : (
           <div className="relative flex flex-col lg:flex-row lg:items-center lg:gap-0">
             {/* Left anchor */}
             <div className="hidden lg:flex w-2/5 flex-col justify-center pr-12">
@@ -91,7 +112,7 @@ export default function HonestLine() {
                 className="text-3xl font-medium leading-snug text-gray-600 italic"
                 style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
               >
-                &ldquo;A discovery that recommends not building is still a deliverable.&rdquo;
+                {`“${quote}”`}
               </p>
               <p className="mt-3 text-[11px] font-semibold tracking-[0.18em] uppercase text-[#5170ff]/60">
                 — Caldrik
@@ -120,6 +141,7 @@ export default function HonestLine() {
 
             </div>
           </div>
+          )}
         </div>
       </div>
     </section>
