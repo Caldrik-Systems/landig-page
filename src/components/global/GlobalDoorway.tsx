@@ -3,9 +3,6 @@
 import { useState } from "react";
 import { events } from "@/lib/gtag";
 
-// Personal profile URLs aren't in the repo yet; both link to the company page until supplied.
-const LINKEDIN_URL = "https://www.linkedin.com/company/caldrik";
-
 const contacts = [
   { name: "Rohan Mashiyava", role: "Founder" },
   { name: "Ravindra Dhavlesha", role: "Lead Architect" },
@@ -71,15 +68,7 @@ export default function GlobalDoorway() {
             <div className="space-y-2 text-sm text-gray-400">
               {contacts.map((c) => (
                 <p key={c.name}>
-                  {c.name}, {c.role} ·{" "}
-                  <a
-                    href={LINKEDIN_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline underline-offset-4 hover:text-white transition-colors"
-                  >
-                    LinkedIn
-                  </a>
+                  {c.name}, {c.role}
                 </p>
               ))}
               <p>
