@@ -1,0 +1,184 @@
+"use client";
+
+import { useState } from "react";
+import { events } from "@/lib/gtag";
+
+// Personal profile URLs aren't in the repo yet; both link to the company page until supplied.
+const LINKEDIN_URL = "https://www.linkedin.com/company/caldrik";
+
+const contacts = [
+  { name: "Rohan Mashiyava", role: "Founder" },
+  { name: "Ravindra Dhavlesha", role: "Lead Architect" },
+];
+
+export default function GlobalDoorway() {
+  const inputCls =
+    "w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#5170ff]/50 transition-colors";
+  const labelCls =
+    "block text-xs font-medium tracking-wide text-gray-400 uppercase";
+
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    setStatus("sending");
+    setErrorMsg("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: fd.get("first_name"),
+          lastName: fd.get("last_name"),
+          company: fd.get("company"),
+          email: fd.get("email"),
+          title: fd.get("title"),
+          requirement: fd.get("requirement"),
+          source: "global",
+        }),
+      });
+      if (res.ok) {
+        events.leadSubmitted(fd.get("company") as string, "global_doorway");
+        setStatus("sent");
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setErrorMsg(process.env.NODE_ENV !== "production" ? (data.error ?? "") : "");
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  return (
+    <section id="doorway" className="bg-[#080f19] px-6 lg:px-8 pt-4 md:pt-6 pb-16 md:pb-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+          {/* Left — copy */}
+          <div className="space-y-6 lg:pt-4">
+            <h2 className="text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl leading-[1.0]">
+              Know before<br />you pitch.
+            </h2>
+            <p className="text-lg leading-8 text-gray-400 max-w-md">
+              Bring one client requirement. We&apos;ll tell you if AI fits, and what it takes to deliver it under your name.
+            </p>
+            <p className="text-sm text-gray-400">
+              No pitch. Just a technical opinion.
+            </p>
+            <div className="space-y-2 text-sm text-gray-400">
+              {contacts.map((c) => (
+                <p key={c.name}>
+                  {c.name}, {c.role} ·{" "}
+                  <a
+                    href={LINKEDIN_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-4 hover:text-white transition-colors"
+                  >
+                    LinkedIn
+                  </a>
+                </p>
+              ))}
+              <p>
+                <a href="mailto:hello@caldrik.co" className="underline underline-offset-4 hover:text-white transition-colors">hello@caldrik.co</a>
+                {" · "}
+                <a href="tel:+19179209285" className="hover:text-white transition-colors">+1 917 920 9285</a> (US)
+              </p>
+            </div>
+          </div>
+
+          {/* Right — form */}
+          {status === "sent" ? (
+            <div className="flex flex-col justify-center space-y-3 py-16">
+              <p className="text-2xl font-bold text-white">We&apos;ll be in touch.</p>
+              <p className="text-gray-400 text-sm leading-6">
+                Expect a technical response within one business day.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className={labelCls}>First name</label>
+                  <input type="text" name="first_name" required placeholder="First name" className={inputCls} />
+                </div>
+                <div className="space-y-1.5">
+                  <label className={labelCls}>Last name</label>
+                  <input type="text" name="last_name" required placeholder="Last name" className={inputCls} />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className={labelCls}>Company name</label>
+                  <input type="text" name="company" required placeholder="Company name" className={inputCls} />
+                </div>
+                <div className="space-y-1.5">
+                  <label className={labelCls}>Work email</label>
+                  <input type="email" name="email" required placeholder="you@company.com" className={inputCls} />
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className={labelCls}>Your title</label>
+                <input
+                  type="text"
+                  name="title"
+                  required
+                  placeholder="e.g. Founder, CEO, Head of Delivery"
+                  className={inputCls}
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className={labelCls}>
+                  The client requirement{" "}
+                  <span className="normal-case font-normal text-gray-400">— in a sentence (optional)</span>
+                </label>
+                <textarea
+                  name="requirement"
+                  rows={3}
+                  placeholder="e.g. A client wants AI agents inside their ERP to triage supplier exceptions."
+                  className={`${inputCls} resize-none`}
+                />
+              </div>
+
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="consent"
+                  required
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/20 bg-white/5 accent-[#5170ff]"
+                />
+                <span className="text-xs text-gray-400 leading-relaxed">
+                  Yes, I&apos;d like Caldrik to contact me regarding AI engineering
+                  services and related offerings by email or telephone.
+                </span>
+              </label>
+
+              {status === "error" && (
+                <p className="text-xs text-red-400">
+                  Something went wrong — please try again or email hello@caldrik.co directly.
+                  {errorMsg && <span className="block text-red-400/70">({errorMsg})</span>}
+                </p>
+              )}
+
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                onClick={() => events.ctaClicked("Discuss a Partnership", "global_doorway")}
+                className="rounded-full bg-[#5170ff] px-8 py-3.5 text-sm font-semibold text-white disabled:opacity-60"
+              >
+                {status === "sending" ? "Sending…" : "Discuss a Partnership"}
+              </button>
+            </form>
+          )}
+
+        </div>
+      </div>
+    </section>
+  );
+}
