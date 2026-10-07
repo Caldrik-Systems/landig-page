@@ -29,7 +29,6 @@ export const metadata: Metadata = {
     title: "Caldrik | Enterprise AI Engineering for BFSI & Healthcare",
     description:
       "We build LLM systems for enterprise workflows that can't afford to drift — evaluated, monitored, and maintained inside your cloud.",
-    url: "https://caldrik.co",
     siteName: "Caldrik",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     locale: "en_IN",
@@ -42,7 +41,6 @@ export const metadata: Metadata = {
       "End-to-end AI engineering for the workflows that can't afford to drift.",
     images: ["/og-image.jpg"],
   },
-  alternates: { canonical: "https://caldrik.co" },
   robots: { index: true, follow: true },
 };
 
@@ -51,7 +49,7 @@ const jsonLdOrganization = {
     "@type": "ProfessionalService",
     name: "Caldrik",
     legalName: "Revenance Techsol Private Limited",
-    url: "https://caldrik.co",
+    url: "https://caldrik.co/",
     logo: "https://caldrik.co/logo-white.svg",
     image: "https://caldrik.co/og-image.jpg",
     description:

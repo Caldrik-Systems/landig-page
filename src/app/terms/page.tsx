@@ -1,9 +1,16 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { pageUrl, pageOpenGraph } from "@/lib/seo";
+
+const title = "Terms & Conditions — Caldrik";
+const description = "Terms governing the use of Caldrik's website and AI engineering services.";
+const url = pageUrl("/terms/");
 
 export const metadata = {
-  title: "Terms & Conditions — Caldrik",
-  description: "Terms governing the use of Caldrik's website and AI engineering services.",
+  title,
+  description,
+  alternates: { canonical: url },
+  openGraph: pageOpenGraph(url, title, description),
 };
 
 const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
