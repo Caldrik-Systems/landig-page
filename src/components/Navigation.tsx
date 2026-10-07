@@ -4,18 +4,34 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-const NAV_LINKS = [
+export type NavLink = { name: string; anchor: string };
+
+const DEFAULT_NAV_LINKS: NavLink[] = [
   { name: "Problem",      anchor: "problem" },
   { name: "How We Work",  anchor: "how-we-work" },
   { name: "Services",     anchor: "services" },
   { name: "Focus",        anchor: "focus" },
 ];
 
-export default function Navigation() {
+const DEFAULT_CTA: NavLink = { name: "Discuss a Workflow", anchor: "doorway" };
+
+type NavigationProps = {
+  links?: NavLink[];
+  cta?: NavLink;
+  /** Path of the page the nav sits on; anchors are plain "#x" there and "<basePath>#x" elsewhere. */
+  basePath?: string;
+};
+
+export default function Navigation({
+  links = DEFAULT_NAV_LINKS,
+  cta = DEFAULT_CTA,
+  basePath = "/",
+}: NavigationProps = {}) {
+  const NAV_LINKS = links;
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const isHome = pathname === basePath;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -24,7 +40,7 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const href = (anchor: string) => (isHome ? `#${anchor}` : `/#${anchor}`);
+  const href = (anchor: string) => (isHome ? `#${anchor}` : `${basePath}#${anchor}`);
   const isSolid = scrolled || mobileMenuOpen;
 
   return (
@@ -54,8 +70,8 @@ export default function Navigation() {
           ))}
         </div>
 
-        <a href={href("doorway")} className="hidden bg-brand rounded-full px-4 py-1.5 text-sm/6 font-semibold text-white md:block">
-          Discuss a Workflow
+        <a href={href(cta.anchor)} className="hidden bg-brand rounded-full px-4 py-1.5 text-sm/6 font-semibold text-white md:block">
+          {cta.name}
         </a>
 
         <button
@@ -86,11 +102,11 @@ export default function Navigation() {
               </a>
             ))}
             <a
-              href={href("doorway")}
+              href={href(cta.anchor)}
               onClick={() => setMobileMenuOpen(false)}
               className="rounded-lg px-3 py-2 text-base font-semibold text-white hover:bg-white/5"
             >
-              Discuss a Workflow
+              {cta.name}
             </a>
           </div>
         </div>

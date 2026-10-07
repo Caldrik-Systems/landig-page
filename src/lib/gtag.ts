@@ -9,8 +9,8 @@ export function trackEvent(name: string, params?: Record<string, unknown>) {
 }
 
 export const events = {
-  leadSubmitted: (company?: string) =>
-    trackEvent("generate_lead", { event_category: "contact", company }),
+  leadSubmitted: (company?: string, location?: string) =>
+    trackEvent("generate_lead", { event_category: "contact", company, ...(location && { location }) }),
 
   ctaClicked: (label: string, location: string) =>
     trackEvent("cta_click", { event_category: "engagement", label, location }),
