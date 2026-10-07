@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) return {};
-  const canonical = `https://caldrik.co/insights/${slug}`;
+  const canonical = `https://caldrik.co/insights/${slug}/`;
   return {
     title: post.title,
     description: post.excerpt,
@@ -42,7 +42,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const post = getPost(slug);
   if (!post) notFound();
 
-  const canonical = `https://caldrik.co/insights/${slug}`;
+  const canonical = `https://caldrik.co/insights/${slug}/`;
   const absoluteImage = post.image.startsWith("http") ? post.image : `https://caldrik.co${post.image}`;
   const jsonLd = [
     {
@@ -54,7 +54,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       url: canonical,
       datePublished: post.date,
       dateModified: post.date,
-      author: { "@type": "Organization", name: "Caldrik", url: "https://caldrik.co" },
+      author: { "@type": "Organization", name: "Caldrik", url: "https://caldrik.co/" },
       publisher: {
         "@type": "Organization",
         name: "Caldrik",
@@ -66,8 +66,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://caldrik.co" },
-        { "@type": "ListItem", position: 2, name: "Insights", item: "https://caldrik.co/insights" },
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://caldrik.co/" },
+        { "@type": "ListItem", position: 2, name: "Insights", item: "https://caldrik.co/insights/" },
         { "@type": "ListItem", position: 3, name: post.title, item: canonical },
       ],
     },

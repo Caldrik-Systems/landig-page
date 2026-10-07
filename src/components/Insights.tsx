@@ -16,7 +16,7 @@ export default function Insights() {
             </h2>
           </div>
           <a
-            href="/insights"
+            href="/insights/"
             className="hidden sm:inline-flex rounded-full border border-white/20 px-5 py-2 text-sm font-semibold text-gray-400 hover:text-white transition-colors"
           >
             Browse all
@@ -27,7 +27,7 @@ export default function Insights() {
           {posts.map((post) => (
             <a
               key={post.slug}
-              href={`/insights/${post.slug}`}
+              href={`/insights/${post.slug}/`}
               className="group flex flex-col border border-white/[0.08] rounded-2xl overflow-hidden hover:border-white/[0.15] transition-colors"
             >
               <div className="relative h-44 w-full overflow-hidden">
@@ -61,7 +61,7 @@ export default function Insights() {
 
         <div className="mt-8 sm:hidden text-center">
           <a
-            href="/insights"
+            href="/insights/"
             className="inline-flex rounded-full border border-white/20 px-5 py-2 text-sm font-semibold text-gray-400"
           >
             Browse all insights

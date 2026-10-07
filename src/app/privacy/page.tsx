@@ -1,9 +1,16 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { pageUrl, pageOpenGraph } from "@/lib/seo";
+
+const title = "Privacy Policy — Caldrik";
+const description = "How Caldrik collects, uses, and protects your information.";
+const url = pageUrl("/privacy/");
 
 export const metadata = {
-  title: "Privacy Policy — Caldrik",
-  description: "How Caldrik collects, uses, and protects your information.",
+  title,
+  description,
+  alternates: { canonical: url },
+  openGraph: pageOpenGraph(url, title, description),
 };
 
 const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
