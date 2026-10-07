@@ -3,6 +3,9 @@
 import { useId } from "react";
 import { events } from "@/lib/gtag";
 import { motion } from "motion/react";
+import { globalContent } from "@/content/global";
+
+const { eyebrow, headline, subhead, primaryCta, secondaryCta } = globalContent.hero;
 
 function HeroGrid() {
   const id = useId();
@@ -49,22 +52,19 @@ export default function GlobalHero() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <p className="mb-8 font-mono text-[11px] font-semibold tracking-[0.4em] text-brand/65 uppercase">
-            AI Engineering · White-Label Delivery
+            {eyebrow}
           </p>
 
           <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
-            Your clients&apos; AI, <span className="text-brand">engineered</span>{" "}
-            under your name.
+            {headline.before}<span className="text-brand">{headline.highlight}</span>{headline.after}
           </h1>
 
-          <p className="mx-auto mt-8 max-w-2xl text-xl font-medium leading-8 text-gray-400">
-            The AI engineering team behind technology services firms. Designed, evaluated and maintained inside your client&apos;s cloud, and delivered as your own.
-          </p>
+          <p className="mx-auto mt-8 max-w-2xl text-xl font-medium leading-8 text-gray-400">{subhead}</p>
 
           <div className="mt-12 flex flex-col items-center gap-y-4 sm:flex-row sm:justify-center sm:gap-x-8 sm:gap-y-0">
-            <a href="#doorway" onClick={() => events.ctaClicked("Discuss a Partnership", "global_hero")} className="rounded-full bg-[#5170ff] px-8 py-3 text-sm font-semibold text-white">Discuss a Partnership</a>
-            <a href="#partnership" onClick={() => events.ctaClicked("See How It Works", "global_hero")} className="text-sm/6 font-semibold text-white/80 transition-colors hover:text-white">
-              See How It Works <span aria-hidden>&rarr;</span>
+            <a href={`#${primaryCta.anchor}`} onClick={() => events.ctaClicked(primaryCta.label, "global_hero")} className="rounded-full bg-[#5170ff] px-8 py-3 text-sm font-semibold text-white">{primaryCta.label}</a>
+            <a href={`#${secondaryCta.anchor}`} onClick={() => events.ctaClicked(secondaryCta.label, "global_hero")} className="text-sm/6 font-semibold text-white/80 transition-colors hover:text-white">
+              {secondaryCta.label} <span aria-hidden>&rarr;</span>
             </a>
           </div>
         </motion.div>

@@ -268,13 +268,11 @@ export interface HowItWorksStep {
 interface HowItWorksProps {
   steps: HowItWorksStep[];
   className?: string;
-  /** Show the animated per-step visuals (they illustrate the homepage lifecycle). */
-  visuals?: boolean;
 }
 
 const VISUALS = [<DiscoverVisual />, <EngineerVisual />, <EvaluateVisual />, <KeepAlignedVisual />];
 
-function StepColumn({ step, index, visuals }: { step: HowItWorksStep; index: number; visuals: boolean }) {
+function StepColumn({ step, index }: { step: HowItWorksStep; index: number }) {
   const [squares, setSquares] = useState<[number, number][]>([]);
   useEffect(() => {
     setSquares(Array.from({ length: 5 }, () => [
@@ -307,11 +305,9 @@ function StepColumn({ step, index, visuals }: { step: HowItWorksStep; index: num
         <div className="font-mono text-[52px] font-bold leading-none text-white/[0.05] mb-4 select-none">
           {String(index + 1).padStart(2, "0")}
         </div>
-        {visuals && (
-          <div className="relative h-32 mb-5 overflow-hidden">
-            {VISUALS[index]}
-          </div>
-        )}
+        <div className="relative h-32 mb-5 overflow-hidden">
+          {VISUALS[index]}
+        </div>
         <h3 className="text-base font-bold text-white mb-2">{step.title}</h3>
         <p className="text-sm leading-6 text-gray-400">{step.description}</p>
       </div>
@@ -319,7 +315,7 @@ function StepColumn({ step, index, visuals }: { step: HowItWorksStep; index: num
   );
 }
 
-export function HowItWorks({ steps, className, visuals = true }: HowItWorksProps) {
+export function HowItWorks({ steps, className }: HowItWorksProps) {
   return (
     <div className={cn(
       "grid grid-cols-1 md:grid-cols-4",
@@ -328,7 +324,7 @@ export function HowItWorks({ steps, className, visuals = true }: HowItWorksProps
       className
     )}>
       {steps.map((step, i) => (
-        <StepColumn key={step.title} step={step} index={i} visuals={visuals} />
+        <StepColumn key={step.title} step={step} index={i} />
       ))}
     </div>
   );
