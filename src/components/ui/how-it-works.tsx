@@ -51,7 +51,7 @@ function DiscoverVisual() {
     }
     const t = setTimeout(() => setPhase(0), 3000);
     return () => clearTimeout(t);
-  }, [phase]);
+  }, [phase, lines.length]);
 
   return (
     <div className="h-full w-full overflow-hidden px-1 pt-0 pb-2 font-mono text-[10px] leading-[1.75]">
@@ -270,15 +270,18 @@ interface HowItWorksProps {
   className?: string;
 }
 
-const VISUALS = [<DiscoverVisual />, <EngineerVisual />, <EvaluateVisual />, <KeepAlignedVisual />];
+const VISUALS = [<DiscoverVisual key="discover" />, <EngineerVisual key="engineer" />, <EvaluateVisual key="evaluate" />, <KeepAlignedVisual key="realign" />];
 
 function StepColumn({ step, index }: { step: HowItWorksStep; index: number }) {
   const [squares, setSquares] = useState<[number, number][]>([]);
   useEffect(() => {
-    setSquares(Array.from({ length: 5 }, () => [
-      Math.floor(Math.random() * 4) + 7,
-      Math.floor(Math.random() * 6) + 1,
-    ]) as [number, number][]);
+    const id = requestAnimationFrame(() => {
+      setSquares(Array.from({ length: 5 }, () => [
+        Math.floor(Math.random() * 4) + 7,
+        Math.floor(Math.random() * 6) + 1,
+      ]) as [number, number][]);
+    });
+    return () => cancelAnimationFrame(id);
   }, []);
 
   return (

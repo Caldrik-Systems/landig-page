@@ -51,7 +51,7 @@ export default function TheProblem() {
         <AnimatedContainer className="max-w-2xl">
           <p className="text-base/7 font-semibold text-brand">Silent failure</p>
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
-            AI doesn't fail.<br />It drifts.
+            AI doesn&apos;t fail.<br />It drifts.
           </h2>
           <p className="mt-4 text-lg font-medium text-gray-400">
             Hallucination is the risk every procurement checklist asks about.{" "}

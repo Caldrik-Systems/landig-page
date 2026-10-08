@@ -2,7 +2,6 @@
 
 import { useId } from "react";
 import { events } from "@/lib/gtag";
-import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { motion } from "motion/react";
 
 function HeroGrid() {
@@ -60,7 +59,7 @@ export default function Hero() {
           </h1>
 
           <p className="mx-auto mt-8 max-w-2xl text-xl font-medium leading-8 text-gray-400">
-            End-to-end AI engineering for the workflows that can't afford to drift — designed, evaluated and maintained inside your cloud.
+            End-to-end AI engineering for the workflows that can&apos;t afford to drift — designed, evaluated and maintained inside your cloud.
           </p>
 
           <div className="mt-12 flex flex-col items-center gap-y-4 sm:flex-row sm:justify-center sm:gap-x-8 sm:gap-y-0">

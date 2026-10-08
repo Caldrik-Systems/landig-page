@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { getAllPosts } from "@/lib/posts";
 
 export default function Insights() {
@@ -15,12 +16,12 @@ export default function Insights() {
               From the engineering floor.
             </h2>
           </div>
-          <a
+          <Link
             href="/insights/"
             className="hidden sm:inline-flex rounded-full border border-white/20 px-5 py-2 text-sm font-semibold text-gray-400 hover:text-white transition-colors"
           >
             Browse all
-          </a>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -60,12 +61,12 @@ export default function Insights() {
         </div>
 
         <div className="mt-8 sm:hidden text-center">
-          <a
+          <Link
             href="/insights/"
             className="inline-flex rounded-full border border-white/20 px-5 py-2 text-sm font-semibold text-gray-400"
           >
             Browse all insights
-          </a>
+          </Link>
         </div>
 
       </div>

@@ -9,12 +9,15 @@ function Grid() {
   const H = 24;
 
   useEffect(() => {
-    setSquares(
-      Array.from({ length: 10 }, () => [
-        Math.floor(Math.random() * 8),
-        Math.floor(Math.random() * 10) + 1,
-      ])
-    );
+    const id = requestAnimationFrame(() => {
+      setSquares(
+        Array.from({ length: 10 }, () => [
+          Math.floor(Math.random() * 8),
+          Math.floor(Math.random() * 10) + 1,
+        ])
+      );
+    });
+    return () => cancelAnimationFrame(id);
   }, []);
 
   return (

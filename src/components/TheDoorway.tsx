@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { events } from "@/lib/gtag";
 
 export default function TheDoorway() {
@@ -57,9 +58,9 @@ export default function TheDoorway() {
             </p>
             <div className="text-sm text-gray-400">
               <p>Not ready yet?</p>
-              <a href="/insights/" className="text-gray-400 underline underline-offset-4 hover:text-white transition-colors">
+              <Link href="/insights/" className="text-gray-400 underline underline-offset-4 hover:text-white transition-colors">
                 Start with our thinking →
-              </a>
+              </Link>
             </div>
           </div>
 
