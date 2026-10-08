@@ -21,6 +21,7 @@ export const globalContent = {
       { name: "Capabilities", anchor: "capabilities" },
       { name: "Terms", anchor: "terms" },
       { name: "FAQ", anchor: "faq" },
+      { name: "Insights", href: "/global/insights/" },
     ],
     cta: { name: "Discuss a Partnership", anchor: "doorway" },
   },
@@ -112,6 +113,17 @@ export const globalContent = {
     ],
   },
 
+  insights: {
+    title: "Insights · Caldrik",
+    description: "AI engineering perspectives from the Caldrik team — on evaluation, reliability, and building AI systems for regulated industries.",
+    label: "Insights",
+    headline: "From the engineering floor.",
+    readMore: "Read more →",
+    postCta: {
+      button: "Discuss a Partnership",
+    },
+  },
+
   doorway: {
     headline: ["Know before", "you pitch."],
     line: "Bring one client requirement. We'll tell you if AI fits, and what it takes to deliver it under your name.",
@@ -144,7 +156,7 @@ export const globalContent = {
       { href: "#capabilities", label: "Capabilities" },
       { href: "#terms", label: "Terms" },
       { href: "#faq", label: "FAQ" },
-      { href: "/insights/", label: "Insights" },
+      { href: "/global/insights/", label: "Insights" },
     ],
     legalLinks: [
       { href: "/privacy/", label: "Privacy" },

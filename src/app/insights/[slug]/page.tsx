@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PostCTA from "@/components/PostCTA";
+import GlobalPostCTA from "@/components/global/GlobalPostCTA";
 import { getAllPosts, getPost } from "@/lib/posts";
 
 export async function generateStaticParams() {
@@ -112,11 +113,16 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       </article>
 
       <div className="mx-auto w-full max-w-7xl px-6 lg:px-8 pb-24">
-        <PostCTA
-          category={post.category}
-          ctaHeadline={post.ctaHeadline}
-          ctaDescription={post.ctaDescription}
-        />
+        {/* india and both keep the current CTA; global-only posts send readers to the partner form */}
+        {post.market === "global" ? (
+          <GlobalPostCTA ctaHeadline={post.ctaHeadline} ctaDescription={post.ctaDescription} />
+        ) : (
+          <PostCTA
+            category={post.category}
+            ctaHeadline={post.ctaHeadline}
+            ctaDescription={post.ctaDescription}
+          />
+        )}
       </div>
 
       <Footer />

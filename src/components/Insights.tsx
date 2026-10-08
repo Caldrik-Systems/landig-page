@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getAllPosts } from "@/lib/posts";
+import { getPostsByMarket } from "@/lib/posts";
 
 export default function Insights() {
-  const posts = getAllPosts().slice(0, 3);
+  const posts = getPostsByMarket("india").slice(0, 3);
 
   return (
     <section className="bg-[#080f19] py-16 md:py-24">
