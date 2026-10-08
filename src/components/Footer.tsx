@@ -47,7 +47,7 @@ const navLinks = [
   { href: "/in/#how-we-work", label: "How We Work" },
   { href: "/in/#services", label: "Services" },
   { href: "/in/#focus", label: "Focus" },
-  { href: "/insights/", label: "Insights" },
+  { href: "/in/insights/", label: "Insights" },
 ];
 
 const legalLinks = [

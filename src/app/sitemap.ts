@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: "https://caldrik.co/",         lastModified: new Date(), changeFrequency: "weekly",  priority: 1 },
     { url: "https://caldrik.co/in/",       lastModified: new Date(), changeFrequency: "weekly",  priority: 0.9 },
-    { url: "https://caldrik.co/global/insights/", lastModified: new Date(), changeFrequency: "weekly",  priority: 0.9 },
+    { url: "https://caldrik.co/in/insights/", lastModified: new Date(), changeFrequency: "weekly",  priority: 0.9 },
     { url: "https://caldrik.co/insights/", lastModified: new Date(), changeFrequency: "weekly",  priority: 0.9 },
     ...posts,
     { url: "https://caldrik.co/privacy/",  lastModified: new Date("2026-08-01"), changeFrequency: "yearly",  priority: 0.2 },

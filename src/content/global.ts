@@ -21,7 +21,7 @@ export const globalContent = {
       { name: "Capabilities", anchor: "capabilities" },
       { name: "Terms", anchor: "terms" },
       { name: "FAQ", anchor: "faq" },
-      { name: "Insights", href: "/global/insights/" },
+      { name: "Insights", href: "/insights/" },
     ],
     cta: { name: "Discuss a Partnership", anchor: "doorway" },
   },
@@ -156,7 +156,7 @@ export const globalContent = {
       { href: "#capabilities", label: "Capabilities" },
       { href: "#terms", label: "Terms" },
       { href: "#faq", label: "FAQ" },
-      { href: "/global/insights/", label: "Insights" },
+      { href: "/insights/", label: "Insights" },
     ],
     legalLinks: [
       { href: "/privacy/", label: "Privacy" },

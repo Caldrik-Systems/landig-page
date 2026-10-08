@@ -17,7 +17,7 @@ export default function Insights() {
             </h2>
           </div>
           <Link
-            href="/insights/"
+            href="/in/insights/"
             className="hidden sm:inline-flex rounded-full border border-white/20 px-5 py-2 text-sm font-semibold text-gray-400 hover:text-white transition-colors"
           >
             Browse all
@@ -62,7 +62,7 @@ export default function Insights() {
 
         <div className="mt-8 sm:hidden text-center">
           <Link
-            href="/insights/"
+            href="/in/insights/"
             className="inline-flex rounded-full border border-white/20 px-5 py-2 text-sm font-semibold text-gray-400"
           >
             Browse all insights
