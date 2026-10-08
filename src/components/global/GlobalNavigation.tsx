@@ -1,12 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { globalContent } from "@/content/global";
 
 const { links, cta } = globalContent.nav;
 
 export default function GlobalNavigation() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const anchorHref = (anchor: string) => (isHome ? `#${anchor}` : `/#${anchor}`);
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -34,20 +39,21 @@ export default function GlobalNavigation() {
       </svg>
 
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 px-6 py-3 lg:px-8">
+        {/* Full page load on purpose: "/" is geo-routed in middleware. */}
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href="/" className="-m-1.5 p-1.5">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img alt="Caldrik" src="/logo-white.svg" className="h-8 w-auto" width="120" height="32" />
+          <Image alt="Caldrik" src="/logo-white.svg" className="h-8 w-auto" width={120} height={32} priority />
         </a>
 
         <div className="hidden md:flex md:flex-1 md:items-center md:justify-center md:gap-x-8">
           {links.map((link) => (
-            <a key={link.name} href={`#${link.anchor}`} className="text-sm/6 font-semibold text-white">
+            <a key={link.name} href={anchorHref(link.anchor)} className="text-sm/6 font-semibold text-white">
               {link.name}
             </a>
           ))}
         </div>
 
-        <a href={`#${cta.anchor}`} className="hidden bg-brand rounded-full px-4 py-1.5 text-sm/6 font-semibold text-white md:block">
+        <a href={anchorHref(cta.anchor)} className="hidden bg-brand rounded-full px-4 py-1.5 text-sm/6 font-semibold text-white md:block">
           {cta.name}
         </a>
 
@@ -67,7 +73,7 @@ export default function GlobalNavigation() {
             {links.map((link) => (
               <a
                 key={link.name}
-                href={`#${link.anchor}`}
+                href={anchorHref(link.anchor)}
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-3 py-2 text-base font-semibold text-white hover:bg-white/5"
               >
@@ -75,7 +81,7 @@ export default function GlobalNavigation() {
               </a>
             ))}
             <a
-              href={`#${cta.anchor}`}
+              href={anchorHref(cta.anchor)}
               onClick={() => setMobileMenuOpen(false)}
               className="rounded-lg px-3 py-2 text-base font-semibold text-white hover:bg-white/5"
             >

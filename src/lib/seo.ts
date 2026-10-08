@@ -26,8 +26,12 @@ export function pageOpenGraph(
 
 // Both sites declare each other so Google serves the right one per country.
 // Global (/) is the primary and the x-default.
-export const LANGUAGE_ALTERNATES = {
-  "en-IN": pageUrl("/in/"),
-  "en-US": pageUrl("/"),
-  "x-default": pageUrl("/"),
-};
+export function languageAlternates(globalPath: string, indiaPath: string) {
+  return {
+    "en-IN": pageUrl(indiaPath),
+    "en-US": pageUrl(globalPath),
+    "x-default": pageUrl(globalPath),
+  };
+}
+
+export const LANGUAGE_ALTERNATES = languageAlternates("/", "/in/");

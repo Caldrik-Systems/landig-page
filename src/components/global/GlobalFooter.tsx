@@ -2,6 +2,7 @@
 
 import { useId } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { globalContent } from "@/content/global";
 
 const f = globalContent.footer;
@@ -33,6 +34,8 @@ const iconBtn =
   "flex items-center justify-center w-9 h-9 rounded-full bg-white/10 text-gray-400 hover:bg-white/20 hover:text-white transition-colors";
 
 export default function GlobalFooter() {
+  const isHome = usePathname() === "/";
+  const resolve = (href: string) => (href.startsWith("#") && !isHome ? `/${href}` : href);
   return (
     <footer className="relative bg-[#080f19] px-6 lg:px-8 pt-10 pb-12">
       <FooterGrid />
@@ -60,7 +63,7 @@ export default function GlobalFooter() {
 
         <nav className="grid grid-cols-2 gap-x-4 gap-y-3 sm:flex sm:flex-wrap sm:gap-x-6 sm:gap-y-2">
           {f.links.map((link) => (
-            <a key={link.href} href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors">
+            <a key={link.href} href={resolve(link.href)} className="text-sm text-gray-400 hover:text-white transition-colors">
               {link.label}
             </a>
           ))}

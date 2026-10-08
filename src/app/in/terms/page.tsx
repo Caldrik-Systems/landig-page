@@ -1,15 +1,15 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { pageUrl, pageOpenGraph } from "@/lib/seo";
+import { pageUrl, pageOpenGraph, languageAlternates } from "@/lib/seo";
 
 const title = "Terms & Conditions — Caldrik";
 const description = "Terms governing the use of Caldrik's website and AI engineering services.";
-const url = pageUrl("/terms/");
+const url = pageUrl("/in/terms/");
 
 export const metadata = {
   title,
   description,
-  alternates: { canonical: url },
+  alternates: { canonical: url, languages: languageAlternates("/terms/", "/in/terms/") },
   openGraph: pageOpenGraph(url, title, description),
 };
 

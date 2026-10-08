@@ -1,15 +1,15 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { pageUrl, pageOpenGraph } from "@/lib/seo";
+import { pageUrl, pageOpenGraph, languageAlternates } from "@/lib/seo";
 
 const title = "Privacy Policy — Caldrik";
 const description = "How Caldrik collects, uses, and protects your information.";
-const url = pageUrl("/privacy/");
+const url = pageUrl("/in/privacy/");
 
 export const metadata = {
   title,
   description,
-  alternates: { canonical: url },
+  alternates: { canonical: url, languages: languageAlternates("/privacy/", "/in/privacy/") },
   openGraph: pageOpenGraph(url, title, description),
 };
 
