@@ -157,12 +157,6 @@ export const globalContent = {
     headline: ["Know before", "you pitch."],
     line: "Bring one client requirement. We'll tell you if AI fits, and what it takes to deliver it under your name.",
     smallPrint: "No pitch. Just a technical opinion.",
-    contacts: [
-      { name: "Rohan Mashiyava", role: "Founder" },
-      { name: "Ravindra Dhavlesha", role: "Lead Architect" },
-    ],
-    email: "hello@caldrik.co",
-    phone: { display: "+1 917 920 9285", tel: "+19179209285", note: "(US)" },
     form: {
       firstName: { label: "First name", placeholder: "First name" },
       lastName: { label: "Last name", placeholder: "Last name" },

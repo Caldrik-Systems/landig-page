@@ -64,18 +64,6 @@ export default function GlobalDoorway() {
             <p className="text-sm text-gray-400">
               {d.smallPrint}
             </p>
-            <div className="space-y-2 text-sm text-gray-400">
-              {d.contacts.map((c) => (
-                <p key={c.name}>
-                  {c.name}, {c.role}
-                </p>
-              ))}
-              <p>
-                <a href={`mailto:${d.email}`} className="underline underline-offset-4 hover:text-white transition-colors">{d.email}</a>
-                {" · "}
-                <a href={`tel:${d.phone.tel}`} className="hover:text-white transition-colors">{d.phone.display}</a> {d.phone.note}
-              </p>
-            </div>
           </div>
 
           {/* Right — form */}
