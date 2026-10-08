@@ -17,7 +17,8 @@ export function FeatureCard({ feature, className, ...props }: FeatureCardProps) 
 	const [squares, setSquares] = useState<number[][]>([]);
 
 	useEffect(() => {
-		setSquares(genRandomPattern());
+		const id = requestAnimationFrame(() => setSquares(genRandomPattern()));
+		return () => cancelAnimationFrame(id);
 	}, []);
 
 	return (

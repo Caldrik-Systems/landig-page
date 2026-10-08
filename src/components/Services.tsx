@@ -1,7 +1,6 @@
 "use client";
 
 import { useId, useRef, useState, useEffect } from "react";
-import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { cn } from "@/lib/utils";
 
 /* ── Right-panel UI mockups — each shows a real deliverable ── */

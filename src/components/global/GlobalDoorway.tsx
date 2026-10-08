@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import { events } from "@/lib/gtag";
+import { globalContent } from "@/content/global";
 
-const contacts = [
-  { name: "Rohan Mashiyava", role: "Founder" },
-  { name: "Ravindra Dhavlesha", role: "Lead Architect" },
-];
+const d = globalContent.doorway;
+const fm = d.form;
 
 export default function GlobalDoorway() {
   const inputCls =
@@ -57,24 +56,24 @@ export default function GlobalDoorway() {
           {/* Left — copy */}
           <div className="space-y-6 lg:pt-4">
             <h2 className="text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl leading-[1.0]">
-              Know before<br />you pitch.
+              {d.headline[0]}<br />{d.headline[1]}
             </h2>
             <p className="text-lg leading-8 text-gray-400 max-w-md">
-              Bring one client requirement. We&apos;ll tell you if AI fits, and what it takes to deliver it under your name.
+              {d.line}
             </p>
             <p className="text-sm text-gray-400">
-              No pitch. Just a technical opinion.
+              {d.smallPrint}
             </p>
             <div className="space-y-2 text-sm text-gray-400">
-              {contacts.map((c) => (
+              {d.contacts.map((c) => (
                 <p key={c.name}>
                   {c.name}, {c.role}
                 </p>
               ))}
               <p>
-                <a href="mailto:hello@caldrik.co" className="underline underline-offset-4 hover:text-white transition-colors">hello@caldrik.co</a>
+                <a href={`mailto:${d.email}`} className="underline underline-offset-4 hover:text-white transition-colors">{d.email}</a>
                 {" · "}
-                <a href="tel:+19179209285" className="hover:text-white transition-colors">+1 917 920 9285</a> (US)
+                <a href={`tel:${d.phone.tel}`} className="hover:text-white transition-colors">{d.phone.display}</a> {d.phone.note}
               </p>
             </div>
           </div>
@@ -82,55 +81,55 @@ export default function GlobalDoorway() {
           {/* Right — form */}
           {status === "sent" ? (
             <div className="flex flex-col justify-center space-y-3 py-16">
-              <p className="text-2xl font-bold text-white">We&apos;ll be in touch.</p>
+              <p className="text-2xl font-bold text-white">{fm.successTitle}</p>
               <p className="text-gray-400 text-sm leading-6">
-                Expect a technical response within one business day.
+                {fm.successBody}
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className={labelCls}>First name</label>
-                  <input type="text" name="first_name" required placeholder="First name" className={inputCls} />
+                  <label className={labelCls}>{fm.firstName.label}</label>
+                  <input type="text" name="first_name" required placeholder={fm.firstName.placeholder} className={inputCls} />
                 </div>
                 <div className="space-y-1.5">
-                  <label className={labelCls}>Last name</label>
-                  <input type="text" name="last_name" required placeholder="Last name" className={inputCls} />
+                  <label className={labelCls}>{fm.lastName.label}</label>
+                  <input type="text" name="last_name" required placeholder={fm.lastName.placeholder} className={inputCls} />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className={labelCls}>Company name</label>
-                  <input type="text" name="company" required placeholder="Company name" className={inputCls} />
+                  <label className={labelCls}>{fm.company.label}</label>
+                  <input type="text" name="company" required placeholder={fm.company.placeholder} className={inputCls} />
                 </div>
                 <div className="space-y-1.5">
-                  <label className={labelCls}>Work email</label>
-                  <input type="email" name="email" required placeholder="you@company.com" className={inputCls} />
+                  <label className={labelCls}>{fm.email.label}</label>
+                  <input type="email" name="email" required placeholder={fm.email.placeholder} className={inputCls} />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className={labelCls}>Your title</label>
+                <label className={labelCls}>{fm.title.label}</label>
                 <input
                   type="text"
                   name="title"
                   required
-                  placeholder="e.g. Founder, CEO, Head of Delivery"
+                  placeholder={fm.title.placeholder}
                   className={inputCls}
                 />
               </div>
 
               <div className="space-y-1.5">
                 <label className={labelCls}>
-                  The client requirement{" "}
-                  <span className="normal-case font-normal text-gray-400">— in a sentence (optional)</span>
+                  {fm.requirement.label}{" "}
+                  <span className="normal-case font-normal text-gray-400">{fm.requirement.hint}</span>
                 </label>
                 <textarea
                   name="requirement"
                   rows={3}
-                  placeholder="e.g. A client wants AI agents inside their ERP to triage supplier exceptions."
+                  placeholder={fm.requirement.placeholder}
                   className={`${inputCls} resize-none`}
                 />
               </div>
@@ -143,14 +142,13 @@ export default function GlobalDoorway() {
                   className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/20 bg-white/5 accent-[#5170ff]"
                 />
                 <span className="text-xs text-gray-400 leading-relaxed">
-                  Yes, I&apos;d like Caldrik to contact me regarding AI engineering
-                  services and related offerings by email or telephone.
+                  {fm.consent}
                 </span>
               </label>
 
               {status === "error" && (
                 <p className="text-xs text-red-400">
-                  Something went wrong — please try again or email hello@caldrik.co directly.
+                  {fm.error}
                   {errorMsg && <span className="block text-red-400/70">({errorMsg})</span>}
                 </p>
               )}
@@ -158,10 +156,10 @@ export default function GlobalDoorway() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                onClick={() => events.ctaClicked("Discuss a Partnership", "global_doorway")}
+                onClick={() => events.ctaClicked(fm.button, "global_doorway")}
                 className="rounded-full bg-[#5170ff] px-8 py-3.5 text-sm font-semibold text-white disabled:opacity-60"
               >
-                {status === "sending" ? "Sending…" : "Discuss a Partnership"}
+                {status === "sending" ? fm.sending : fm.button}
               </button>
             </form>
           )}

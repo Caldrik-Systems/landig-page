@@ -14,7 +14,11 @@ export type PostMeta = {
 export type Post = PostMeta & { contentHtml: string };
 
 export function getAllPosts(): PostMeta[] {
-  return postsData.map(({ contentHtml: _html, ...meta }) => meta as PostMeta);
+  return postsData.map((post) => {
+    const meta: Partial<typeof post> = { ...post };
+    delete meta.contentHtml;
+    return meta as PostMeta;
+  });
 }
 
 export function getPost(slug: string): Post | null {

@@ -9,12 +9,15 @@ function Grid() {
   const H = 24;
 
   useEffect(() => {
-    setSquares(
-      Array.from({ length: 10 }, () => [
-        Math.floor(Math.random() * 8),
-        Math.floor(Math.random() * 10) + 1,
-      ])
-    );
+    const id = requestAnimationFrame(() => {
+      setSquares(
+        Array.from({ length: 10 }, () => [
+          Math.floor(Math.random() * 8),
+          Math.floor(Math.random() * 10) + 1,
+        ])
+      );
+    });
+    return () => cancelAnimationFrame(id);
   }, []);
 
   return (
@@ -115,7 +118,7 @@ export default function PostCTA({ category, ctaHeadline, ctaDescription }: PostC
             {description}
           </p>
           <a
-            href="/#doorway"
+            href="/in/#doorway"
             className="mt-7 inline-flex items-center rounded-full bg-[#5170ff] px-7 py-3 text-sm font-semibold text-white hover:bg-[#5170ff]/90 transition-colors"
           >
             Request an assessment →

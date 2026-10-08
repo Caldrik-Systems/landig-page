@@ -72,6 +72,8 @@ export function NotFound({
           </a>
         </Button>
         <Button className="-order-1 sm:order-none" asChild>
+          {/* Full page load on purpose: "/" is geo-routed in middleware, so it must not be a client-side navigation. */}
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a href="/">Take me home</a>
         </Button>
       </div>
