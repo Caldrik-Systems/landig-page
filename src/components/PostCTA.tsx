@@ -115,7 +115,7 @@ export default function PostCTA({ category, ctaHeadline, ctaDescription }: PostC
             {description}
           </p>
           <a
-            href="/#doorway"
+            href="/in/#doorway"
             className="mt-7 inline-flex items-center rounded-full bg-[#5170ff] px-7 py-3 text-sm font-semibold text-white hover:bg-[#5170ff]/90 transition-colors"
           >
             Request an assessment →

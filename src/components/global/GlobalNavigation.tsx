@@ -34,7 +34,7 @@ export default function GlobalNavigation() {
       </svg>
 
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 px-6 py-3 lg:px-8">
-        <a href="/global/" className="-m-1.5 p-1.5">
+        <a href="/" className="-m-1.5 p-1.5">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img alt="Caldrik" src="/logo-white.svg" className="h-8 w-auto" width="120" height="32" />
         </a>

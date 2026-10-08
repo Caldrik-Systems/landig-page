@@ -43,10 +43,10 @@ function EmailIcon() {
 }
 
 const navLinks = [
-  { href: "/#problem", label: "Problem" },
-  { href: "/#how-we-work", label: "How We Work" },
-  { href: "/#services", label: "Services" },
-  { href: "/#focus", label: "Focus" },
+  { href: "/in/#problem", label: "Problem" },
+  { href: "/in/#how-we-work", label: "How We Work" },
+  { href: "/in/#services", label: "Services" },
+  { href: "/in/#focus", label: "Focus" },
   { href: "/insights/", label: "Insights" },
 ];
 

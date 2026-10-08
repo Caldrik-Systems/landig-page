@@ -23,3 +23,11 @@ export function pageOpenGraph(
     type: "website",
   };
 }
+
+// Both sites declare each other so Google serves the right one per country.
+// Global (/) is the primary and the x-default.
+export const LANGUAGE_ALTERNATES = {
+  "en-IN": pageUrl("/in/"),
+  "en-US": pageUrl("/"),
+  "x-default": pageUrl("/"),
+};

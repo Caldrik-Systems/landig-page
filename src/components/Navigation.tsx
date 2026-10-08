@@ -15,7 +15,7 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const isHome = pathname?.replace(/\/$/, "") === "/in";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -24,7 +24,7 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const href = (anchor: string) => (isHome ? `#${anchor}` : `/#${anchor}`);
+  const href = (anchor: string) => (isHome ? `#${anchor}` : `/in/#${anchor}`);
   const isSolid = scrolled || mobileMenuOpen;
 
   return (
@@ -42,7 +42,7 @@ export default function Navigation() {
       </svg>
 
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 px-6 py-3 lg:px-8">
-        <a href="/" className="-m-1.5 p-1.5">
+        <a href="/in/" className="-m-1.5 p-1.5">
           <img alt="Caldrik" src="/logo-white.svg" className="h-8 w-auto" width="120" height="32" />
         </a>
 
