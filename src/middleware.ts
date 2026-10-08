@@ -19,7 +19,8 @@ function countryOf(request: NextRequest): string | null {
 }
 
 function shouldRouteToGlobal(request: NextRequest): boolean {
-  if (process.env.GEO_ROUTING !== "on") return false;
+  // On by default; set GEO_ROUTING=off to switch routing off without a code change.
+  if (process.env.GEO_ROUTING === "off") return false;
   if (request.method !== "GET" || request.nextUrl.pathname !== "/") return false;
   if (CRAWLER_UA.test(request.headers.get("user-agent") ?? "")) return false;
 
