@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
 import GlobalNavigation from "@/components/global/GlobalNavigation";
 import GlobalFooter from "@/components/global/GlobalFooter";
-import GlobalHonestLine from "@/components/global/GlobalHonestLine";
 import GlobalHero from "@/components/global/GlobalHero";
 import GlobalDoorway from "@/components/global/GlobalDoorway";
 import {
-  GlobalGap,
   GlobalPartnership,
-  GlobalCapabilities,
   GlobalStandard,
-  GlobalRecentWork,
-  GlobalEngagement,
-  GlobalSafeguards,
+  GlobalCapabilities,
+  GlobalWorkingTerms,
   GlobalFaq,
 } from "@/components/global/GlobalSections";
 import { globalContent } from "@/content/global";
@@ -40,14 +36,10 @@ export default function GlobalPage() {
       <GlobalNavigation />
       <main className="flex flex-col flex-1">
         <GlobalHero />
-        <GlobalGap />
         <GlobalPartnership />
-        <GlobalCapabilities />
         <GlobalStandard />
-        <GlobalRecentWork />
-        <GlobalEngagement />
-        <GlobalSafeguards />
-        <GlobalHonestLine />
+        <GlobalCapabilities />
+        <GlobalWorkingTerms />
         <GlobalFaq />
         <GlobalDoorway />
       </main>

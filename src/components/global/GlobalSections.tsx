@@ -2,9 +2,7 @@
 
 import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { CheckIcon } from "@heroicons/react/24/outline";
 import { globalContent as c } from "@/content/global";
-import { GlobalFeatureCard } from "./ui/GlobalFeatureCard";
 import { GlobalStepCards } from "./ui/GlobalStepCards";
 import { GlobalAccordion, GlobalAccordionContent, GlobalAccordionItem, GlobalAccordionTrigger } from "./ui/GlobalAccordion";
 
@@ -38,28 +36,6 @@ function SectionHeader({ label, headline, line, className = "max-w-2xl" }: { lab
 
 const dashedGrid = "grid grid-cols-1 divide-y divide-dashed divide-white/[0.15] border border-dashed border-white/[0.15]";
 const twoCol = `${dashedGrid} md:grid-cols-2 md:divide-x md:divide-y-0`;
-
-/* ── The gap ───────────────────────────────────────────────────────────── */
-
-export function GlobalGap() {
-  const s = c.gap;
-  return (
-    <section id="gap" className="bg-[#080f19] py-16 md:py-32">
-      <div className="mx-auto w-full max-w-7xl space-y-8 px-6 lg:px-8">
-        <SectionHeader
-          label={s.label}
-          headline={<>{s.headline[0]}<br />{s.headline[1]}</>}
-          line={s.line}
-        />
-        <AnimatedContainer delay={0.4} className={`${dashedGrid} sm:grid-cols-3 sm:divide-x sm:divide-y-0`}>
-          {s.cards.map((card) => (
-            <GlobalFeatureCard key={card.title} title={card.title} description={card.description} />
-          ))}
-        </AnimatedContainer>
-      </div>
-    </section>
-  );
-}
 
 /* ── The partnership ───────────────────────────────────────────────────── */
 
@@ -110,7 +86,7 @@ export function GlobalCapabilities() {
                 </div>
                 <div className="flex flex-col gap-4">
                   <p className="text-base leading-7 text-gray-400">{row.description}</p>
-                  <p className="font-mono text-sm text-brand">{row.callout}</p>
+                  {row.callout && <p className="font-mono text-sm text-brand">{row.callout}</p>}
                 </div>
               </div>
             </div>
@@ -132,7 +108,7 @@ export function GlobalStandard() {
         <SectionHeader
           label={s.label}
           headline={s.headline}
-          line={<>{s.line} <span className="text-white/80">{s.lineEmphasis}</span></>}
+          line={s.lineEmphasis ? <>{s.line} <span className="text-white/80">{s.lineEmphasis}</span></> : s.line}
           className="max-w-3xl mb-16"
         />
         <GlobalStepCards steps={s.steps} />
@@ -158,59 +134,21 @@ function DetailCard({ title, description, callout, outcome }: { title: string; d
   );
 }
 
-/* ── Recent work ───────────────────────────────────────────────────────── */
+/* ── Working terms ─────────────────────────────────────────────────────── */
 
-export function GlobalRecentWork() {
-  const s = c.recentWork;
+export function GlobalWorkingTerms() {
+  const s = c.workingTerms;
   return (
-    <section id="work" className="bg-[#080f19] py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionHeader label={s.label} headline={s.headline} className="max-w-2xl mb-10" />
-        <AnimatedContainer delay={0.3} className={twoCol}>
-          {s.cards.map((card) => (
-            <DetailCard key={card.title} title={card.title} description={card.description} callout={card.callout} />
-          ))}
-        </AnimatedContainer>
-      </div>
-    </section>
-  );
-}
-
-/* ── Engagement models ─────────────────────────────────────────────────── */
-
-export function GlobalEngagement() {
-  const s = c.engagement;
-  return (
-    <section id="engagement" className="bg-[#080f19] py-16 md:py-24">
+    <section id="terms" className="bg-[#080f19] py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <SectionHeader label={s.label} headline={s.headline} line={s.line} className="max-w-2xl mb-10" />
         <AnimatedContainer delay={0.3} className={twoCol}>
           {s.cards.map((card) => (
-            <DetailCard key={card.title} title={card.title} description={card.description} outcome={card.outcome} />
+            <DetailCard key={card.title} title={card.title} description={card.description} />
           ))}
         </AnimatedContainer>
         <p className="mt-6 max-w-3xl text-sm leading-6 text-gray-400">{s.note}</p>
-      </div>
-    </section>
-  );
-}
-
-/* ── Safeguards ────────────────────────────────────────────────────────── */
-
-export function GlobalSafeguards() {
-  const s = c.safeguards;
-  return (
-    <section id="safeguards" className="bg-[#080f19] py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionHeader label={s.label} headline={s.headline} className="max-w-2xl mb-10" />
-        <ul className="max-w-3xl space-y-4">
-          {s.items.map((item) => (
-            <li key={item} className="flex items-start gap-4 text-base leading-7 text-gray-400">
-              <CheckIcon aria-hidden className="mt-1 size-5 shrink-0 text-brand" />
-              {item}
-            </li>
-          ))}
-        </ul>
+        <p className="mt-6 max-w-4xl font-mono text-sm leading-6 text-brand">{s.strip}</p>
       </div>
     </section>
   );

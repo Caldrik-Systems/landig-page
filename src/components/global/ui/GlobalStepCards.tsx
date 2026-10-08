@@ -42,7 +42,9 @@ function StepColumn({ step, index }: { step: GlobalStep; index: number }) {
 
 export function GlobalStepCards({ steps }: { steps: readonly GlobalStep[] }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 border border-dashed border-white/[0.15] divide-y divide-dashed divide-white/[0.15] md:divide-y-0 md:divide-x">
+    <div
+      className={`grid grid-cols-1 ${steps.length === 3 ? "md:grid-cols-3" : "md:grid-cols-4"} border border-dashed border-white/[0.15] divide-y divide-dashed divide-white/[0.15] md:divide-y-0 md:divide-x`}
+    >
       {steps.map((step, i) => (
         <StepColumn key={step.title} step={step} index={i} />
       ))}

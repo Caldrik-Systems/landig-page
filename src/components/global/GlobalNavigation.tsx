@@ -12,6 +12,7 @@ export default function GlobalNavigation() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const anchorHref = (anchor: string) => (isHome ? `#${anchor}` : `/#${anchor}`);
+  const linkHref = (link: { anchor: string } | { href: string }) => ("href" in link ? link.href : anchorHref(link.anchor));
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -47,7 +48,7 @@ export default function GlobalNavigation() {
 
         <div className="hidden md:flex md:flex-1 md:items-center md:justify-center md:gap-x-8">
           {links.map((link) => (
-            <a key={link.name} href={anchorHref(link.anchor)} className="text-sm/6 font-semibold text-white">
+            <a key={link.name} href={linkHref(link)} className="text-sm/6 font-semibold text-white">
               {link.name}
             </a>
           ))}
@@ -73,7 +74,7 @@ export default function GlobalNavigation() {
             {links.map((link) => (
               <a
                 key={link.name}
-                href={anchorHref(link.anchor)}
+                href={linkHref(link)}
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-3 py-2 text-base font-semibold text-white hover:bg-white/5"
               >
