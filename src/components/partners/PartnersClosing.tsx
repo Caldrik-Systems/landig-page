@@ -88,22 +88,21 @@ export default function PartnersClosing() {
         <div
           id="doorway"
           className={cn(
-            "relative mt-12 scroll-mt-20 overflow-hidden rounded-3xl px-8 py-10 transition-shadow duration-500 md:px-14 md:py-14",
+            "relative mt-12 scroll-mt-20 overflow-hidden rounded-3xl px-8 py-10 transition-shadow duration-500 lg:rounded-2xl lg:px-10 lg:py-7",
             flash && "shadow-[0_0_0_3px_rgba(81,112,255,0.7)]",
           )}
           style={{ background: "linear-gradient(135deg, #cbd4ff 0%, #dde3ff 50%, #f0f2ff 100%)" }}
         >
           <CardGrid />
-          <div className="relative grid items-center gap-10 lg:grid-cols-[1.15fr_auto_1fr] lg:gap-12">
+          <div className="relative grid items-center gap-10 lg:grid-cols-[1.5fr_auto_1fr] lg:gap-10">
             {/* Pitch */}
             <div>
-              <h2 className="text-4xl font-bold leading-[1.05] tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-                {c.headline[0]}
-                <br />
+              <h2 className="text-4xl font-bold leading-[1.05] tracking-tight text-gray-900 sm:text-5xl lg:text-4xl">
+                {c.headline[0]} <br className="lg:hidden" />
                 {c.headline[1]}
               </h2>
-              <p className="mt-5 max-w-md text-lg leading-8 text-gray-700">{c.line}</p>
-              <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5170ff]/70">{c.smallPrint}</p>
+              <p className="mt-5 max-w-md text-lg leading-8 text-gray-700 lg:mt-3 lg:max-w-xl lg:text-base lg:leading-7">{c.line}</p>
+              <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5170ff]/70 lg:mt-2">{c.smallPrint}</p>
             </div>
 
             <div aria-hidden className="hidden h-full w-px bg-[#5170ff]/20 lg:block" />
@@ -111,7 +110,7 @@ export default function PartnersClosing() {
             {/* Action */}
             <div>
               {model && (
-                <p className="mb-3 flex items-center gap-2 text-sm text-gray-700" aria-live="polite">
+                <p className="mb-3 flex items-center gap-2 text-sm text-gray-700 lg:mb-2" aria-live="polite">
                   {c.interestedIn}
                   <span className="rounded-full border border-[#5170ff]/40 bg-[#5170ff]/15 px-3 py-1 font-mono text-xs font-semibold text-[#3b57d6]">{model}</span>
                 </p>
@@ -121,11 +120,11 @@ export default function PartnersClosing() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => events.ctaClicked(c.button, "partners_book")}
-                className="inline-flex w-full items-center justify-center rounded-full bg-[#5170ff] px-8 py-4 text-base font-semibold text-white shadow-lg shadow-[#5170ff]/25 transition-colors hover:bg-[#4560e6] sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-full bg-[#5170ff] px-8 py-4 text-base font-semibold text-white shadow-lg shadow-[#5170ff]/25 transition-colors hover:bg-[#4560e6] sm:w-auto lg:py-3"
               >
                 {c.button} <span aria-hidden className="ml-2">→</span>
               </a>
-              <div className="mt-6 space-y-1.5 text-sm text-gray-700">
+              <div className="mt-6 space-y-1.5 text-sm text-gray-700 lg:mt-4 lg:space-y-1 lg:text-[13px] lg:leading-5">
                 {c.contacts.map((p) => (
                   <p key={p.name}>
                     {p.name}, {p.role} ·{" "}
