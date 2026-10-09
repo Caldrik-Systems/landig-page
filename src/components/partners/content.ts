@@ -35,7 +35,7 @@ export type Owner = "you" | "caldrik" | "shared";
 
 export const ways = {
   label: "Ways to partner",
-  headline: { plain: "Three ways in.", accent: "Your client contract picks one." },
+  headline: { plain: "Three models.", accent: "Your client contract decides." },
   // `intro: true` marks the "Best when" row, shown in each model's header. `owners` drives the
   // You / Caldrik / Shared chip in each cell.
   rows: [
@@ -43,9 +43,9 @@ export const ways = {
       label: "Best when",
       intro: true,
       values: {
-        whiteLabel: "You want to sell AI as your own",
-        coDelivery: "Your client's vendor rules want subcontractors named",
-        referral: "You'd rather make the introduction than run the work",
+        whiteLabel: "You want to sell AI as your own service",
+        coDelivery: "Your client's vendor rules require named subcontractors",
+        referral: "You'd rather introduce the work than run it",
       },
     },
     {
@@ -99,12 +99,12 @@ export const rules = {
   // Each rule is one sentence split in two so the lead can be emphasised: `${lead} ${rest}` is the full text.
   // The first item is the headline promise and gets the large card.
   items: [
-    { icon: "accounts", lead: "The accounts you bring stay yours.", rest: "We never sell to them directly, during the engagement or after it." },
-    { icon: "contract", lead: "Paper before work.", rest: "NDA and MSA first, with mutual non-solicitation." },
-    { icon: "privacy", lead: "Invisible by default.", rest: "No contact outside your engagement, and your clients' names never appear in our marketing." },
+    { icon: "accounts", lead: "Accounts you bring are yours.", rest: "We never sell to them directly, during or after the engagement." },
+    { icon: "contract", lead: "NDA and MSA before any work,", rest: "with mutual non-solicitation." },
+    { icon: "privacy", lead: "No contact outside your engagement,", rest: "and we never use your clients' names in our marketing." },
     {
       icon: "split",
-      lead: "You own the client and the commercials. We own the engineering.",
+      lead: "You own the client and the commercials; we own the engineering.",
       rest: "Scoping, build, evaluation, QA, deployment and handover.",
     },
   ] as { icon: "accounts" | "contract" | "privacy" | "split"; lead: string; rest: string }[],
@@ -114,14 +114,14 @@ export const workingTerms = {
   label: "Working terms",
   headline: { plain: "Capacity when you sell.", accent: "No bench when you don't." },
   // `${line} ${kickoff}` is the full sentence pair; kickoff is shown as a highlighted pill.
-  line: "One Master Services Agreement. A Statement of Work per project.",
+  line: "Master Services Agreement, with a Statement of Work per project.",
   kickoff: "Kickoff within 8 days of signing.",
   // Each card's description is split at its first sentence: `${lead} ${rest}`.
   cards: [
     {
       title: "Time and Materials",
       lead: "For first builds and scopes still taking shape.",
-      rest: "Billed monthly on actual effort. No minimum commitment.",
+      rest: "Billed monthly on actual effort, with no minimum commitment.",
     },
     {
       title: "Dedicated Team",
@@ -129,12 +129,12 @@ export const workingTerms = {
       rest: "A lead architect, AI engineers, QA and eval, and a delivery manager, on a monthly retainer with a three-month minimum and a preferred rate.",
     },
   ] as { title: string; lead: string; rest: string }[],
-  note: "Priced so you can resell at your market's rates and still keep a healthy margin.",
+  note: "Rates are structured so you resell at your market's rates and keep a healthy margin.",
   // "assurance" items get a tick; the "caveat" gets an info mark so the honest limit reads as honest.
   strip: [
     { kind: "assurance", text: "client data stays in the client's environment" },
     { kind: "assurance", text: "client owns all IP" },
-    { kind: "caveat", text: "not yet SOC 2 or ISO certified, so we complete your security questionnaire" },
+    { kind: "caveat", text: "not yet SOC 2 or ISO certified; we complete your security questionnaire" },
   ] as { kind: "assurance" | "caveat"; text: string }[],
 };
 
