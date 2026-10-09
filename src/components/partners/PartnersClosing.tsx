@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
+import { CalendarDays } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { events } from "@/lib/gtag";
 import { cn } from "@/lib/utils";
 import { closing as c, faq } from "./content";
@@ -14,7 +16,7 @@ function CardGrid() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute left-0 top-0 h-full w-3/5 overflow-hidden"
+      className="pointer-events-none absolute left-0 top-0 h-full w-full overflow-hidden"
       style={{
         maskImage: "linear-gradient(to right, white 20%, transparent 90%)",
         WebkitMaskImage: "linear-gradient(to right, white 20%, transparent 90%)",
@@ -71,7 +73,7 @@ export default function PartnersClosing() {
   const chosenChip = model ? (
     <span
       aria-live="polite"
-      className="rounded-full border border-[#5170ff]/40 bg-[#5170ff]/15 px-3 py-1 font-mono text-xs font-semibold text-[#3b57d6]"
+      className="rounded-full border border-[#5170ff]/40 bg-[#5170ff]/15 px-3 py-1 font-mono text-xs font-semibold text-[#9db0ff]"
     >
       <span className="sr-only">{c.interestedIn} </span>
       {model}
@@ -94,74 +96,56 @@ export default function PartnersClosing() {
   );
 
   return (
-    <>
-      {/* Before you ask: short answers, all visible, on a faint tinted band */}
-      <section className="border-y border-white/[0.06] bg-white/[0.02] py-14 md:py-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div id="faq" className="scroll-mt-20">
-            <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl">{faq.headline}</h2>
-            <dl className="mt-6 grid gap-x-16 md:mt-8 md:grid-cols-2">
-              {faq.items.map((item) => (
-                <div key={item.q} className="border-t border-dashed border-white/[0.18] pb-5 pt-5">
-                  <dt className="text-lg font-semibold text-white">{item.q}</dt>
-                  <dd className="mt-2 text-[15px] leading-6 text-gray-300">{item.a}</dd>
+    <section className="border-y border-white/[0.06] bg-white/[0.02] py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div id="faq" className="grid scroll-mt-20 gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-start lg:gap-20">
+          {/* Left: the statement and the one action. Sticks while the answers scroll past. */}
+          <div className="flex flex-col gap-5 lg:sticky lg:top-28">
+            <span className="w-fit rounded-full border border-white/15 bg-white/[0.04] px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-brand/80">
+              {faq.headline}
+            </span>
+            <h2 className="text-balance text-4xl font-bold leading-[1.08] tracking-tight text-white md:text-5xl">
+              {c.headline[0]} <span className="text-brand">{c.headline[1]}</span>
+            </h2>
+            <p className="text-base leading-7 text-gray-300">{c.line}</p>
+
+            <div
+              id="doorway"
+              className={cn(
+                "relative mt-2 scroll-mt-24 overflow-hidden rounded-2xl border border-dashed border-white/[0.18] bg-[#0b1424] p-5 transition-shadow duration-500",
+                flash && "shadow-[0_0_0_3px_rgba(81,112,255,0.7)]",
+              )}
+            >
+              <CardGrid />
+              <div className="relative">
+                <div className="flex items-center gap-3">
+                  <span className="grid size-10 shrink-0 place-items-center rounded-full bg-[#5170ff] text-white">
+                    <CalendarDays className="size-5" aria-hidden />
+                  </span>
+                  <div className="flex flex-col leading-tight">
+                    <p className="text-base font-semibold text-white">{c.button}</p>
+                    <p className="mt-1 text-sm text-gray-400">{c.smallPrint}</p>
+                  </div>
                 </div>
-              ))}
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#080f19] py-24 md:py-36">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* The one action: same block as the homepage's "Not every workflow is ready for AI. Yet." card */}
-        <div
-          id="doorway"
-          className={cn(
-            "relative scroll-mt-24 overflow-hidden rounded-3xl px-8 py-10 transition-shadow duration-500 md:px-16 md:py-12",
-            flash && "shadow-[0_0_0_3px_rgba(81,112,255,0.7)]",
-          )}
-          style={{ background: "linear-gradient(135deg, #cbd4ff 0%, #dde3ff 50%, #f0f2ff 100%)" }}
-        >
-          <CardGrid />
-
-          <div className="relative flex flex-col lg:flex-row lg:items-center lg:gap-0">
-            {/* Left anchor: quote + the action, so the block keeps the homepage card's height */}
-            <div className="hidden w-2/5 flex-col justify-center pr-12 lg:flex">
-              <p
-                className="text-3xl font-medium italic leading-snug text-gray-600"
-                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-              >
-                &ldquo;{c.smallPrint}&rdquo;
-              </p>
-              <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5170ff]/60">— Caldrik</p>
-              <div className="mt-4 flex items-center gap-3">
-                {bookButton("py-3 text-sm")}
-                {chosenChip}
-              </div>
-            </div>
-
-            {/* Vertical divider */}
-            <div className="hidden w-px flex-shrink-0 self-stretch bg-[#5170ff]/20 lg:block" />
-
-            {/* Right-aligned statement */}
-            <div className="w-full text-right lg:w-3/5 lg:pl-12">
-              <h2 className="text-balance text-4xl font-bold leading-[1.1] tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
-                {c.headline[0]} {c.headline[1]}
-              </h2>
-              <p className="mt-5 text-lg leading-8 text-gray-700 lg:mt-4 lg:text-sm lg:leading-6">{c.line}</p>
-
-              {/* Small screens: the quote is hidden (as on the homepage), so the action and the line live here */}
-              <div className="mt-7 flex flex-col items-end gap-4 lg:hidden">
-                {chosenChip}
-                {bookButton("w-full py-3.5 text-base")}
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5170ff]/60">{c.smallPrint}</p>
+                {model ? <div className="mt-4">{chosenChip}</div> : null}
+                <div className="mt-4 flex">{bookButton("w-full py-3 text-sm")}</div>
               </div>
             </div>
           </div>
+
+          {/* Right: short answers, one open at a time */}
+          <Accordion type="single" collapsible defaultValue="item-0" className="border-t border-dashed border-white/[0.12]">
+            {faq.items.map((item, i) => (
+              <AccordionItem key={item.q} value={`item-${i}`}>
+                <AccordionTrigger className="py-5 text-left text-lg font-semibold text-white hover:no-underline md:text-xl">
+                  {item.q}
+                </AccordionTrigger>
+                <AccordionContent className="pb-6 pr-8 text-base leading-7 text-gray-300">{item.a}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
