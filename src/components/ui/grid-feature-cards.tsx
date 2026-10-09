@@ -36,8 +36,8 @@ export function FeatureCard({ feature, className, ...props }: FeatureCardProps) 
 				</div>
 			</div>
 			{feature.icon && <feature.icon className="text-brand/80 size-6" strokeWidth={1} aria-hidden />}
-			<h3 className={cn("text-base font-bold text-white", feature.icon ? "mt-10" : "")}>{feature.title}</h3>
-			<p className="text-gray-400 relative z-20 mt-2 text-sm leading-6">{feature.description}</p>
+			<h3 className={cn("text-lg font-bold text-white", feature.icon ? "mt-10" : "")}>{feature.title}</h3>
+			<p className="text-gray-300 relative z-20 mt-3 text-base leading-7">{feature.description}</p>
 		</div>
 	);
 }

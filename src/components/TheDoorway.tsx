@@ -41,8 +41,8 @@ export default function TheDoorway() {
   }
 
   return (
-    <section id="doorway" className="bg-[#080f19] px-6 lg:px-8 pt-4 md:pt-6 pb-16 md:pb-24">
-      <div className="mx-auto max-w-7xl">
+    <section id="doorway" className="bg-[#080f19] py-24 md:py-36">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
           {/* Left — copy */}
@@ -50,7 +50,7 @@ export default function TheDoorway() {
             <h2 className="text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl leading-[1.0]">
               Know before<br />you build.
             </h2>
-            <p className="text-lg leading-8 text-gray-400 max-w-sm">
+            <p className="text-lg leading-8 text-gray-300 max-w-sm">
               Share one workflow. We&apos;ll tell you if AI fits — and what it would take.
             </p>
             <p className="text-sm text-gray-400">

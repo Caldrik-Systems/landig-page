@@ -45,17 +45,17 @@ function AnimatedContainer({ className, delay = 0.1, children }: AnimatedContain
 
 export default function TheProblem() {
   return (
-    <section id="problem" className="bg-[#080f19] py-16 md:py-32">
-      <div className="mx-auto w-full max-w-7xl space-y-8 px-6 lg:px-8">
+    <section id="problem" className="bg-[#080f19] py-24 md:py-36">
+      <div className="mx-auto w-full max-w-7xl space-y-14 md:space-y-20 px-6 lg:px-8">
 
-        <AnimatedContainer className="max-w-2xl">
+        <AnimatedContainer className="max-w-3xl">
           <p className="text-base/7 font-semibold text-brand">Silent failure</p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+          <h2 className="mt-3 text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl lg:text-6xl">
             AI doesn&apos;t fail.<br />It drifts.
           </h2>
-          <p className="mt-4 text-lg font-medium text-gray-400">
+          <p className="mt-6 text-lg leading-8 text-gray-300 md:text-xl">
             Hallucination is the risk every procurement checklist asks about.{" "}
-            <span className="text-white/80">Drift is the one nobody engineers for.</span>
+            <span className="font-medium text-white">Drift is the one nobody engineers for.</span>
           </p>
         </AnimatedContainer>
 

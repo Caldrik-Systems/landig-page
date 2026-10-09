@@ -26,14 +26,14 @@ export default function Focus() {
   return (
     <section
       id="focus"
-      className="bg-[#080f19] py-16 md:py-24"
+      className="bg-[#080f19] py-24 md:py-36"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
         {/* Header */}
-        <div className="max-w-2xl mb-10">
+        <div className="max-w-5xl mb-14 md:mb-20">
           <p className="text-base/7 font-semibold text-brand">Focus</p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight text-white md:text-4xl">
+          <h2 className="mt-3 text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl lg:text-6xl">
             Where mistakes are expensive.
           </h2>
         </div>
@@ -43,9 +43,9 @@ export default function Focus() {
           {sectors.map((s) => (
             <div
               key={s.name}
-              className="group border-t border-white/[0.12] py-8 -mx-6 px-6 lg:-mx-8 lg:px-8 transition-colors duration-300 hover:bg-white/[0.025]"
+              className="group border-t border-white/[0.12] py-10 md:py-12 transition-colors duration-300 hover:bg-white/[0.025]"
             >
-              <div className="md:grid md:grid-cols-[280px_1fr] md:gap-12 md:items-center">
+              <div className="md:grid md:grid-cols-[340px_1fr] md:gap-12 md:items-center">
 
                 {/* Left — industry name */}
                 <div className="mb-4 md:mb-0">
@@ -54,19 +54,19 @@ export default function Focus() {
 
                 {/* Right — constraint + callout */}
                 <div className="flex flex-col gap-4">
-                  <p className="text-base leading-7 text-gray-400">
+                  <p className="text-lg leading-8 text-gray-300">
                     {s.description}
                   </p>
-                  <p className="font-mono text-sm text-brand">{s.callout}</p>
+                  <p className="text-base font-semibold text-brand">{s.callout}</p>
                   {"compliance" in s && (
-                    <p className="text-xs text-gray-400 leading-6">{(s as typeof s & { compliance: string }).compliance}</p>
+                    <p className="text-sm leading-6 text-gray-400">{(s as typeof s & { compliance: string }).compliance}</p>
                   )}
                 </div>
 
               </div>
             </div>
           ))}
-          <div className="border-t border-white/[0.12] -mx-6 lg:-mx-8" />
+          <div className="border-t border-white/[0.12]" />
         </div>
 
 

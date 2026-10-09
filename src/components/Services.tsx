@@ -249,12 +249,12 @@ function ServicePanel({ s, i, isActive }: { s: typeof services[0]; i: number; is
 
         {/* Content */}
         <div className="relative z-10 space-y-3">
-          <p className="text-sm leading-6 text-gray-400">{s.description}</p>
-          <p className="text-sm leading-6 text-white/80">→ {s.outcome}</p>
+          <p className="text-base leading-7 text-gray-300">{s.description}</p>
+          <p className="text-base leading-7 text-white">→ {s.outcome}</p>
         </div>
         <div className="relative z-10 flex flex-wrap gap-2">
           {s.tags.map((tag) => (
-            <span key={tag} className="rounded-full border border-white/[0.25] px-3 py-1 font-mono text-xs text-white/70">
+            <span key={tag} className="rounded-full border border-white/[0.25] px-3 py-1 text-xs text-white/70">
               {tag}
             </span>
           ))}
@@ -304,12 +304,12 @@ export default function Services() {
           {/* Header */}
           <div className="flex-none mb-6">
             <p className="text-base/7 font-semibold text-brand">Services</p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+            <h2 className="mt-3 text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl lg:text-6xl">
               Five scopes. One standard.
             </h2>
-            <p className="mt-4 text-lg font-medium text-gray-400">
+            <p className="mt-4 text-lg leading-8 text-gray-300">
               Designed to work as a sequence or standalone.{" "}
-              <span className="text-white/70">Most engagements start with Discovery.</span>
+              <span className="font-medium text-white">Most engagements start with Discovery.</span>
             </p>
           </div>
 
@@ -331,7 +331,7 @@ export default function Services() {
                   )}
                 >
                   <span className={cn(
-                    "font-mono text-xs shrink-0 transition-colors duration-300",
+                    "text-xs shrink-0 transition-colors duration-300",
                     active === s.id ? "text-brand/80" : "text-white/40"
                   )}>
                     {s.id}
@@ -365,7 +365,7 @@ export default function Services() {
                   className="w-full flex items-center gap-4 px-5 py-4 text-left"
                 >
                   <span className={cn(
-                    "font-mono text-[10px] shrink-0 transition-colors",
+                    "text-[11px] shrink-0 transition-colors",
                     active === s.id ? "text-brand/80" : "text-white/40"
                   )}>{s.id}</span>
                   <span className={cn(
@@ -379,11 +379,11 @@ export default function Services() {
                 </button>
                 {active === s.id && (
                   <div className="px-5 pb-5 space-y-4">
-                    <p className="text-sm leading-6 text-gray-400">{s.description}</p>
-                    <p className="text-sm leading-6 text-white/80">→ {s.outcome}</p>
+                    <p className="text-base leading-7 text-gray-300">{s.description}</p>
+                    <p className="text-base leading-7 text-white">→ {s.outcome}</p>
                     <div className="flex flex-wrap gap-2">
                       {s.tags.map((tag) => (
-                        <span key={tag} className="rounded-full border border-white/[0.25] px-3 py-1 font-mono text-xs text-white/70">
+                        <span key={tag} className="rounded-full border border-white/[0.25] px-3 py-1 text-xs text-white/70">
                           {tag}
                         </span>
                       ))}

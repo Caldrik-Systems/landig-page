@@ -42,18 +42,18 @@ export default function HowWeWork() {
     );
 
   return (
-    <section id="how-we-work" className="bg-[#080f19] py-16 md:py-32">
+    <section id="how-we-work" className="bg-[#080f19] py-24 md:py-36">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
         {wrapper(
-          <div className="max-w-2xl mb-16">
+          <div className="max-w-3xl mb-14 md:mb-20">
             <p className="text-base/7 font-semibold text-brand">The Lifecycle</p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+            <h2 className="mt-3 text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl lg:text-6xl">
               Engineered. Not promised.
             </h2>
-            <p className="mt-4 text-lg font-medium text-gray-400">
+            <p className="mt-6 text-lg leading-8 text-gray-300 md:text-xl">
               One lifecycle, every engagement —{" "}
-              <span className="text-white/80">AI behavior treated like uptime: defined, measured, maintained.</span>
+              <span className="font-medium text-white">AI behavior treated like uptime: defined, measured, maintained.</span>
             </p>
           </div>
         )}

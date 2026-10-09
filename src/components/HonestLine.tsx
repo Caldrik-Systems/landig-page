@@ -76,8 +76,8 @@ function HonestGrid() {
 
 export default function HonestLine() {
   return (
-    <section id="honest" className="bg-[#080f19] pt-16 md:pt-24 pb-0 px-6 lg:px-8" style={{ paddingBottom: 0 }}>
-      <div className="mx-auto max-w-7xl">
+    <section id="honest" className="bg-[#080f19] pt-0 pb-0 px-6 lg:px-8" style={{ paddingBottom: 0 }}>
+      <div className="mx-auto max-w-[76rem]">
         <div
           className="relative rounded-3xl overflow-hidden px-8 py-10 md:px-16 md:py-12"
           style={{

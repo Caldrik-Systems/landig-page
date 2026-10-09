@@ -6,13 +6,13 @@ export default function Insights() {
   const posts = getAllPosts().slice(0, 3);
 
   return (
-    <section className="bg-[#080f19] py-16 md:py-24">
+    <section className="bg-[#080f19] py-24 md:py-36">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
-        <div className="flex items-end justify-between mb-12">
+        <div className="flex items-end justify-between mb-14 md:mb-20">
           <div>
-            <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#5170ff]/70 mb-2">Insights</p>
-            <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
+            <p className="text-base/7 font-semibold text-brand">Insights</p>
+            <h2 className="mt-3 text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl lg:text-6xl">
               From the engineering floor.
             </h2>
           </div>
@@ -53,7 +53,7 @@ export default function Insights() {
                 <h3 className="text-base font-semibold text-white leading-snug group-hover:text-[#cbd4ff] transition-colors">
                   {post.title}
                 </h3>
-                <p className="text-sm text-gray-400 leading-6 flex-1">{post.excerpt}</p>
+                <p className="text-[15px] text-gray-300 leading-6 flex-1">{post.excerpt}</p>
                 <span className="text-xs font-semibold text-[#5170ff]/80">Read more →</span>
               </div>
             </a>
