@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Search, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -72,9 +73,7 @@ export function NotFound({
           </a>
         </Button>
         <Button className="-order-1 sm:order-none" asChild>
-          {/* Full page load on purpose: "/" is geo-routed in middleware, so it must not be a client-side navigation. */}
-          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/">Take me home</a>
+          <Link href="/">Take me home</Link>
         </Button>
       </div>
     </div>

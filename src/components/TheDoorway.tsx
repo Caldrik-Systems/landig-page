@@ -58,7 +58,7 @@ export default function TheDoorway() {
             </p>
             <div className="text-sm text-gray-400">
               <p>Not ready yet?</p>
-              <Link href="/in/insights/" className="text-gray-400 underline underline-offset-4 hover:text-white transition-colors">
+              <Link href="/insights/" className="text-gray-400 underline underline-offset-4 hover:text-white transition-colors">
                 Start with our thinking →
               </Link>
             </div>

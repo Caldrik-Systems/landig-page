@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useId } from "react";
+import Link from "next/link";
 
 function Grid() {
   const [squares, setSquares] = useState<number[][]>([]);
@@ -117,12 +118,12 @@ export default function PostCTA({ category, ctaHeadline, ctaDescription }: PostC
           <p className="mt-4 text-base leading-7 text-gray-700 max-w-sm">
             {description}
           </p>
-          <a
-            href="/in/#doorway"
+          <Link
+            href="/#doorway"
             className="mt-7 inline-flex items-center rounded-full bg-[#5170ff] px-7 py-3 text-sm font-semibold text-white hover:bg-[#5170ff]/90 transition-colors"
           >
             Request an assessment →
-          </a>
+          </Link>
         </div>
       </div>
     </div>
