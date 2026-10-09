@@ -7,15 +7,15 @@ import type { ReactNode } from "react";
 const features = [
   {
     title: "The model moves under you.",
-    description: "The base model updates and what was precise quietly becomes plausible. A contract clause gets missed, a compliance check passes when it shouldn't — and nothing fired to tell you.",
+    description: "The model updates. Precise becomes plausible. Nothing tells you.",
   },
   {
     title: "The source of truth shifts.",
-    description: "Every input to the system changes — retrieval sources, prompts, tool interfaces, model context. By the time outputs degrade, the cause is untraceable.",
+    description: "Sources, prompts and tools change. The cause becomes untraceable.",
   },
   {
     title: "Nothing crashes.",
-    description: "No alert fires, no exception raised — the system returns 200 OK. Meanwhile an approval routes wrong and a review misses the exception.",
+    description: "The system returns 200 OK. The approval routes wrong anyway.",
   },
 ];
 
