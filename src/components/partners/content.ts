@@ -92,12 +92,18 @@ export const ways = {
 export const rules = {
   label: "Rules of engagement",
   headline: "Your client stays yours. In writing.",
+  // Each rule is one sentence split in two so the lead can be emphasised: `${lead} ${rest}` is the full text.
+  // The first item is the headline promise and gets the large card.
   items: [
-    "Accounts you bring are yours. We never sell to them directly, during or after the engagement.",
-    "NDA and MSA before any work, with mutual non-solicitation.",
-    "No contact outside your engagement, and we never use your clients' names in our marketing.",
-    "You own the client and the commercials; we own the engineering. Scoping, build, evaluation, QA, deployment and handover.",
-  ],
+    { icon: "accounts", lead: "Accounts you bring are yours.", rest: "We never sell to them directly, during or after the engagement." },
+    { icon: "contract", lead: "NDA and MSA before any work,", rest: "with mutual non-solicitation." },
+    { icon: "privacy", lead: "No contact outside your engagement,", rest: "and we never use your clients' names in our marketing." },
+    {
+      icon: "split",
+      lead: "You own the client and the commercials; we own the engineering.",
+      rest: "Scoping, build, evaluation, QA, deployment and handover.",
+    },
+  ] as { icon: "accounts" | "contract" | "privacy" | "split"; lead: string; rest: string }[],
 };
 
 export const workingTerms = {

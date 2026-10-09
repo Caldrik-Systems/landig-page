@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
+import { ArrowsRightLeftIcon, DocumentTextIcon, EyeSlashIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { faq, rules, workingTerms } from "./content";
 
@@ -37,21 +38,65 @@ const dashedGrid = "grid grid-cols-1 divide-y divide-dashed divide-white/[0.15] 
 
 /* ── 3. Rules of engagement ────────────────────────────────────────────── */
 
+const RULE_ICONS = {
+  accounts: UserGroupIcon,
+  contract: DocumentTextIcon,
+  privacy: EyeSlashIcon,
+  split: ArrowsRightLeftIcon,
+};
+
 export function PartnersRules() {
+  const [hero, ...rest] = rules.items;
+  const HeroIcon = RULE_ICONS[hero.icon];
+
   return (
-    <section id="rules" className="bg-[#080f19] py-16 md:py-24">
+    <section id="rules" className="bg-[#080f19] py-10 md:py-14">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionHeader label={rules.label} headline={rules.headline} />
-        <Reveal delay={0.3}>
-          <ul className={dashedGrid}>
-            {rules.items.map((item) => (
-              <li key={item} className="flex items-start gap-4 p-6 text-base leading-7 text-gray-400 md:px-8">
-                <span aria-hidden className="mt-3 block h-[1.5px] w-5 shrink-0 rounded-full bg-brand" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </Reveal>
+        <SectionHeader label={rules.label} headline={rules.headline} compact className="mb-6 max-w-5xl md:mb-8" />
+
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.1fr_1fr]">
+          {/* The promise that matters most gets the large card. */}
+          <Reveal delay={0.2} className="h-full">
+            <div className="relative flex h-full min-h-[220px] flex-col justify-between overflow-hidden rounded-2xl border border-brand/30 bg-brand/[0.06] p-7 md:p-8">
+              <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_0%_0%,rgba(81,112,255,0.22),transparent_70%)]" />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute right-6 top-3 select-none font-mono text-[88px] font-bold leading-none text-white/[0.05]"
+              >
+                01
+              </span>
+              <div className="relative flex size-11 items-center justify-center rounded-xl border border-brand/40 bg-brand/15">
+                <HeroIcon aria-hidden className="size-6 text-brand" />
+              </div>
+              <div className="relative mt-8">
+                <p className="text-3xl font-bold leading-tight tracking-tight text-white md:text-4xl">{hero.lead}</p>
+                <p className="mt-3 max-w-md text-base leading-7 text-gray-400">{hero.rest}</p>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Supporting clauses */}
+          <div className="grid gap-4">
+            {rest.map((rule, i) => {
+              const Icon = RULE_ICONS[rule.icon];
+              return (
+                <Reveal key={rule.lead} delay={0.3 + i * 0.1}>
+                  <div className="group relative flex h-full gap-4 overflow-hidden rounded-2xl border border-dashed border-white/[0.15] p-5 transition-colors duration-300 hover:border-brand/40 hover:bg-white/[0.02]">
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] transition-colors group-hover:border-brand/40">
+                      <Icon aria-hidden className="size-5 text-brand/80" />
+                    </div>
+                    <p className="text-sm leading-6 text-gray-400">
+                      <span className="font-semibold text-white">{rule.lead}</span> {rule.rest}
+                    </p>
+                    <span aria-hidden className="absolute right-4 top-3 font-mono text-[10px] font-semibold tracking-[0.2em] text-white/25">
+                      {String(i + 2).padStart(2, "0")}
+                    </span>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );
