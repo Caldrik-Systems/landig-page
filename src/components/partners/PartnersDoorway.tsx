@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { events } from "@/lib/gtag";
-import { doorway as d, models } from "./content";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { doorway as d, faq, models } from "./content";
 
 const fm = d.form;
 
@@ -67,42 +68,28 @@ export default function PartnersDoorway() {
   }
 
   return (
-    <section id="doorway" className="scroll-mt-16 bg-[#080f19] px-6 lg:px-8 pt-4 md:pt-6 pb-16 md:pb-24">
+    <section id="doorway" className="scroll-mt-16 bg-[#080f19] px-6 lg:px-8 py-12 md:py-16">
       <div className="mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        {/* Mobile order: pitch, form, questions, contacts. Desktop: pitch + questions + contacts on the left, form on the right. */}
+        <div className="grid grid-cols-1 items-start gap-x-24 gap-y-10 lg:grid-cols-2">
 
-          {/* Left — copy */}
-          <div className="space-y-6 lg:pt-4">
-            <h2 className="text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl leading-[1.0]">
+          {/* Pitch */}
+          <div className="space-y-5 lg:col-start-1 lg:row-start-1">
+            <h2 className="text-5xl font-bold tracking-tight text-white md:text-6xl leading-[1.0]">
               {d.headline[0]}<br />{d.headline[1]}
             </h2>
-            <p className="text-lg leading-8 text-gray-400 max-w-sm">{d.line}</p>
+            <p className="max-w-sm text-lg leading-8 text-gray-400">{d.line}</p>
             <p className="text-sm text-gray-400">{d.smallPrint}</p>
-            <div className="space-y-2 text-sm text-gray-400">
-              {d.contacts.map((c) => (
-                <p key={c.name}>
-                  {c.name}, {c.role} ·{" "}
-                  <a href={c.linkedin} target="_blank" rel="noopener noreferrer" className={linkCls}>
-                    LinkedIn
-                  </a>
-                </p>
-              ))}
-              <p>
-                <a href={`mailto:${d.email}`} className={linkCls}>{d.email}</a>
-                {" · "}
-                <a href={`tel:${d.phone.tel}`} className="hover:text-white transition-colors">{d.phone.display}</a> {d.phone.note}
-              </p>
-            </div>
           </div>
 
           {/* Right — form */}
           {status === "sent" ? (
-            <div className="flex flex-col justify-center space-y-3 py-16">
+            <div className="flex flex-col justify-center space-y-3 py-16 lg:col-start-2 lg:row-span-3 lg:row-start-1">
               <p className="text-2xl font-bold text-white">{fm.successTitle}</p>
               <p className="text-gray-400 text-sm leading-6">{fm.successBody}</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4 lg:col-start-2 lg:row-span-3 lg:row-start-1">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label htmlFor="p-first" className={labelCls}>{fm.firstName.label}</label>
@@ -188,6 +175,36 @@ export default function PartnersDoorway() {
               </button>
             </form>
           )}
+
+          {/* Before you ask: answers sit next to the form so doubts are cleared without leaving it */}
+          <div id="faq" className="scroll-mt-20 lg:col-start-1 lg:row-start-2">
+            <h3 className="text-lg font-semibold text-white">{faq.headline}</h3>
+            <Accordion type="single" collapsible className="mt-3 border-t border-dashed border-white/[0.12]">
+              {faq.items.map((item, i) => (
+                <AccordionItem key={item.q} value={`faq-${i}`}>
+                  <AccordionTrigger className="py-3.5 text-left text-sm text-white">{item.q}</AccordionTrigger>
+                  <AccordionContent className="text-sm leading-6 text-gray-400">{item.a}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+
+          {/* Contacts */}
+          <div className="space-y-2 text-sm text-gray-400 lg:col-start-1 lg:row-start-3">
+            {d.contacts.map((c) => (
+              <p key={c.name}>
+                {c.name}, {c.role} ·{" "}
+                <a href={c.linkedin} target="_blank" rel="noopener noreferrer" className={linkCls}>
+                  LinkedIn
+                </a>
+              </p>
+            ))}
+            <p>
+              <a href={`mailto:${d.email}`} className={linkCls}>{d.email}</a>
+              {" · "}
+              <a href={`tel:${d.phone.tel}`} className="hover:text-white transition-colors">{d.phone.display}</a> {d.phone.note}
+            </p>
+          </div>
 
         </div>
       </div>

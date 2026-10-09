@@ -3,7 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PartnersHero from "@/components/partners/PartnersHero";
 import PartnersDoorway from "@/components/partners/PartnersDoorway";
-import { PartnersRules, PartnersWorkingTerms, PartnersFaq } from "@/components/partners/PartnersSections";
+import { PartnersRules, PartnersWorkingTerms } from "@/components/partners/PartnersSections";
 import PartnersWays from "@/components/partners/PartnersWays";
 import { faq, partnersMeta } from "@/components/partners/content";
 import { jsonLdString } from "@/lib/jsonld";
@@ -40,7 +40,6 @@ export default function PartnersPage() {
         <PartnersWays />
         <PartnersRules />
         <PartnersWorkingTerms />
-        <PartnersFaq />
         <PartnersDoorway />
       </main>
       <Footer />

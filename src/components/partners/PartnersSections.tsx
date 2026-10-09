@@ -3,9 +3,8 @@
 import { useId, type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowsRightLeftIcon, CheckIcon, DocumentTextIcon, EyeSlashIcon, InformationCircleIcon, UserGroupIcon } from "@heroicons/react/24/outline";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
-import { faq, rules, workingTerms } from "./content";
+import { rules, workingTerms } from "./content";
 
 /* Section label + headline pattern shared with the rest of the site. */
 
@@ -178,26 +177,6 @@ export function PartnersWorkingTerms() {
             ))}
           </ul>
         </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* ── 5. FAQ ────────────────────────────────────────────────────────────── */
-
-export function PartnersFaq() {
-  return (
-    <section id="faq" className="bg-[#080f19] py-16 md:py-24">
-      <div className="mx-auto max-w-4xl px-6 lg:px-8">
-        <SectionHeader headline={faq.headline} />
-        <Accordion type="single" collapsible className="border-t border-dashed border-white/[0.12]">
-          {faq.items.map((item, i) => (
-            <AccordionItem key={item.q} value={`faq-${i}`}>
-              <AccordionTrigger className="text-left text-base text-white">{item.q}</AccordionTrigger>
-              <AccordionContent className="text-sm leading-6 text-gray-400">{item.a}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
       </div>
     </section>
   );
