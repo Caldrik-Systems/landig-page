@@ -53,7 +53,7 @@ export default function Insights() {
                 <h3 className="text-base font-semibold text-white leading-snug group-hover:text-[#cbd4ff] transition-colors">
                   {post.title}
                 </h3>
-                <p className="line-clamp-2 text-[15px] text-gray-300 leading-6 flex-1">{post.excerpt}</p>
+                <p className="text-[15px] text-gray-300 leading-6 flex-1">{post.excerpt}</p>
                 <span className="text-xs font-semibold text-[#5170ff]/80">Read more →</span>
               </div>
             </a>
