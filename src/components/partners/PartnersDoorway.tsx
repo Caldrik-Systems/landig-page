@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { events } from "@/lib/gtag";
 import { doorway as d, models } from "./content";
 
@@ -14,6 +14,24 @@ export default function PartnersDoorway() {
 
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [model, setModel] = useState("");
+  const [flash, setFlash] = useState(false);
+
+  // A "Choose" button in Ways to partner picks the model here.
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    const onChoose = (e: Event) => {
+      setModel((e as CustomEvent<string>).detail);
+      setFlash(true);
+      clearTimeout(timer);
+      timer = setTimeout(() => setFlash(false), 1800);
+    };
+    window.addEventListener("partners:model", onChoose);
+    return () => {
+      window.removeEventListener("partners:model", onChoose);
+      clearTimeout(timer);
+    };
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -49,7 +67,7 @@ export default function PartnersDoorway() {
   }
 
   return (
-    <section id="doorway" className="bg-[#080f19] px-6 lg:px-8 pt-4 md:pt-6 pb-16 md:pb-24">
+    <section id="doorway" className="scroll-mt-16 bg-[#080f19] px-6 lg:px-8 pt-4 md:pt-6 pb-16 md:pb-24">
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
@@ -114,7 +132,13 @@ export default function PartnersDoorway() {
 
               <div className="space-y-1.5">
                 <label htmlFor="p-model" className={labelCls}>{fm.model.label}</label>
-                <select id="p-model" name="model" defaultValue="" className={`${inputCls} appearance-none bg-[#0d1522]`}>
+                <select
+                  id="p-model"
+                  name="model"
+                  value={model}
+                  onChange={(e) => setModel(e.target.value)}
+                  className={`${inputCls} appearance-none bg-[#0d1522] ${flash ? "border-[#5170ff] ring-2 ring-[#5170ff]/40" : ""}`}
+                >
                   <option value="">{fm.model.empty}</option>
                   {models.map((m) => (
                     <option key={m.key} value={m.name}>{m.name}</option>
