@@ -101,9 +101,9 @@ export default function PartnersClosing() {
         <div id="faq" className="grid scroll-mt-20 gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-start lg:gap-20">
           {/* Left: the statement and the one action. Sticks while the answers scroll past. */}
           <div className="flex flex-col gap-5 lg:sticky lg:top-28">
-            <span className="w-fit rounded-full border border-white/15 bg-white/[0.04] px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-brand/80">
+            <p className="text-base/7 font-semibold text-brand">
               {faq.headline}
-            </span>
+            </p>
             <h2 className="text-balance text-4xl font-bold leading-[1.08] tracking-tight text-white md:text-5xl">
               {c.headline[0]} <span className="text-brand">{c.headline[1]}</span>
             </h2>

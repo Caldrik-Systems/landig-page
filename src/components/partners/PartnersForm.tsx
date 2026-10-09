@@ -54,9 +54,9 @@ export default function PartnersForm() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-start lg:gap-20">
           <div className="flex flex-col gap-5">
-            <span className="w-fit rounded-full border border-white/15 bg-white/[0.04] px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-brand/80">
+            <p className="text-base/7 font-semibold text-brand">
               {w.label}
-            </span>
+            </p>
             <h2 className="text-balance text-4xl font-bold leading-[1.08] tracking-tight text-white md:text-5xl">
               {w.headline[0]} <span className="block text-brand">{w.headline[1]}</span>
             </h2>
