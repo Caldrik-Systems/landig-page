@@ -151,33 +151,19 @@ export const faq = {
   ],
 };
 
-export const doorway = {
+export const closing = {
   headline: ["Know before", "you pitch."],
   line: "Bring one client requirement. We'll tell you if AI fits, and what it takes to deliver it.",
   smallPrint: "No pitch. Just a technical opinion.",
+  button: "Book a discovery call",
+  // TODO: replace with the real Calendly event link before launch.
+  calendlyUrl: "https://calendly.com/",
+  // When a model was picked in "Ways to partner", it is shown on the card and passed to Calendly as answer 1.
+  interestedIn: "Interested in",
   contacts: [
     { name: "Rohan Mashiyava", role: "Founder", linkedin: "https://www.linkedin.com/in/rohan-mashiyava/" },
     { name: "Ravindra Dhavlesha", role: "Lead Architect", linkedin: "https://www.linkedin.com/in/ravidhavlesha/" },
   ],
   email: "hello@caldrik.co",
   phone: { display: "+1 917 920 9285", tel: "+19179209285", note: "(US)" },
-  form: {
-    firstName: { label: "First name", placeholder: "First name" },
-    lastName: { label: "Last name", placeholder: "Last name" },
-    company: { label: "Company name", placeholder: "Company name" },
-    email: { label: "Work email", placeholder: "you@company.com" },
-    title: { label: "Your title", placeholder: "e.g. Founder, CEO, Head of Delivery" },
-    model: { label: "Partnership model", empty: "Choose an option", notSure: "Not sure yet" },
-    requirement: {
-      label: "The client requirement",
-      hint: "— in a sentence (optional)",
-      placeholder: "e.g. A client wants AI agents in their ERP to triage supplier exceptions.",
-    },
-    consent: "Yes, I'd like Caldrik to contact me regarding AI engineering services and related offerings by email or telephone.",
-    button: "Discuss a Partnership",
-    sending: "Sending…",
-    error: "Something went wrong — please try again or email hello@caldrik.co directly.",
-    successTitle: "We'll be in touch.",
-    successBody: "Expect a technical response within one business day.",
-  },
 };
