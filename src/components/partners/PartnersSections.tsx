@@ -1,9 +1,10 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useId, type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowsRightLeftIcon, DocumentTextIcon, EyeSlashIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
 import { faq, rules, workingTerms } from "./content";
 
 /* Section label + headline pattern shared with the rest of the site. */
@@ -36,6 +37,36 @@ export function SectionHeader({ label, headline, line, className = "max-w-2xl mb
 
 const dashedGrid = "grid grid-cols-1 divide-y divide-dashed divide-white/[0.15] border border-dashed border-white/[0.15]";
 
+/* The site's card texture: faint grid with a few highlighted squares (same as the Problem / Lifecycle cards). */
+
+const TEXTURE_SQUARES = [[7, 1], [9, 3], [8, 5], [10, 2], [11, 4]];
+
+function GridTexture({ strong = false }: { strong?: boolean }) {
+  const id = useId();
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute top-0 left-1/2 -mt-2 -ml-20 h-full w-full [mask-image:linear-gradient(white,transparent)]"
+    >
+      <div className="absolute inset-0 bg-gradient-to-r from-white/[0.05] to-white/[0.01] [mask-image:radial-gradient(farthest-side_at_top,white,transparent)]">
+        <svg className={cn("absolute inset-0 h-full w-full stroke-brand/20 mix-blend-overlay", strong ? "fill-brand/[0.14]" : "fill-brand/[0.08]")}>
+          <defs>
+            <pattern id={id} width={20} height={20} patternUnits="userSpaceOnUse" x="-12" y="4">
+              <path d="M.5 20V.5H20" fill="none" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" strokeWidth={0} fill={`url(#${id})`} />
+          <svg x="-12" y="4" className="overflow-visible">
+            {TEXTURE_SQUARES.map(([sx, sy]) => (
+              <rect key={`${sx}-${sy}`} width={21} height={21} x={sx * 20} y={sy * 20} strokeWidth="0" />
+            ))}
+          </svg>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
 /* ── 3. Rules of engagement ────────────────────────────────────────────── */
 
 const RULE_ICONS = {
@@ -59,19 +90,7 @@ export function PartnersRules() {
           <Reveal delay={0.2} className="h-full">
             <div className="relative flex h-full min-h-[220px] flex-col justify-between overflow-hidden rounded-2xl border border-brand/30 bg-brand/[0.06] p-7 md:p-8">
               <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_0%_0%,rgba(81,112,255,0.22),transparent_70%)]" />
-              {/* Perimeter rings: a protected territory around the account (dashed, like the rest of the site). */}
-              <svg
-                aria-hidden
-                className="pointer-events-none absolute -right-24 -top-24 h-[360px] w-[360px]"
-                viewBox="0 0 360 360"
-                fill="none"
-              >
-                <circle cx="180" cy="180" r="52" stroke="rgba(81,112,255,0.55)" strokeDasharray="4 6" />
-                <circle cx="180" cy="180" r="96" stroke="rgba(81,112,255,0.36)" strokeDasharray="4 6" />
-                <circle cx="180" cy="180" r="140" stroke="rgba(81,112,255,0.2)" strokeDasharray="4 6" />
-                <circle cx="180" cy="180" r="180" stroke="rgba(81,112,255,0.1)" strokeDasharray="4 6" />
-                <circle cx="180" cy="180" r="5" fill="#5170ff" />
-              </svg>
+              <GridTexture strong />
               <div className="relative flex size-11 items-center justify-center rounded-xl border border-brand/40 bg-brand/15">
                 <HeroIcon aria-hidden className="size-6 text-brand" />
               </div>
@@ -89,10 +108,11 @@ export function PartnersRules() {
               return (
                 <Reveal key={rule.lead} delay={0.3 + i * 0.1}>
                   <div className="group relative flex h-full gap-4 overflow-hidden rounded-2xl border border-dashed border-white/[0.15] p-5 transition-colors duration-300 hover:border-brand/40 hover:bg-white/[0.02]">
-                    <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] transition-colors group-hover:border-brand/40">
+                    <GridTexture />
+                    <div className="relative flex size-10 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] transition-colors group-hover:border-brand/40">
                       <Icon aria-hidden className="size-5 text-brand/80" />
                     </div>
-                    <p className="text-sm leading-6 text-gray-400">
+                    <p className="relative text-sm leading-6 text-gray-400">
                       <span className="font-semibold text-white">{rule.lead}</span> {rule.rest}
                     </p>
                   </div>
