@@ -43,16 +43,16 @@ function EmailIcon() {
 }
 
 const navLinks = [
-  { href: "/in/#problem", label: "Problem" },
-  { href: "/in/#how-we-work", label: "How We Work" },
-  { href: "/in/#services", label: "Services" },
-  { href: "/in/#focus", label: "Focus" },
-  { href: "/in/insights/", label: "Insights" },
+  { href: "/#problem", label: "Problem" },
+  { href: "/#how-we-work", label: "How We Work" },
+  { href: "/#services", label: "Services" },
+  { href: "/#focus", label: "Focus" },
+  { href: "/insights/", label: "Insights" },
 ];
 
 const legalLinks = [
-  { href: "/in/privacy/", label: "Privacy" },
-  { href: "/in/terms/", label: "Terms & Conditions" },
+  { href: "/privacy/", label: "Privacy" },
+  { href: "/terms/", label: "Terms & Conditions" },
 ];
 
 export default function Footer() {

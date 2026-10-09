@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getPostsByMarket } from "@/lib/posts";
+import { getAllPosts } from "@/lib/posts";
 
 export default function Insights() {
-  const posts = getPostsByMarket("india").slice(0, 3);
+  const posts = getAllPosts().slice(0, 3);
 
   return (
     <section className="bg-[#080f19] py-16 md:py-24">
@@ -17,7 +17,7 @@ export default function Insights() {
             </h2>
           </div>
           <Link
-            href="/in/insights/"
+            href="/insights/"
             className="hidden sm:inline-flex rounded-full border border-white/20 px-5 py-2 text-sm font-semibold text-gray-400 hover:text-white transition-colors"
           >
             Browse all
@@ -62,7 +62,7 @@ export default function Insights() {
 
         <div className="mt-8 sm:hidden text-center">
           <Link
-            href="/in/insights/"
+            href="/insights/"
             className="inline-flex rounded-full border border-white/20 px-5 py-2 text-sm font-semibold text-gray-400"
           >
             Browse all insights
