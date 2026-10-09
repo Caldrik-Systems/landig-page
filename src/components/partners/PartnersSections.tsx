@@ -4,7 +4,7 @@ import { useId, type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowsRightLeftIcon, CheckIcon, DocumentTextIcon, EyeSlashIcon, InformationCircleIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import { cn } from "@/lib/utils";
-import { rules, workingTerms } from "./content";
+import { type Headline, rules, workingTerms } from "./content";
 
 /* Section label + headline pattern shared with the rest of the site. */
 
@@ -24,16 +24,23 @@ export function Reveal({ className, delay = 0.1, children }: { className?: strin
   );
 }
 
-export function SectionHeader({ label, headline, line, className = "max-w-2xl mb-10", compact = false }: { label?: string; headline: string; line?: string; className?: string; compact?: boolean }) {
+export function SectionHeader({ label, headline, line, className = "max-w-3xl mb-14 md:mb-20" }: { label?: string; headline: Headline; line?: string; className?: string }) {
   return (
     <Reveal className={className}>
       {label && <p className="text-base/7 font-semibold text-brand">{label}</p>}
-      <h2 className={`mt-2 font-bold tracking-tight text-white ${compact ? "text-2xl sm:text-3xl md:text-4xl" : "text-3xl md:text-4xl lg:text-5xl"}`}>{headline}</h2>
-      {line && <p className="mt-4 text-lg font-medium text-gray-400">{line}</p>}
+      <h2 className="mt-3 text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl lg:text-6xl">
+        {typeof headline === "string" ? (
+          headline
+        ) : (
+          <>
+            {headline.plain} <span className="block text-brand">{headline.accent}</span>
+          </>
+        )}
+      </h2>
+      {line && <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-300 md:text-xl">{line}</p>}
     </Reveal>
   );
 }
-
 
 /* The site's card texture: faint grid with a few highlighted squares (same as the Problem / Lifecycle cards). */
 
@@ -79,38 +86,41 @@ export function PartnersRules() {
   const HeroIcon = RULE_ICONS[hero.icon];
 
   return (
-    <section id="rules" className="bg-[#080f19] py-10 md:py-14">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionHeader label={rules.label} headline={rules.headline} compact className="mb-6 max-w-5xl md:mb-8" />
+    <section
+      id="rules"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,#080f19_0%,#0b1a3c_50%,#080f19_100%)] py-24 md:py-40"
+    >
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <SectionHeader label={rules.label} headline={rules.headline} />
 
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.1fr_1fr]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.1fr_1fr] lg:gap-8">
           {/* The promise that matters most gets the large card. */}
           <Reveal delay={0.2} className="h-full">
-            <div className="relative flex h-full min-h-[220px] flex-col justify-between overflow-hidden rounded-2xl border border-brand/30 bg-brand/[0.06] p-7 md:p-8">
-              <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_0%_0%,rgba(81,112,255,0.22),transparent_70%)]" />
+            <div className="relative flex h-full min-h-[320px] flex-col justify-between overflow-hidden rounded-3xl border border-brand/30 bg-brand/[0.07] p-8 md:p-12">
+              <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_0%_0%,rgba(81,112,255,0.24),transparent_70%)]" />
               <GridTexture strong />
-              <div className="relative flex size-11 items-center justify-center rounded-xl border border-brand/40 bg-brand/15">
+              <div className="relative flex size-12 items-center justify-center rounded-xl border border-brand/40 bg-brand/15">
                 <HeroIcon aria-hidden className="size-6 text-brand" />
               </div>
-              <div className="relative mt-8">
-                <p className="text-3xl font-bold leading-tight tracking-tight text-white md:text-4xl">{hero.lead}</p>
-                <p className="mt-3 max-w-md text-base leading-7 text-gray-400">{hero.rest}</p>
+              <div className="relative mt-12">
+                <p className="text-3xl font-bold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">{hero.lead}</p>
+                <p className="mt-5 max-w-md text-lg leading-8 text-gray-300">{hero.rest}</p>
               </div>
             </div>
           </Reveal>
 
           {/* Supporting clauses */}
-          <div className="grid gap-4">
+          <div className="grid gap-6">
             {rest.map((rule, i) => {
               const Icon = RULE_ICONS[rule.icon];
               return (
                 <Reveal key={rule.lead} delay={0.3 + i * 0.1}>
-                  <div className="group relative flex h-full gap-4 overflow-hidden rounded-2xl border border-dashed border-white/[0.15] p-5 transition-colors duration-300 hover:border-brand/40 hover:bg-white/[0.02]">
+                  <div className="group relative flex h-full gap-5 overflow-hidden rounded-2xl border border-dashed border-white/[0.18] bg-[#080f19]/60 p-7 transition-colors duration-300 hover:border-brand/40 md:p-8">
                     <GridTexture />
-                    <div className="relative flex size-10 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] transition-colors group-hover:border-brand/40">
-                      <Icon aria-hidden className="size-5 text-brand/80" />
+                    <div className="relative flex size-12 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] transition-colors group-hover:border-brand/40">
+                      <Icon aria-hidden className="size-6 text-brand/80" />
                     </div>
-                    <p className="relative text-sm leading-6 text-gray-400">
+                    <p className="relative text-base leading-7 text-gray-300">
                       <span className="font-semibold text-white">{rule.lead}</span> {rule.rest}
                     </p>
                   </div>
@@ -129,26 +139,28 @@ export function PartnersRules() {
 export function PartnersWorkingTerms() {
   const t = workingTerms;
   return (
-    <section id="terms" className="scroll-mt-12 bg-[#080f19] py-10 md:py-14">
+    <section id="terms" className="scroll-mt-12 bg-[#080f19] py-24 md:py-40">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <Reveal className="mb-6 max-w-5xl md:mb-8">
+        <Reveal className="mb-14 max-w-4xl md:mb-20">
           <p className="text-base/7 font-semibold text-brand">{t.label}</p>
-          <h2 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl">{t.headline}</h2>
-          <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-lg font-medium text-gray-400">
+          <h2 className="mt-3 text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl lg:text-6xl">
+            {t.headline.plain} <span className="block text-brand">{t.headline.accent}</span>
+          </h2>
+          <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-3 text-lg leading-8 text-gray-300 md:text-xl">
             <span>{t.line}</span>
-            <span className="inline-flex items-center rounded-full border border-brand/40 bg-brand/15 px-3 py-1 font-mono text-xs font-semibold text-brand">
+            <span className="inline-flex items-center rounded-full border border-brand/40 bg-brand/15 px-4 py-1.5 font-mono text-sm font-semibold text-brand">
               {t.kickoff}
             </span>
           </p>
         </Reveal>
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 md:gap-8">
           {t.cards.map((card, i) => (
             <Reveal key={card.title} delay={0.2 + i * 0.1} className="h-full">
-              <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-dashed border-white/[0.15] p-6 transition-colors duration-300 hover:border-brand/40 md:p-7">
+              <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-dashed border-white/[0.18] p-8 transition-colors duration-300 hover:border-brand/40 md:p-10">
                 <GridTexture />
-                <h3 className="relative text-xl font-bold text-white">{card.title}</h3>
-                <p className="relative mt-3 text-sm leading-6 text-gray-400">
+                <h3 className="relative text-2xl font-bold text-white">{card.title}</h3>
+                <p className="relative mt-4 text-base leading-7 text-gray-300">
                   <span className="font-semibold text-white">{card.lead}</span> {card.rest}
                 </p>
               </div>
@@ -157,20 +169,20 @@ export function PartnersWorkingTerms() {
         </div>
 
         {/* The margin promise */}
-        <Reveal delay={0.4} className="mt-4">
-          <p className="border-l-2 border-brand bg-gradient-to-r from-brand/[0.08] to-transparent py-3 pl-5 pr-4 text-base leading-7 text-gray-400">
-            <span className="font-semibold text-white">{t.note}</span>
+        <Reveal delay={0.4} className="mt-14 md:mt-20">
+          <p className="max-w-4xl border-l-2 border-brand bg-gradient-to-r from-brand/[0.08] to-transparent py-4 pl-6 pr-4 text-xl leading-8 font-semibold text-white">
+            {t.note}
           </p>
         </Reveal>
 
-        <Reveal delay={0.5} className="mt-4">
-          <ul className="grid divide-y divide-dashed divide-white/[0.15] rounded-2xl border border-dashed border-white/[0.15] md:grid-cols-3 md:divide-x md:divide-y-0">
+        <Reveal delay={0.5} className="mt-14 md:mt-16">
+          <ul className="grid divide-y divide-dashed divide-white/[0.18] rounded-2xl border border-dashed border-white/[0.18] md:grid-cols-3 md:divide-x md:divide-y-0">
             {t.strip.map((item) => (
-              <li key={item.text} className="flex items-start gap-3 p-5 font-mono text-xs leading-5 text-white/80">
+              <li key={item.text} className="flex items-start gap-3.5 p-6 font-mono text-sm leading-6 text-white/90">
                 {item.kind === "assurance" ? (
-                  <CheckIcon aria-hidden className="mt-0.5 size-4 shrink-0 text-brand" />
+                  <CheckIcon aria-hidden className="mt-0.5 size-5 shrink-0 text-brand" />
                 ) : (
-                  <InformationCircleIcon aria-hidden className="mt-0.5 size-4 shrink-0 text-white/50" />
+                  <InformationCircleIcon aria-hidden className="mt-0.5 size-5 shrink-0 text-white/60" />
                 )}
                 {item.text}
               </li>

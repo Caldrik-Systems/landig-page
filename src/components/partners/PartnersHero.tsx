@@ -43,24 +43,24 @@ export default function PartnersHero() {
       {/* Bottom fade */}
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-[#080f19]" />
 
-      <div className="mx-auto max-w-7xl px-6 pt-28 pb-12 sm:pt-32 sm:pb-16 lg:px-8 lg:pt-36 lg:pb-20">
+      <div className="mx-auto max-w-7xl px-6 pt-32 pb-20 sm:pt-40 sm:pb-28 lg:px-8 lg:pt-48 lg:pb-36">
         <motion.div
-          className="max-w-3xl"
+          className="max-w-4xl"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="mb-6 font-mono text-[11px] font-semibold tracking-[0.4em] text-brand/65 uppercase">{hero.eyebrow}</p>
+          <p className="mb-8 font-mono text-[11px] font-semibold tracking-[0.4em] text-brand/65 uppercase">{hero.eyebrow}</p>
 
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="text-balance text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
             {hero.headline.before}
             <span className="text-brand">{hero.headline.highlight}</span>
             {hero.headline.after}
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg font-medium leading-8 text-gray-400">{hero.subhead}</p>
+          <p className="mt-8 max-w-2xl text-xl leading-9 text-gray-300">{hero.subhead}</p>
 
-          <div className="mt-9 flex flex-col items-start gap-y-4 sm:flex-row sm:items-center sm:gap-x-8 sm:gap-y-0">
+          <div className="mt-12 flex flex-col items-start gap-y-4 sm:flex-row sm:items-center sm:gap-x-8 sm:gap-y-0">
             <a
               href={hero.primaryCta.href}
               onClick={() => events.ctaClicked(hero.primaryCta.label, "partners_hero")}

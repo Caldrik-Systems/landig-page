@@ -14,9 +14,9 @@ export const partnersMeta = {
 
 export const hero = {
   eyebrow: "Partners",
-  headline: { before: "AI that reaches ", highlight: "production", after: ". For the firms your clients already trust." },
+  headline: { before: "", highlight: "Production AI", after: ", under your name." },
   subhead:
-    "Add AI engineering to what you sell, without building a team. We scope, build and support it as part of yours. You keep the client and the margin.",
+    "For technology services firms whose clients already trust them. We engineer it inside your team. You keep the client and the margin.",
   primaryCta: { label: "Discuss a Partnership", href: "#doorway" },
   secondaryCta: { label: "Find your partnership model", href: "#models" },
 };
@@ -27,11 +27,15 @@ export const models = [
   { key: "referral", name: "Referral" },
 ];
 
+// A headline is plain text, optionally with a second phrase shown in the brand colour.
+export type Headline = string | { plain: string; accent: string };
+export const headlineText = (h: Headline) => (typeof h === "string" ? h : `${h.plain} ${h.accent}`);
+
 export type Owner = "you" | "caldrik" | "shared";
 
 export const ways = {
   label: "Ways to partner",
-  headline: "Three models. Your client contract decides.",
+  headline: { plain: "Three models.", accent: "Your client contract decides." },
   // `intro: true` marks the "Best when" row, shown in each model's header. `owners` drives the
   // You / Caldrik / Shared chip in each cell.
   rows: [
@@ -91,7 +95,7 @@ export const ways = {
 
 export const rules = {
   label: "Rules of engagement",
-  headline: "Your client stays yours. In writing.",
+  headline: { plain: "Your client stays yours.", accent: "In writing." },
   // Each rule is one sentence split in two so the lead can be emphasised: `${lead} ${rest}` is the full text.
   // The first item is the headline promise and gets the large card.
   items: [
@@ -108,7 +112,7 @@ export const rules = {
 
 export const workingTerms = {
   label: "Working terms",
-  headline: "Capacity when you sell. No bench when you don't.",
+  headline: { plain: "Capacity when you sell.", accent: "No bench when you don't." },
   // `${line} ${kickoff}` is the full sentence pair; kickoff is shown as a highlighted pill.
   line: "Master Services Agreement, with a Statement of Work per project.",
   kickoff: "Kickoff within 8 days of signing.",
@@ -137,10 +141,10 @@ export const workingTerms = {
 export const faq = {
   headline: "Before you ask.",
   items: [
-    { q: "Do you compete with us for clients?", a: "No. Accounts you bring are yours, and that's in our contract with you." },
+    { q: "Do you compete with us for clients?", a: "No. The accounts you bring are yours, and our contract with you says so." },
     {
       q: "Will my client know you're involved?",
-      a: "Only if you choose co-delivery. With white-label, we work under your brand, in your client's tools.",
+      a: "Only if you choose co-delivery. With white-label, we work under your brand, inside your client's tools.",
     },
     {
       q: "Where is your team, and when do you work?",
@@ -153,10 +157,34 @@ export const faq = {
 
 export const closing = {
   headline: ["Know before", "you pitch."],
-  line: "Bring one client requirement. We'll tell you if AI fits, and what it takes to deliver it.",
+  line: "Bring one client requirement. We'll tell you whether AI fits, and what it takes to deliver it.",
   smallPrint: "No pitch. Just a technical opinion.",
   button: "Book a discovery call",
   calendlyUrl: "https://calendly.com/rohan-caldrik/30min",
   // When a model was picked in "Ways to partner", it is shown on the card and passed to Calendly as answer 1.
   interestedIn: "Interested in",
+};
+
+export const writeUs = {
+  label: "Or write to us",
+  headline: ["Not ready to talk?", "Write to us."],
+  line: "Share the client requirement in a few lines. We'll come back with whether AI fits.",
+  link: "Prefer to write? Send a message",
+  firstName: { label: "First name", placeholder: "First name" },
+  lastName: { label: "Last name", placeholder: "Last name" },
+  company: { label: "Company name", placeholder: "Company name" },
+  email: { label: "Work email", placeholder: "you@company.com" },
+  title: { label: "Your title", placeholder: "e.g. Founder, CEO, Head of Delivery" },
+  model: { label: "Partnership model", empty: "Choose an option", notSure: "Not sure yet" },
+  requirement: {
+    label: "The client requirement",
+    hint: "in a sentence (optional)",
+    placeholder: "e.g. A client wants AI agents in their ERP to triage supplier exceptions.",
+  },
+  consent: "Yes, I'd like Caldrik to contact me regarding AI engineering services and related offerings by email or telephone.",
+  button: "Send message",
+  sending: "Sending…",
+  error: "Something went wrong. Please try again.",
+  successTitle: "We'll be in touch.",
+  successBody: "Expect a technical response within one business day.",
 };
