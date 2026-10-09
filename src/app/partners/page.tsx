@@ -3,6 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PartnersHero from "@/components/partners/PartnersHero";
 import PartnersClosing from "@/components/partners/PartnersClosing";
+import PartnersForm from "@/components/partners/PartnersForm";
 import { PartnersRules, PartnersWorkingTerms } from "@/components/partners/PartnersSections";
 import PartnersWays from "@/components/partners/PartnersWays";
 import { faq, partnersMeta } from "@/components/partners/content";
@@ -41,6 +42,7 @@ export default function PartnersPage() {
         <PartnersRules />
         <PartnersWorkingTerms />
         <PartnersClosing />
+        <PartnersForm />
       </main>
       <Footer />
     </div>

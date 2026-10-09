@@ -5,7 +5,7 @@ import { CalendarDays } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { events } from "@/lib/gtag";
 import { cn } from "@/lib/utils";
-import { closing as c, faq } from "./content";
+import { closing as c, faq, writeUs } from "./content";
 
 /* The site's closing-card texture (as on the quote and article CTA cards). */
 function CardGrid() {
@@ -129,6 +129,11 @@ export default function PartnersClosing() {
                 </div>
                 {model ? <div className="mt-4">{chosenChip}</div> : null}
                 <div className="mt-4 flex">{bookButton("w-full py-3 text-sm")}</div>
+                <p className="mt-3 text-center text-sm text-gray-400">
+                  <a href="#write" className="underline underline-offset-4 transition-colors hover:text-white">
+                    {writeUs.link}
+                  </a>
+                </p>
               </div>
             </div>
           </div>

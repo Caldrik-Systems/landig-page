@@ -164,3 +164,27 @@ export const closing = {
   // When a model was picked in "Ways to partner", it is shown on the card and passed to Calendly as answer 1.
   interestedIn: "Interested in",
 };
+
+export const writeUs = {
+  label: "Prefer to write",
+  headline: ["Rather write", "it down?"],
+  line: "Send the client requirement and a few details. We'll reply with a technical response.",
+  link: "Prefer to write? Send a message",
+  firstName: { label: "First name", placeholder: "First name" },
+  lastName: { label: "Last name", placeholder: "Last name" },
+  company: { label: "Company name", placeholder: "Company name" },
+  email: { label: "Work email", placeholder: "you@company.com" },
+  title: { label: "Your title", placeholder: "e.g. Founder, CEO, Head of Delivery" },
+  model: { label: "Partnership model", empty: "Choose an option", notSure: "Not sure yet" },
+  requirement: {
+    label: "The client requirement",
+    hint: "in a sentence (optional)",
+    placeholder: "e.g. A client wants AI agents in their ERP to triage supplier exceptions.",
+  },
+  consent: "Yes, I'd like Caldrik to contact me regarding AI engineering services and related offerings by email or telephone.",
+  button: "Send message",
+  sending: "Sending…",
+  error: "Something went wrong. Please try again.",
+  successTitle: "We'll be in touch.",
+  successBody: "Expect a technical response within one business day.",
+};
