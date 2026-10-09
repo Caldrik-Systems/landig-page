@@ -43,13 +43,13 @@ export default function Hero() {
       {/* Bottom fade */}
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#080f19]" />
 
-      <div className="mx-auto max-w-5xl px-6 pt-28 pb-10 sm:pt-36 sm:pb-12 lg:px-8 lg:pt-40 lg:pb-14 text-center">
+      <div className="mx-auto max-w-5xl px-6 pt-32 pb-24 sm:pt-40 sm:pb-28 lg:px-8 lg:pt-48 lg:pb-36 text-center">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="mb-8 font-mono text-[11px] font-semibold tracking-[0.4em] text-brand/65 uppercase">
+          <p className="mb-5 text-base/7 font-semibold text-brand">
             AI Engineering · Enterprise Systems
           </p>
 
@@ -58,7 +58,7 @@ export default function Hero() {
             like infrastructure.
           </h1>
 
-          <p className="mx-auto mt-8 max-w-2xl text-xl font-medium leading-8 text-gray-400">
+          <p className="mx-auto mt-8 max-w-2xl text-xl leading-9 text-gray-300">
             End-to-end AI engineering for the workflows that can&apos;t afford to drift — designed, evaluated and maintained inside your cloud.
           </p>
 

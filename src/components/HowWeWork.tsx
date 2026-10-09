@@ -8,19 +8,19 @@ import type { HowItWorksStep } from "@/components/ui/how-it-works";
 const steps: HowItWorksStep[] = [
   {
     title: "Discover",
-    description: "We run an automated readiness assessment — mapping decision nodes, scoring data viability, flagging missing eval baselines — before a line of code is written.",
+    description: "Readiness assessed first. Data scored. Gaps flagged. Then we build.",
   },
   {
     title: "Engineer",
-    description: "Deployed inside your cloud boundary, grounded in your retrieval sources, orchestrated across your existing systems. Right model for the task, not the largest.",
+    description: "Inside your cloud. Grounded in your data. Right model, not the largest.",
   },
   {
     title: "Evaluate",
-    description: "Every engagement delivers an eval harness. Each task gets a score, a threshold, and a status — so you know exactly where the system stands before it goes live.",
+    description: "Every task gets a score, a threshold and a status before go-live.",
   },
   {
     title: "Realign",
-    description: "Every model update or context shift triggers re-evaluation. When quality drifts, the baseline makes it visible — before it reaches production.",
+    description: "Every change triggers re-evaluation. Drift is caught before users see it.",
   },
 ];
 
@@ -42,18 +42,18 @@ export default function HowWeWork() {
     );
 
   return (
-    <section id="how-we-work" className="bg-[#080f19] py-16 md:py-32">
+    <section id="how-we-work" className="bg-[#080f19] py-24 md:py-36">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
         {wrapper(
-          <div className="max-w-2xl mb-16">
+          <div className="max-w-3xl mb-14 md:mb-20">
             <p className="text-base/7 font-semibold text-brand">The Lifecycle</p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+            <h2 className="mt-3 text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl lg:text-6xl">
               Engineered. Not promised.
             </h2>
-            <p className="mt-4 text-lg font-medium text-gray-400">
+            <p className="mt-6 text-lg leading-8 text-gray-300 md:text-xl">
               One lifecycle, every engagement —{" "}
-              <span className="text-white/80">AI behavior treated like uptime: defined, measured, maintained.</span>
+              <span className="font-medium text-white">AI behavior treated like uptime: defined, measured, maintained.</span>
             </p>
           </div>
         )}

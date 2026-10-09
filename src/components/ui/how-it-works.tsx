@@ -311,8 +311,8 @@ function StepColumn({ step, index }: { step: HowItWorksStep; index: number }) {
         <div className="relative h-32 mb-5 overflow-hidden">
           {VISUALS[index]}
         </div>
-        <h3 className="text-base font-bold text-white mb-2">{step.title}</h3>
-        <p className="text-sm leading-6 text-gray-400">{step.description}</p>
+        <h3 className="text-lg font-bold text-white mb-3">{step.title}</h3>
+        <p className="text-base leading-7 text-gray-300">{step.description}</p>
       </div>
     </motion.div>
   );

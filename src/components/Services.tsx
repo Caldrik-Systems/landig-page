@@ -176,32 +176,32 @@ const services = [
   {
     id: "02",
     title: "AI Engineering",
-    description: "Right model for the task — not the largest one. Built inside your cloud boundary and grounded in your data.",
-    outcome: "A working system deployed in your cloud, grounded in your data, with an eval harness from day one.",
+    description: "Built inside your cloud, grounded in your data.",
+    outcome: "A working system with an eval harness from day one.",
     tags: ["Deployed system", "Eval harness", "Architecture doc"],
     cta: "Discuss an engagement",
   },
   {
     id: "03",
     title: "Reliability & Evaluation",
-    description: "Whether we built it or someone else did — evaluation runs as a standalone engagement. Harness, baselines, acceptance criteria: every task gets a score, a threshold, and a status.",
-    outcome: "A score, threshold, and status for every task. You know exactly where the system stands before it ships.",
+    description: "Whoever built it, we measure it: a score, a threshold and a status for every task.",
+    outcome: "You know where the system stands before it ships.",
     tags: ["Eval suite", "Threshold baselines", "Acceptance report"],
     cta: "See the methodology",
   },
   {
     id: "04",
     title: "AI Operations",
-    description: "Deployment, monitoring, hardening. A build becomes a system your team can operate — with drift detection and re-evaluation built in.",
-    outcome: "A live system your team can run — monitored, hardened, and re-evaluated when the model drifts.",
+    description: "Deployment, monitoring and hardening, with drift detection built in.",
+    outcome: "A live system your team can run.",
     tags: ["Monitoring setup", "Drift detection", "Runbook"],
     cta: "Discuss an engagement",
   },
   {
     id: "05",
     title: "Managed AI",
-    description: "The system in production is not the finished system. Ongoing iteration — model upgrades, prompt tuning, threshold tightening, regression patching — keeps it ahead of drift.",
-    outcome: "A living system that improves on a known cadence. Every change logged, evaluated, and shipped with evidence.",
+    description: "Model upgrades, prompt tuning and regression fixes on a known cadence.",
+    outcome: "A system that stays ahead of drift, with every change logged.",
     tags: ["Iteration log", "Monthly eval runs", "Change reports"],
     cta: "Discuss an engagement",
   },
@@ -249,12 +249,12 @@ function ServicePanel({ s, i, isActive }: { s: typeof services[0]; i: number; is
 
         {/* Content */}
         <div className="relative z-10 space-y-3">
-          <p className="text-sm leading-6 text-gray-400">{s.description}</p>
-          <p className="text-sm leading-6 text-white/80">→ {s.outcome}</p>
+          <p className="text-base leading-7 text-gray-400">{s.description}</p>
+          <Outcome text={s.outcome} />
         </div>
         <div className="relative z-10 flex flex-wrap gap-2">
           {s.tags.map((tag) => (
-            <span key={tag} className="rounded-full border border-white/[0.25] px-3 py-1 font-mono text-xs text-white/70">
+            <span key={tag} className="rounded-full border border-white/[0.25] px-3 py-1 text-xs text-white/70">
               {tag}
             </span>
           ))}
@@ -273,6 +273,16 @@ function ServicePanel({ s, i, isActive }: { s: typeof services[0]; i: number; is
 }
 
 /* ── Section ── */
+
+/* The result of the scope, set apart from the description so it reads as the payoff. */
+function Outcome({ text }: { text: string }) {
+  return (
+    <div className="mt-5 border-l-2 border-brand bg-gradient-to-r from-brand/[0.12] to-transparent py-3 pl-5 pr-4">
+      <p className="text-sm font-semibold text-brand">Outcome</p>
+      <p className="mt-1 text-lg font-semibold leading-7 text-white">{text}</p>
+    </div>
+  );
+}
 
 export default function Services() {
   const outerRef = useRef<HTMLDivElement>(null);
@@ -304,12 +314,12 @@ export default function Services() {
           {/* Header */}
           <div className="flex-none mb-6">
             <p className="text-base/7 font-semibold text-brand">Services</p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+            <h2 className="mt-3 text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl lg:text-6xl">
               Five scopes. One standard.
             </h2>
-            <p className="mt-4 text-lg font-medium text-gray-400">
+            <p className="mt-4 text-lg leading-8 text-gray-300">
               Designed to work as a sequence or standalone.{" "}
-              <span className="text-white/70">Most engagements start with Discovery.</span>
+              <span className="font-medium text-white">Most engagements start with Discovery.</span>
             </p>
           </div>
 
@@ -331,7 +341,7 @@ export default function Services() {
                   )}
                 >
                   <span className={cn(
-                    "font-mono text-xs shrink-0 transition-colors duration-300",
+                    "text-xs shrink-0 transition-colors duration-300",
                     active === s.id ? "text-brand/80" : "text-white/40"
                   )}>
                     {s.id}
@@ -365,7 +375,7 @@ export default function Services() {
                   className="w-full flex items-center gap-4 px-5 py-4 text-left"
                 >
                   <span className={cn(
-                    "font-mono text-[10px] shrink-0 transition-colors",
+                    "text-[11px] shrink-0 transition-colors",
                     active === s.id ? "text-brand/80" : "text-white/40"
                   )}>{s.id}</span>
                   <span className={cn(
@@ -379,11 +389,11 @@ export default function Services() {
                 </button>
                 {active === s.id && (
                   <div className="px-5 pb-5 space-y-4">
-                    <p className="text-sm leading-6 text-gray-400">{s.description}</p>
-                    <p className="text-sm leading-6 text-white/80">→ {s.outcome}</p>
+                    <p className="text-base leading-7 text-gray-400">{s.description}</p>
+                    <Outcome text={s.outcome} />
                     <div className="flex flex-wrap gap-2">
                       {s.tags.map((tag) => (
-                        <span key={tag} className="rounded-full border border-white/[0.25] px-3 py-1 font-mono text-xs text-white/70">
+                        <span key={tag} className="rounded-full border border-white/[0.25] px-3 py-1 text-xs text-white/70">
                           {tag}
                         </span>
                       ))}
