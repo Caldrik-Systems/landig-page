@@ -50,7 +50,7 @@ export default function PartnersHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="mb-8 font-mono text-[11px] font-semibold tracking-[0.4em] text-brand/65 uppercase">{hero.eyebrow}</p>
+          <p className="mb-3 text-base/7 font-semibold text-brand">{hero.eyebrow}</p>
 
           <h1 className="text-balance text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
             {hero.headline.before}

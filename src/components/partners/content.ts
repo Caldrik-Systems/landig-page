@@ -174,7 +174,7 @@ export const writeUs = {
   lastName: { label: "Last name", placeholder: "Last name" },
   company: { label: "Company name", placeholder: "Company name" },
   email: { label: "Work email", placeholder: "you@company.com" },
-  title: { label: "Your title", placeholder: "e.g. Founder, CEO, Head of Delivery" },
+  title: { label: "Your title", placeholder: "e.g. Founder, Head of Delivery" },
   model: { label: "Partnership model", empty: "Choose an option", notSure: "Not sure yet" },
   requirement: {
     label: "The client requirement",
