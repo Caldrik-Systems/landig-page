@@ -113,22 +113,18 @@ export const workingTerms = {
   line: "Master Services Agreement, with a Statement of Work per project.",
   kickoff: "Kickoff within 8 days of signing.",
   // Each card's description is split at its first sentence: `${lead} ${rest}`.
-  // `commitment` draws the month-by-month bar: "open" = no minimum, "minimum" = the first `minMonths` are committed.
   cards: [
     {
       title: "Time and Materials",
       lead: "For first builds and scopes still taking shape.",
       rest: "Billed monthly on actual effort, with no minimum commitment.",
-      commitment: "open",
     },
     {
       title: "Dedicated Team",
       lead: "For ongoing programmes.",
       rest: "A lead architect, AI engineers, QA and eval, and a delivery manager, on a monthly retainer with a three-month minimum and a preferred rate.",
-      commitment: "minimum",
     },
-  ] as { title: string; lead: string; rest: string; commitment: "open" | "minimum" }[],
-  minMonths: 3,
+  ] as { title: string; lead: string; rest: string }[],
   note: {
     lead: "Rates are structured so you resell at your market's rates and keep a healthy margin.",
     rest: "Rate card shared on our first call.",

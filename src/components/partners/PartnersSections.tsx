@@ -127,39 +127,6 @@ export function PartnersRules() {
 
 /* ── 4. Working terms ──────────────────────────────────────────────────── */
 
-const MONTHS = 6;
-
-// Month-by-month billing: dashed months are open-ended, solid months are the committed minimum.
-function CommitmentBar({ kind }: { kind: "open" | "minimum" }) {
-  const committed = kind === "minimum" ? workingTerms.minMonths : 0;
-  return (
-    <div
-      role="img"
-      aria-label={kind === "minimum" ? `Billed monthly; the first ${committed} months are committed` : "Billed monthly; no months committed"}
-      className="mt-6"
-    >
-      <div className="flex gap-1.5">
-        {Array.from({ length: MONTHS }, (_, i) => (
-          <div
-            key={i}
-            className={cn(
-              "h-7 flex-1 rounded-md border transition-colors duration-300",
-              i < committed ? "border-brand/70 bg-brand/50" : "border-dashed border-white/25 group-hover:border-brand/40",
-            )}
-          />
-        ))}
-      </div>
-      <div className="mt-1.5 flex gap-1.5">
-        {Array.from({ length: MONTHS }, (_, i) => (
-          <span key={i} className="flex-1 text-center font-mono text-[10px] text-white/40">
-            M{i + 1}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export function PartnersWorkingTerms() {
   const t = workingTerms;
   return (
@@ -185,9 +152,6 @@ export function PartnersWorkingTerms() {
                 <p className="relative mt-3 text-sm leading-6 text-gray-400">
                   <span className="font-semibold text-white">{card.lead}</span> {card.rest}
                 </p>
-                <div className="relative mt-auto">
-                  <CommitmentBar kind={card.commitment} />
-                </div>
               </div>
             </Reveal>
           ))}
