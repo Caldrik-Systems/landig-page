@@ -42,7 +42,7 @@ function OwnerChip({ owner }: { owner: Owner }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.14em]",
+        "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.06em]",
         chipStyle[owner],
       )}
     >
@@ -64,7 +64,7 @@ function ModelHeader({ index, name, modelKey, active }: { index: number; name: s
       />
       <div className="relative flex items-start justify-between gap-3">
         <div className="flex items-baseline gap-3">
-          <span className="font-mono text-xs font-semibold tracking-[0.2em] text-brand/70">{String(index + 1).padStart(2, "0")}</span>
+          <span className="text-xs font-semibold tracking-[0.08em] text-brand/70">{String(index + 1).padStart(2, "0")}</span>
           <h3 className="text-2xl font-bold tracking-tight text-white">{name}</h3>
         </div>
         <button
@@ -78,7 +78,7 @@ function ModelHeader({ index, name, modelKey, active }: { index: number; name: s
       </div>
       {intro && (
         <div className="relative mt-7">
-          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-brand/80">{intro.label}</p>
+          <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-brand/80">{intro.label}</p>
           <p className="mt-2 text-base font-medium leading-6 text-white/90">{intro.values[modelKey]}</p>
         </div>
       )}
@@ -129,7 +129,7 @@ function WaysTable() {
         <tbody>
           {ledger.map((row) => (
             <tr key={row.label} className="border-t border-dashed border-white/[0.15]">
-              <th scope="row" className="px-7 py-6 align-top font-mono text-xs font-medium leading-6 tracking-wide text-white/70">
+              <th scope="row" className="px-7 py-6 align-top text-xs font-medium leading-6 tracking-wide text-white/70">
                 {row.label}
               </th>
               {models.map((m) => (
@@ -199,7 +199,7 @@ function WaysTabs() {
         <dl className="divide-y divide-dashed divide-white/[0.15] border-t border-dashed border-white/[0.15]">
           {ledger.map((row) => (
             <div key={row.label} className="px-6 py-5">
-              <dt className="font-mono text-xs font-medium tracking-wide text-white/70">{row.label}</dt>
+              <dt className="text-xs font-medium tracking-wide text-white/70">{row.label}</dt>
               <dd className="mt-2">
                 <CellBody owner={row.owners?.[model.key]} text={row.values[model.key]} inlineAlways />
               </dd>

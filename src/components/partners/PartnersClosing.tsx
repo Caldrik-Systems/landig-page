@@ -73,7 +73,7 @@ export default function PartnersClosing() {
   const chosenChip = model ? (
     <span
       aria-live="polite"
-      className="rounded-full border border-[#5170ff]/40 bg-[#5170ff]/15 px-3 py-1 font-mono text-xs font-semibold text-[#9db0ff]"
+      className="rounded-full border border-[#5170ff]/40 bg-[#5170ff]/15 px-3 py-1 text-xs font-semibold text-[#9db0ff]"
     >
       <span className="sr-only">{c.interestedIn} </span>
       {model}
@@ -98,13 +98,13 @@ export default function PartnersClosing() {
   return (
     <section className="border-y border-white/[0.06] bg-white/[0.02] py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div id="faq" className="grid scroll-mt-20 gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-start lg:gap-20">
+        <div id="faq" className="grid scroll-mt-20 gap-12 lg:grid-cols-[1.15fr_1fr] lg:items-start lg:gap-16">
           {/* Left: the statement and the one action. Sticks while the answers scroll past. */}
           <div className="flex flex-col gap-5 lg:sticky lg:top-28">
             <p className="text-base/7 font-semibold text-brand">
               {faq.headline}
             </p>
-            <h2 className="-mt-2 text-balance text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl">
+            <h2 className="-mt-2 text-balance text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl lg:text-6xl">
               {c.headline[0]} <span className="text-brand">{c.headline[1]}</span>
             </h2>
             <p className="text-base leading-7 text-gray-300">{c.line}</p>
@@ -145,7 +145,7 @@ export default function PartnersClosing() {
                 <AccordionTrigger className="py-5 text-left text-lg font-semibold text-white hover:no-underline md:text-xl">
                   {item.q}
                 </AccordionTrigger>
-                <AccordionContent className="pb-6 pr-8 text-base leading-7 text-gray-300">{item.a}</AccordionContent>
+                <AccordionContent className="pb-6 pr-4 text-base leading-7 text-gray-300">{item.a}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>

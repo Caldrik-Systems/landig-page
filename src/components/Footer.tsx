@@ -60,7 +60,7 @@ export default function Footer() {
   return (
     <footer className="relative bg-[#080f19] px-6 lg:px-8 pt-10 pb-12">
       <FooterGrid />
-      <div className="relative mx-auto max-w-7xl space-y-8">
+      <div className="relative mx-auto max-w-[76rem] space-y-8">
 
         {/* Logo + social icons */}
         <div className="flex items-center justify-between">

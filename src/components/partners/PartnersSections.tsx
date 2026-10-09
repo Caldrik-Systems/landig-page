@@ -148,7 +148,7 @@ export function PartnersWorkingTerms() {
           </h2>
           <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-3 text-lg leading-8 text-gray-300 md:text-xl">
             <span>{t.line}</span>
-            <span className="inline-flex items-center rounded-full border border-brand/40 bg-brand/15 px-4 py-1.5 font-mono text-sm font-semibold text-brand">
+            <span className="inline-flex items-center rounded-full border border-brand/40 bg-brand/15 px-4 py-1.5 text-sm font-semibold text-brand">
               {t.kickoff}
             </span>
           </p>
@@ -178,7 +178,7 @@ export function PartnersWorkingTerms() {
         <Reveal delay={0.5} className="mt-14 md:mt-16">
           <ul className="grid divide-y divide-dashed divide-white/[0.18] rounded-2xl border border-dashed border-white/[0.18] md:grid-cols-3 md:divide-x md:divide-y-0">
             {t.strip.map((item) => (
-              <li key={item.text} className="flex items-start gap-3.5 p-6 font-mono text-sm leading-6 text-white/90">
+              <li key={item.text} className="flex items-start gap-3.5 p-6 text-sm leading-6 text-white/90">
                 {item.kind === "assurance" ? (
                   <CheckIcon aria-hidden className="mt-0.5 size-5 shrink-0 text-brand" />
                 ) : (
