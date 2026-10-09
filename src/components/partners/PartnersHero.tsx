@@ -1,7 +1,6 @@
 "use client";
 
 import { useId } from "react";
-import Link from "next/link";
 import { motion } from "motion/react";
 import { events } from "@/lib/gtag";
 import { hero } from "./content";
@@ -77,18 +76,6 @@ export default function PartnersHero() {
               {hero.secondaryCta.label} <span aria-hidden>&rarr;</span>
             </a>
           </div>
-
-          <p className="mt-10 max-w-2xl text-sm leading-6 text-gray-400">
-            {hero.smallLine.intro}{" "}
-            {hero.smallLine.links.map((link, i) => (
-              <span key={link.href}>
-                {i > 0 && " · "}
-                <Link href={link.href} className="underline underline-offset-4 transition-colors hover:text-white">
-                  {link.label}
-                </Link>
-              </span>
-            ))}
-          </p>
         </motion.div>
       </div>
     </section>
