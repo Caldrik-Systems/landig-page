@@ -52,7 +52,7 @@ export default function PartnersHero() {
         >
           <p className="mb-8 font-mono text-[11px] font-semibold tracking-[0.4em] text-brand/65 uppercase">{hero.eyebrow}</p>
 
-          <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="text-balance text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
             {hero.headline.before}
             <span className="text-brand">{hero.headline.highlight}</span>
             {hero.headline.after}
