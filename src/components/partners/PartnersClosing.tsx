@@ -68,6 +68,31 @@ export default function PartnersClosing() {
   // Calendly pre-fills custom question 1 from ?a1=
   const bookingUrl = model ? `${c.calendlyUrl}${c.calendlyUrl.includes("?") ? "&" : "?"}a1=${encodeURIComponent(model)}` : c.calendlyUrl;
 
+  const chosenChip = model ? (
+    <span
+      aria-live="polite"
+      className="rounded-full border border-[#5170ff]/40 bg-[#5170ff]/15 px-3 py-1 font-mono text-xs font-semibold text-[#3b57d6]"
+    >
+      <span className="sr-only">{c.interestedIn} </span>
+      {model}
+    </span>
+  ) : null;
+
+  const bookButton = (size: string) => (
+    <a
+      href={bookingUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => events.ctaClicked(c.button, "partners_book")}
+      className={cn(
+        "inline-flex items-center justify-center rounded-full bg-[#5170ff] px-8 font-semibold text-white shadow-lg shadow-[#5170ff]/25 transition-colors hover:bg-[#4560e6] sm:w-auto",
+        size,
+      )}
+    >
+      {c.button} <span aria-hidden className="ml-2">→</span>
+    </a>
+  );
+
   return (
     <section className="bg-[#080f19] px-6 py-12 md:py-16 lg:px-8">
       <div className="mx-auto max-w-7xl">
@@ -96,7 +121,7 @@ export default function PartnersClosing() {
           <CardGrid />
 
           <div className="relative flex flex-col lg:flex-row lg:items-center lg:gap-0">
-            {/* Left anchor */}
+            {/* Left anchor: quote + the action, so the block keeps the homepage card's height */}
             <div className="hidden w-2/5 flex-col justify-center pr-12 lg:flex">
               <p
                 className="text-3xl font-medium italic leading-snug text-gray-600"
@@ -105,6 +130,10 @@ export default function PartnersClosing() {
                 &ldquo;{c.smallPrint}&rdquo;
               </p>
               <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5170ff]/60">— Caldrik</p>
+              <div className="mt-4 flex items-center gap-3">
+                {bookButton("py-3 text-sm")}
+                {chosenChip}
+              </div>
             </div>
 
             {/* Vertical divider */}
@@ -115,29 +144,14 @@ export default function PartnersClosing() {
               <h2 className="text-balance text-4xl font-bold leading-[1.1] tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
                 {c.headline[0]} {c.headline[1]}
               </h2>
-              <p className="mt-5 text-lg leading-8 text-gray-700">{c.line}</p>
+              <p className="mt-5 text-lg leading-8 text-gray-700 lg:mt-4 lg:text-sm lg:leading-6">{c.line}</p>
 
-              {model && (
-                <p className="mt-5 flex items-center justify-end gap-2 text-sm text-gray-700" aria-live="polite">
-                  {c.interestedIn}
-                  <span className="rounded-full border border-[#5170ff]/40 bg-[#5170ff]/15 px-3 py-1 font-mono text-xs font-semibold text-[#3b57d6]">{model}</span>
-                </p>
-              )}
-
-              <div className="mt-7 flex justify-end">
-                <a
-                  href={bookingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => events.ctaClicked(c.button, "partners_book")}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[#5170ff] px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#5170ff]/25 transition-colors hover:bg-[#4560e6] sm:w-auto"
-                >
-                  {c.button} <span aria-hidden className="ml-2">→</span>
-                </a>
+              {/* Small screens: the quote is hidden (as on the homepage), so the action and the line live here */}
+              <div className="mt-7 flex flex-col items-end gap-4 lg:hidden">
+                {chosenChip}
+                {bookButton("w-full py-3.5 text-base")}
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5170ff]/60">{c.smallPrint}</p>
               </div>
-
-              {/* The left quote is desktop-only (as on the homepage), so keep the line visible on small screens */}
-              <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5170ff]/60 lg:hidden">{c.smallPrint}</p>
             </div>
           </div>
         </div>
