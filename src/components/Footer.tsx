@@ -47,6 +47,7 @@ const navLinks = [
   { href: "/#how-we-work", label: "How We Work" },
   { href: "/#services", label: "Services" },
   { href: "/#focus", label: "Focus" },
+  { href: "/partners/", label: "Partners" },
   { href: "/insights/", label: "Insights" },
 ];
 

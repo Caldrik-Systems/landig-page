@@ -12,6 +12,8 @@ import Footer from "@/components/Footer";
 import TrustedClients from "@/components/TrustedClients";
 import Insights from "@/components/Insights";
 import Partners from "@/components/Partners";
+import { jsonLdFaq } from "@/lib/home-jsonld";
+import { jsonLdString } from "@/lib/jsonld";
 
 const url = pageUrl("/");
 
@@ -29,6 +31,7 @@ const isDev = process.env.NODE_ENV !== "production";
 export default function Home() {
   return (
     <div className="flex flex-col flex-1">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(jsonLdFaq) }} />
       <Navigation />
       <main className="flex flex-col flex-1">
         <Hero />

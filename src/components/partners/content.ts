@@ -1,0 +1,161 @@
+/**
+ * Copy and data for /partners/. Edit text here; no component changes needed.
+ *
+ * Ways to partner: the table columns come from `models`. Delete one entry from `models`
+ * to drop a column (and its option in the form's "Partnership model" dropdown); the row
+ * values keyed to it are then simply unused.
+ */
+
+export const partnersMeta = {
+  title: "White-Label AI Engineering Partner for Technology Services Firms · Caldrik",
+  description:
+    "Add production AI to what you sell, without building a team. Caldrik engineers it as part of yours: your client, your brand, your margin.",
+};
+
+export const hero = {
+  eyebrow: "Partners",
+  headline: { before: "AI that reaches ", highlight: "production", after: ". For the firms your clients already trust." },
+  subhead:
+    "Add AI engineering to what you sell, without building a team. We scope, build and support it as part of yours. You keep the client and the margin.",
+  primaryCta: { label: "Discuss a Partnership", href: "#doorway" },
+  secondaryCta: { label: "Find your partnership model", href: "#models" },
+  smallLine: {
+    intro: "Built to the same standard as all our work:",
+    links: [
+      { label: "how we engineer production AI →", href: "/#how-we-work" },
+      { label: "what we build →", href: "/#services" },
+    ],
+  },
+};
+
+export const models = [
+  { key: "whiteLabel", name: "White-label" },
+  { key: "coDelivery", name: "Co-delivery" },
+  { key: "referral", name: "Referral" },
+];
+
+export const ways = {
+  label: "Ways to partner",
+  headline: "Three models. Your client contract decides.",
+  rows: [
+    {
+      label: "Best when",
+      values: {
+        whiteLabel: "You want to sell AI as your own service",
+        coDelivery: "Your client's vendor rules require named subcontractors",
+        referral: "You'd rather introduce the work than run it",
+      },
+    },
+    {
+      label: "Client relationship",
+      values: { whiteLabel: "Yours", coDelivery: "Yours", referral: "Shared, agreed upfront" },
+    },
+    {
+      label: "Brand on the work",
+      values: {
+        whiteLabel: "Yours",
+        coDelivery: "Yours, with Caldrik named as your engineering partner",
+        referral: "Caldrik's",
+      },
+    },
+    {
+      label: "Contract with the client",
+      values: { whiteLabel: "Yours", coDelivery: "Yours", referral: "Caldrik's" },
+    },
+    {
+      label: "Pricing to the client",
+      values: {
+        whiteLabel: "You set it",
+        coDelivery: "You set it",
+        referral: "Caldrik sets it; your referral terms agreed in writing",
+      },
+    },
+    {
+      label: "Delivery",
+      values: {
+        whiteLabel: "Caldrik, as part of your team",
+        coDelivery: "Caldrik, alongside your team",
+        referral: "Caldrik",
+      },
+    },
+  ] as { label: string; values: Record<string, string> }[],
+};
+
+export const rules = {
+  label: "Rules of engagement",
+  headline: "Your client stays yours. In writing.",
+  items: [
+    "Accounts you bring are yours. We never sell to them directly, during or after the engagement.",
+    "NDA and MSA before any work, with mutual non-solicitation.",
+    "No contact outside your engagement, and we never use your clients' names in our marketing.",
+    "You own the client and the commercials; we own the engineering. Scoping, build, evaluation, QA, deployment and handover.",
+  ],
+};
+
+export const workingTerms = {
+  label: "Working terms",
+  headline: "Capacity when you sell. No bench when you don't.",
+  line: "Master Services Agreement, with a Statement of Work per project. Kickoff within 8 days of signing.",
+  cards: [
+    {
+      title: "Time and Materials",
+      description: "For first builds and scopes still taking shape. Billed monthly on actual effort, with no minimum commitment.",
+    },
+    {
+      title: "Dedicated Team",
+      description:
+        "For ongoing programmes. A lead architect, AI engineers, QA and eval, and a delivery manager, on a monthly retainer with a three-month minimum and a preferred rate.",
+    },
+  ],
+  note: "Rates are structured so you resell at your market's rates and keep a healthy margin. Rate card shared on our first call.",
+  strip:
+    "client data stays in the client's environment · client owns all IP · not yet SOC 2 or ISO certified; we complete your security questionnaire",
+};
+
+export const faq = {
+  headline: "Before you ask.",
+  items: [
+    { q: "Do you compete with us for clients?", a: "No. Accounts you bring are yours, and that's in our contract with you." },
+    {
+      q: "Will my client know you're involved?",
+      a: "Only if you choose co-delivery. With white-label, we work under your brand, in your client's tools.",
+    },
+    {
+      q: "Where is your team, and when do you work?",
+      a: "In India, 14:00 to 23:00 IST. That covers the UK and European business day in full, and overlaps 3.5 to 4.5 hours with US Eastern.",
+    },
+    { q: "How fast can we start?", a: "Kickoff within 8 days of signing, usually with one small project on Time and Materials." },
+    { q: "What does it cost?", a: "Rates are set by role and stay the same across projects. Rate card shared on our first call." },
+  ],
+};
+
+export const doorway = {
+  headline: ["Know before", "you pitch."],
+  line: "Bring one client requirement. We'll tell you if AI fits, and what it takes to deliver it.",
+  smallPrint: "No pitch. Just a technical opinion.",
+  contacts: [
+    { name: "Rohan Mashiyava", role: "Founder", linkedin: "https://www.linkedin.com/in/rohan-mashiyava/" },
+    { name: "Ravindra Dhavlesha", role: "Lead Architect", linkedin: "https://www.linkedin.com/in/ravidhavlesha/" },
+  ],
+  email: "hello@caldrik.co",
+  phone: { display: "+1 917 920 9285", tel: "+19179209285", note: "(US)" },
+  form: {
+    firstName: { label: "First name", placeholder: "First name" },
+    lastName: { label: "Last name", placeholder: "Last name" },
+    company: { label: "Company name", placeholder: "Company name" },
+    email: { label: "Work email", placeholder: "you@company.com" },
+    title: { label: "Your title", placeholder: "e.g. Founder, CEO, Head of Delivery" },
+    model: { label: "Partnership model", empty: "Choose an option", notSure: "Not sure yet" },
+    requirement: {
+      label: "The client requirement",
+      hint: "— in a sentence (optional)",
+      placeholder: "e.g. A client wants AI agents in their ERP to triage supplier exceptions.",
+    },
+    consent: "Yes, I'd like Caldrik to contact me regarding AI engineering services and related offerings by email or telephone.",
+    button: "Discuss a Partnership",
+    sending: "Sending…",
+    error: "Something went wrong — please try again or email hello@caldrik.co directly.",
+    successTitle: "We'll be in touch.",
+    successBody: "Expect a technical response within one business day.",
+  },
+};
