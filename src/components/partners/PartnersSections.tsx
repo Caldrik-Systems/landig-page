@@ -59,6 +59,19 @@ export function PartnersRules() {
           <Reveal delay={0.2} className="h-full">
             <div className="relative flex h-full min-h-[220px] flex-col justify-between overflow-hidden rounded-2xl border border-brand/30 bg-brand/[0.06] p-7 md:p-8">
               <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_0%_0%,rgba(81,112,255,0.22),transparent_70%)]" />
+              {/* Perimeter rings: a protected territory around the account (dashed, like the rest of the site). */}
+              <svg
+                aria-hidden
+                className="pointer-events-none absolute -right-24 -top-24 h-[360px] w-[360px]"
+                viewBox="0 0 360 360"
+                fill="none"
+              >
+                <circle cx="180" cy="180" r="52" stroke="rgba(81,112,255,0.55)" strokeDasharray="4 6" />
+                <circle cx="180" cy="180" r="96" stroke="rgba(81,112,255,0.36)" strokeDasharray="4 6" />
+                <circle cx="180" cy="180" r="140" stroke="rgba(81,112,255,0.2)" strokeDasharray="4 6" />
+                <circle cx="180" cy="180" r="180" stroke="rgba(81,112,255,0.1)" strokeDasharray="4 6" />
+                <circle cx="180" cy="180" r="5" fill="#5170ff" />
+              </svg>
               <div className="relative flex size-11 items-center justify-center rounded-xl border border-brand/40 bg-brand/15">
                 <HeroIcon aria-hidden className="size-6 text-brand" />
               </div>
