@@ -8,19 +8,19 @@ import type { HowItWorksStep } from "@/components/ui/how-it-works";
 const steps: HowItWorksStep[] = [
   {
     title: "Discover",
-    description: "We run an automated readiness assessment — mapping decision nodes, scoring data viability, flagging missing eval baselines — before a line of code is written.",
+    description: "Readiness assessed first. Data scored. Gaps flagged. Then we build.",
   },
   {
     title: "Engineer",
-    description: "Deployed inside your cloud boundary, grounded in your retrieval sources, orchestrated across your existing systems. Right model for the task, not the largest.",
+    description: "Inside your cloud. Grounded in your data. Right model, not the largest.",
   },
   {
     title: "Evaluate",
-    description: "Every engagement delivers an eval harness. Each task gets a score, a threshold, and a status — so you know exactly where the system stands before it goes live.",
+    description: "Every task gets a score, a threshold and a status before go-live.",
   },
   {
     title: "Realign",
-    description: "Every model update or context shift triggers re-evaluation. When quality drifts, the baseline makes it visible — before it reaches production.",
+    description: "Every change triggers re-evaluation. Drift is caught before users see it.",
   },
 ];
 
