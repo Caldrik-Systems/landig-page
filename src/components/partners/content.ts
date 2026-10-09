@@ -109,21 +109,36 @@ export const rules = {
 export const workingTerms = {
   label: "Working terms",
   headline: "Capacity when you sell. No bench when you don't.",
-  line: "Master Services Agreement, with a Statement of Work per project. Kickoff within 8 days of signing.",
+  // `${line} ${kickoff}` is the full sentence pair; kickoff is shown as a highlighted pill.
+  line: "Master Services Agreement, with a Statement of Work per project.",
+  kickoff: "Kickoff within 8 days of signing.",
+  // Each card's description is split at its first sentence: `${lead} ${rest}`.
+  // `commitment` draws the month-by-month bar: "open" = no minimum, "minimum" = the first `minMonths` are committed.
   cards: [
     {
       title: "Time and Materials",
-      description: "For first builds and scopes still taking shape. Billed monthly on actual effort, with no minimum commitment.",
+      lead: "For first builds and scopes still taking shape.",
+      rest: "Billed monthly on actual effort, with no minimum commitment.",
+      commitment: "open",
     },
     {
       title: "Dedicated Team",
-      description:
-        "For ongoing programmes. A lead architect, AI engineers, QA and eval, and a delivery manager, on a monthly retainer with a three-month minimum and a preferred rate.",
+      lead: "For ongoing programmes.",
+      rest: "A lead architect, AI engineers, QA and eval, and a delivery manager, on a monthly retainer with a three-month minimum and a preferred rate.",
+      commitment: "minimum",
     },
-  ],
-  note: "Rates are structured so you resell at your market's rates and keep a healthy margin. Rate card shared on our first call.",
-  strip:
-    "client data stays in the client's environment · client owns all IP · not yet SOC 2 or ISO certified; we complete your security questionnaire",
+  ] as { title: string; lead: string; rest: string; commitment: "open" | "minimum" }[],
+  minMonths: 3,
+  note: {
+    lead: "Rates are structured so you resell at your market's rates and keep a healthy margin.",
+    rest: "Rate card shared on our first call.",
+  },
+  // "assurance" items get a tick; the "caveat" gets an info mark so the honest limit reads as honest.
+  strip: [
+    { kind: "assurance", text: "client data stays in the client's environment" },
+    { kind: "assurance", text: "client owns all IP" },
+    { kind: "caveat", text: "not yet SOC 2 or ISO certified; we complete your security questionnaire" },
+  ] as { kind: "assurance" | "caveat"; text: string }[],
 };
 
 export const faq = {

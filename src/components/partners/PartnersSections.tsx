@@ -2,7 +2,7 @@
 
 import { useId, type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowsRightLeftIcon, DocumentTextIcon, EyeSlashIcon, UserGroupIcon } from "@heroicons/react/24/outline";
+import { ArrowsRightLeftIcon, CheckIcon, DocumentTextIcon, EyeSlashIcon, InformationCircleIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
 import { faq, rules, workingTerms } from "./content";
@@ -35,7 +35,6 @@ export function SectionHeader({ label, headline, line, className = "max-w-2xl mb
   );
 }
 
-const dashedGrid = "grid grid-cols-1 divide-y divide-dashed divide-white/[0.15] border border-dashed border-white/[0.15]";
 
 /* The site's card texture: faint grid with a few highlighted squares (same as the Problem / Lifecycle cards). */
 
@@ -128,24 +127,93 @@ export function PartnersRules() {
 
 /* ── 4. Working terms ──────────────────────────────────────────────────── */
 
-export function PartnersWorkingTerms() {
+const MONTHS = 6;
+
+// Month-by-month billing: dashed months are open-ended, solid months are the committed minimum.
+function CommitmentBar({ kind }: { kind: "open" | "minimum" }) {
+  const committed = kind === "minimum" ? workingTerms.minMonths : 0;
   return (
-    <section id="terms" className="bg-[#080f19] py-16 md:py-24">
+    <div
+      role="img"
+      aria-label={kind === "minimum" ? `Billed monthly; the first ${committed} months are committed` : "Billed monthly; no months committed"}
+      className="mt-6"
+    >
+      <div className="flex gap-1.5">
+        {Array.from({ length: MONTHS }, (_, i) => (
+          <div
+            key={i}
+            className={cn(
+              "h-7 flex-1 rounded-md border transition-colors duration-300",
+              i < committed ? "border-brand/70 bg-brand/50" : "border-dashed border-white/25 group-hover:border-brand/40",
+            )}
+          />
+        ))}
+      </div>
+      <div className="mt-1.5 flex gap-1.5">
+        {Array.from({ length: MONTHS }, (_, i) => (
+          <span key={i} className="flex-1 text-center font-mono text-[10px] text-white/40">
+            M{i + 1}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function PartnersWorkingTerms() {
+  const t = workingTerms;
+  return (
+    <section id="terms" className="scroll-mt-12 bg-[#080f19] py-10 md:py-14">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionHeader label={workingTerms.label} headline={workingTerms.headline} line={workingTerms.line} />
-        <Reveal delay={0.3} className={`${dashedGrid} md:grid-cols-2 md:divide-x md:divide-y-0`}>
-          {workingTerms.cards.map((card) => (
-            <div key={card.title} className="relative flex flex-col gap-3 overflow-hidden p-6 md:p-8">
-              <div className="pointer-events-none absolute inset-0 [mask-image:linear-gradient(white,transparent)]">
-                <div className="absolute inset-0 bg-gradient-to-r from-white/[0.04] to-white/[0.01] [mask-image:radial-gradient(farthest-side_at_top,white,transparent)]" />
-              </div>
-              <h3 className="relative text-xl font-bold text-white">{card.title}</h3>
-              <p className="relative text-sm leading-6 text-gray-400">{card.description}</p>
-            </div>
-          ))}
+        <Reveal className="mb-6 max-w-5xl md:mb-8">
+          <p className="text-base/7 font-semibold text-brand">{t.label}</p>
+          <h2 className="mt-2 text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl">{t.headline}</h2>
+          <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-lg font-medium text-gray-400">
+            <span>{t.line}</span>
+            <span className="inline-flex items-center rounded-full border border-brand/40 bg-brand/15 px-3 py-1 font-mono text-xs font-semibold text-brand">
+              {t.kickoff}
+            </span>
+          </p>
         </Reveal>
-        <p className="mt-6 max-w-3xl text-sm leading-6 text-gray-400">{workingTerms.note}</p>
-        <p className="mt-6 max-w-4xl font-mono text-sm leading-6 text-brand">{workingTerms.strip}</p>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {t.cards.map((card, i) => (
+            <Reveal key={card.title} delay={0.2 + i * 0.1} className="h-full">
+              <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-dashed border-white/[0.15] p-6 transition-colors duration-300 hover:border-brand/40 md:p-7">
+                <GridTexture />
+                <h3 className="relative text-xl font-bold text-white">{card.title}</h3>
+                <p className="relative mt-3 text-sm leading-6 text-gray-400">
+                  <span className="font-semibold text-white">{card.lead}</span> {card.rest}
+                </p>
+                <div className="relative mt-auto">
+                  <CommitmentBar kind={card.commitment} />
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* The margin promise */}
+        <Reveal delay={0.4} className="mt-4">
+          <p className="border-l-2 border-brand bg-gradient-to-r from-brand/[0.08] to-transparent py-3 pl-5 pr-4 text-base leading-7 text-gray-400">
+            <span className="font-semibold text-white">{t.note.lead}</span> {t.note.rest}
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.5} className="mt-4">
+          <ul className="grid divide-y divide-dashed divide-white/[0.15] rounded-2xl border border-dashed border-white/[0.15] md:grid-cols-3 md:divide-x md:divide-y-0">
+            {t.strip.map((item) => (
+              <li key={item.text} className="flex items-start gap-3 p-5 font-mono text-xs leading-5 text-white/80">
+                {item.kind === "assurance" ? (
+                  <CheckIcon aria-hidden className="mt-0.5 size-4 shrink-0 text-brand" />
+                ) : (
+                  <InformationCircleIcon aria-hidden className="mt-0.5 size-4 shrink-0 text-white/50" />
+                )}
+                {item.text}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   );
