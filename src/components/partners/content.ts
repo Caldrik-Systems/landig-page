@@ -14,9 +14,9 @@ export const partnersMeta = {
 
 export const hero = {
   eyebrow: "Partners",
-  headline: { before: "You hold the client. We hold the ", highlight: "engineering", after: "." },
+  headline: { before: "AI that reaches ", highlight: "production", after: ". For the firms your clients already trust." },
   subhead:
-    "Add production AI to what you sell, without hiring a team for it. We scope, build and support it inside yours. The client stays yours. So does the margin.",
+    "Add AI engineering to what you sell, without building a team. We scope, build and support it as part of yours. You keep the client and the margin.",
   primaryCta: { label: "Discuss a Partnership", href: "#doorway" },
   secondaryCta: { label: "Find your partnership model", href: "#models" },
 };
