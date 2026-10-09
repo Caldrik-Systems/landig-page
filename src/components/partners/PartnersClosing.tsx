@@ -96,15 +96,15 @@ export default function PartnersClosing() {
   return (
     <>
       {/* Before you ask: short answers, all visible, on a faint tinted band */}
-      <section className="border-y border-white/[0.06] bg-white/[0.02] py-24 md:py-36">
+      <section className="border-y border-white/[0.06] bg-white/[0.02] py-14 md:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div id="faq" className="scroll-mt-20">
-            <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">{faq.headline}</h2>
-            <dl className="mt-14 grid gap-x-20 md:mt-20 md:grid-cols-2">
+            <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl">{faq.headline}</h2>
+            <dl className="mt-6 grid gap-x-16 md:mt-8 md:grid-cols-2">
               {faq.items.map((item) => (
-                <div key={item.q} className="border-t border-dashed border-white/[0.18] pb-10 pt-7">
-                  <dt className="text-xl font-semibold text-white">{item.q}</dt>
-                  <dd className="mt-3 text-base leading-7 text-gray-300">{item.a}</dd>
+                <div key={item.q} className="border-t border-dashed border-white/[0.18] pb-5 pt-5">
+                  <dt className="text-lg font-semibold text-white">{item.q}</dt>
+                  <dd className="mt-2 text-[15px] leading-6 text-gray-300">{item.a}</dd>
                 </div>
               ))}
             </dl>
