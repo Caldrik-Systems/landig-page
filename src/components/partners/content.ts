@@ -27,11 +27,15 @@ export const models = [
   { key: "referral", name: "Referral" },
 ];
 
+// A headline is plain text, optionally with a second phrase shown in the brand colour.
+export type Headline = string | { plain: string; accent: string };
+export const headlineText = (h: Headline) => (typeof h === "string" ? h : `${h.plain} ${h.accent}`);
+
 export type Owner = "you" | "caldrik" | "shared";
 
 export const ways = {
   label: "Ways to partner",
-  headline: "Three models. Your client contract decides.",
+  headline: { plain: "Three models.", accent: "Your client contract decides." },
   // `intro: true` marks the "Best when" row, shown in each model's header. `owners` drives the
   // You / Caldrik / Shared chip in each cell.
   rows: [
@@ -91,7 +95,7 @@ export const ways = {
 
 export const rules = {
   label: "Rules of engagement",
-  headline: "Your client stays yours. In writing.",
+  headline: { plain: "Your client stays yours.", accent: "In writing." },
   // Each rule is one sentence split in two so the lead can be emphasised: `${lead} ${rest}` is the full text.
   // The first item is the headline promise and gets the large card.
   items: [
@@ -108,7 +112,7 @@ export const rules = {
 
 export const workingTerms = {
   label: "Working terms",
-  headline: "Capacity when you sell. No bench when you don't.",
+  headline: { plain: "Capacity when you sell.", accent: "No bench when you don't." },
   // `${line} ${kickoff}` is the full sentence pair; kickoff is shown as a highlighted pill.
   line: "Master Services Agreement, with a Statement of Work per project.",
   kickoff: "Kickoff within 8 days of signing.",

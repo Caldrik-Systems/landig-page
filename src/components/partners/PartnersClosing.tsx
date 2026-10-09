@@ -94,26 +94,31 @@ export default function PartnersClosing() {
   );
 
   return (
-    <section className="bg-[#080f19] px-6 py-12 md:py-16 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        {/* Before you ask: short answers, all visible */}
-        <div id="faq" className="scroll-mt-20">
-          <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl">{faq.headline}</h2>
-          <dl className="mt-8 grid gap-x-16 md:grid-cols-2">
-            {faq.items.map((item) => (
-              <div key={item.q} className="border-t border-dashed border-white/[0.15] pb-7 pt-5">
-                <dt className="text-base font-semibold text-white">{item.q}</dt>
-                <dd className="mt-2 text-sm leading-6 text-gray-400">{item.a}</dd>
-              </div>
-            ))}
-          </dl>
+    <>
+      {/* Before you ask: short answers, all visible, on a faint tinted band */}
+      <section className="border-y border-white/[0.06] bg-white/[0.02] py-24 md:py-36">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div id="faq" className="scroll-mt-20">
+            <h2 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">{faq.headline}</h2>
+            <dl className="mt-14 grid gap-x-20 md:mt-20 md:grid-cols-2">
+              {faq.items.map((item) => (
+                <div key={item.q} className="border-t border-dashed border-white/[0.18] pb-10 pt-7">
+                  <dt className="text-xl font-semibold text-white">{item.q}</dt>
+                  <dd className="mt-3 text-base leading-7 text-gray-300">{item.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
+      </section>
 
+      <section className="bg-[#080f19] py-24 md:py-36">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* The one action: same block as the homepage's "Not every workflow is ready for AI. Yet." card */}
         <div
           id="doorway"
           className={cn(
-            "relative mt-12 scroll-mt-20 overflow-hidden rounded-3xl px-8 py-10 transition-shadow duration-500 md:px-16 md:py-12",
+            "relative scroll-mt-24 overflow-hidden rounded-3xl px-8 py-10 transition-shadow duration-500 md:px-16 md:py-12",
             flash && "shadow-[0_0_0_3px_rgba(81,112,255,0.7)]",
           )}
           style={{ background: "linear-gradient(135deg, #cbd4ff 0%, #dde3ff 50%, #f0f2ff 100%)" }}
@@ -155,7 +160,8 @@ export default function PartnersClosing() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }
