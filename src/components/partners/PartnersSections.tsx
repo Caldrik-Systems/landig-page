@@ -24,7 +24,7 @@ export function Reveal({ className, delay = 0.1, children }: { className?: strin
   );
 }
 
-export function SectionHeader({ label, headline, line, className = "max-w-3xl mb-14 md:mb-20" }: { label?: string; headline: Headline; line?: string; className?: string }) {
+export function SectionHeader({ label, headline, line, className = "max-w-5xl mb-14 md:mb-20" }: { label?: string; headline: Headline; line?: string; className?: string }) {
   return (
     <Reveal className={className}>
       {label && <p className="text-base/7 font-semibold text-brand">{label}</p>}

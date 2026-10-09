@@ -57,7 +57,7 @@ export default function PartnersForm() {
             <p className="text-base/7 font-semibold text-brand">
               {w.label}
             </p>
-            <h2 className="text-balance text-4xl font-bold leading-[1.08] tracking-tight text-white md:text-5xl">
+            <h2 className="-mt-2 text-balance text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl">
               {w.headline[0]} <span className="block text-brand">{w.headline[1]}</span>
             </h2>
             <p className="text-base leading-7 text-gray-300">{w.line}</p>

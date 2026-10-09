@@ -104,7 +104,7 @@ export default function PartnersClosing() {
             <p className="text-base/7 font-semibold text-brand">
               {faq.headline}
             </p>
-            <h2 className="text-balance text-4xl font-bold leading-[1.08] tracking-tight text-white md:text-5xl">
+            <h2 className="-mt-2 text-balance text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl">
               {c.headline[0]} <span className="text-brand">{c.headline[1]}</span>
             </h2>
             <p className="text-base leading-7 text-gray-300">{c.line}</p>
