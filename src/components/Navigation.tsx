@@ -6,14 +6,26 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-const NAV_LINKS = [
+// A link is either an anchor on the homepage ("anchor") or a plain page link ("href").
+export type NavLink = { name: string; anchor?: string; href?: string };
+
+const DEFAULT_NAV_LINKS: NavLink[] = [
   { name: "Problem",      anchor: "problem" },
   { name: "How We Work",  anchor: "how-we-work" },
   { name: "Services",     anchor: "services" },
   { name: "Focus",        anchor: "focus" },
+  { name: "Partners",     href: "/partners/" },
 ];
 
-export default function Navigation() {
+const DEFAULT_CTA: NavLink = { name: "Discuss a Workflow", anchor: "doorway" };
+
+type NavigationProps = {
+  links?: NavLink[];
+  /** Menu button; defaults to the homepage's "Discuss a Workflow". */
+  cta?: NavLink;
+};
+
+export default function Navigation({ links = DEFAULT_NAV_LINKS, cta = DEFAULT_CTA }: NavigationProps = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -26,7 +38,7 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const href = (anchor: string) => (isHome ? `#${anchor}` : `/#${anchor}`);
+  const href = (link: NavLink) => link.href ?? (isHome ? `#${link.anchor}` : `/#${link.anchor}`);
   const isSolid = scrolled || mobileMenuOpen;
 
   return (
@@ -49,15 +61,15 @@ export default function Navigation() {
         </Link>
 
         <div className="hidden md:flex md:flex-1 md:items-center md:justify-center md:gap-x-8">
-          {NAV_LINKS.map((link) => (
-            <a key={link.name} href={href(link.anchor)} className="text-sm/6 font-semibold text-white">
+          {links.map((link) => (
+            <a key={link.name} href={href(link)} className="text-sm/6 font-semibold text-white">
               {link.name}
             </a>
           ))}
         </div>
 
-        <a href={href("doorway")} className="hidden bg-brand rounded-full px-4 py-1.5 text-sm/6 font-semibold text-white md:block">
-          Discuss a Workflow
+        <a href={href(cta)} className="hidden bg-brand rounded-full px-4 py-1.5 text-sm/6 font-semibold text-white md:block">
+          {cta.name}
         </a>
 
         <button
@@ -77,10 +89,10 @@ export default function Navigation() {
       {mobileMenuOpen && (
         <div className="border-t border-white/10 px-6 py-4 md:hidden">
           <div className="flex flex-col gap-y-1">
-            {NAV_LINKS.map((link) => (
+            {links.map((link) => (
               <a
                 key={link.name}
-                href={href(link.anchor)}
+                href={href(link)}
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-3 py-2 text-base font-semibold text-white hover:bg-white/5"
               >
@@ -88,11 +100,11 @@ export default function Navigation() {
               </a>
             ))}
             <a
-              href={href("doorway")}
+              href={href(cta)}
               onClick={() => setMobileMenuOpen(false)}
               className="rounded-lg px-3 py-2 text-base font-semibold text-white hover:bg-white/5"
             >
-              Discuss a Workflow
+              {cta.name}
             </a>
           </div>
         </div>
