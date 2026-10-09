@@ -68,6 +68,31 @@ export default function PartnersClosing() {
   // Calendly pre-fills custom question 1 from ?a1=
   const bookingUrl = model ? `${c.calendlyUrl}${c.calendlyUrl.includes("?") ? "&" : "?"}a1=${encodeURIComponent(model)}` : c.calendlyUrl;
 
+  const chosenChip = model ? (
+    <span
+      aria-live="polite"
+      className="rounded-full border border-[#5170ff]/40 bg-[#5170ff]/15 px-3 py-1 font-mono text-xs font-semibold text-[#3b57d6]"
+    >
+      <span className="sr-only">{c.interestedIn} </span>
+      {model}
+    </span>
+  ) : null;
+
+  const bookButton = (size: string) => (
+    <a
+      href={bookingUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => events.ctaClicked(c.button, "partners_book")}
+      className={cn(
+        "inline-flex items-center justify-center rounded-full bg-[#5170ff] px-8 font-semibold text-white shadow-lg shadow-[#5170ff]/25 transition-colors hover:bg-[#4560e6] sm:w-auto",
+        size,
+      )}
+    >
+      {c.button} <span aria-hidden className="ml-2">→</span>
+    </a>
+  );
+
   return (
     <section className="bg-[#080f19] px-6 py-12 md:py-16 lg:px-8">
       <div className="mx-auto max-w-7xl">
@@ -84,46 +109,49 @@ export default function PartnersClosing() {
           </dl>
         </div>
 
-        {/* The one action */}
+        {/* The one action: same block as the homepage's "Not every workflow is ready for AI. Yet." card */}
         <div
           id="doorway"
           className={cn(
-            "relative mt-12 scroll-mt-20 overflow-hidden rounded-3xl px-8 py-10 transition-shadow duration-500 lg:rounded-2xl lg:px-10 lg:py-7",
+            "relative mt-12 scroll-mt-20 overflow-hidden rounded-3xl px-8 py-10 transition-shadow duration-500 md:px-16 md:py-12",
             flash && "shadow-[0_0_0_3px_rgba(81,112,255,0.7)]",
           )}
           style={{ background: "linear-gradient(135deg, #cbd4ff 0%, #dde3ff 50%, #f0f2ff 100%)" }}
         >
           <CardGrid />
-          <div className="relative grid items-center gap-10 lg:grid-cols-[1.5fr_auto_1fr] lg:gap-10">
-            {/* Pitch */}
-            <div>
-              <h2 className="text-4xl font-bold leading-[1.05] tracking-tight text-gray-900 sm:text-5xl lg:text-4xl">
-                {c.headline[0]} <br className="lg:hidden" />
-                {c.headline[1]}
-              </h2>
-              <p className="mt-5 max-w-md text-lg leading-8 text-gray-700 lg:mt-3 lg:max-w-xl lg:text-base lg:leading-7">{c.line}</p>
-              <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5170ff]/70 lg:mt-2">{c.smallPrint}</p>
+
+          <div className="relative flex flex-col lg:flex-row lg:items-center lg:gap-0">
+            {/* Left anchor: quote + the action, so the block keeps the homepage card's height */}
+            <div className="hidden w-2/5 flex-col justify-center pr-12 lg:flex">
+              <p
+                className="text-3xl font-medium italic leading-snug text-gray-600"
+                style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+              >
+                &ldquo;{c.smallPrint}&rdquo;
+              </p>
+              <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5170ff]/60">— Caldrik</p>
+              <div className="mt-4 flex items-center gap-3">
+                {bookButton("py-3 text-sm")}
+                {chosenChip}
+              </div>
             </div>
 
-            <div aria-hidden className="hidden h-full w-px bg-[#5170ff]/20 lg:block" />
+            {/* Vertical divider */}
+            <div className="hidden w-px flex-shrink-0 self-stretch bg-[#5170ff]/20 lg:block" />
 
-            {/* Action */}
-            <div>
-              {model && (
-                <p className="mb-3 flex items-center gap-2 text-sm text-gray-700 lg:mb-2" aria-live="polite">
-                  {c.interestedIn}
-                  <span className="rounded-full border border-[#5170ff]/40 bg-[#5170ff]/15 px-3 py-1 font-mono text-xs font-semibold text-[#3b57d6]">{model}</span>
-                </p>
-              )}
-              <a
-                href={bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => events.ctaClicked(c.button, "partners_book")}
-                className="inline-flex w-full items-center justify-center rounded-full bg-[#5170ff] px-8 py-4 text-base font-semibold text-white shadow-lg shadow-[#5170ff]/25 transition-colors hover:bg-[#4560e6] sm:w-auto lg:py-3"
-              >
-                {c.button} <span aria-hidden className="ml-2">→</span>
-              </a>
+            {/* Right-aligned statement */}
+            <div className="w-full text-right lg:w-3/5 lg:pl-12">
+              <h2 className="text-balance text-4xl font-bold leading-[1.1] tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
+                {c.headline[0]} {c.headline[1]}
+              </h2>
+              <p className="mt-5 text-lg leading-8 text-gray-700 lg:mt-4 lg:text-sm lg:leading-6">{c.line}</p>
+
+              {/* Small screens: the quote is hidden (as on the homepage), so the action and the line live here */}
+              <div className="mt-7 flex flex-col items-end gap-4 lg:hidden">
+                {chosenChip}
+                {bookButton("w-full py-3.5 text-base")}
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5170ff]/60">{c.smallPrint}</p>
+              </div>
             </div>
           </div>
         </div>
