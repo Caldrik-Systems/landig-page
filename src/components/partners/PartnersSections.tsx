@@ -160,7 +160,7 @@ export function PartnersWorkingTerms() {
         {/* The margin promise */}
         <Reveal delay={0.4} className="mt-4">
           <p className="border-l-2 border-brand bg-gradient-to-r from-brand/[0.08] to-transparent py-3 pl-5 pr-4 text-base leading-7 text-gray-400">
-            <span className="font-semibold text-white">{t.note.lead}</span> {t.note.rest}
+            <span className="font-semibold text-white">{t.note}</span>
           </p>
         </Reveal>
 

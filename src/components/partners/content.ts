@@ -125,10 +125,7 @@ export const workingTerms = {
       rest: "A lead architect, AI engineers, QA and eval, and a delivery manager, on a monthly retainer with a three-month minimum and a preferred rate.",
     },
   ] as { title: string; lead: string; rest: string }[],
-  note: {
-    lead: "Rates are structured so you resell at your market's rates and keep a healthy margin.",
-    rest: "Rate card shared on our first call.",
-  },
+  note: "Rates are structured so you resell at your market's rates and keep a healthy margin.",
   // "assurance" items get a tick; the "caveat" gets an info mark so the honest limit reads as honest.
   strip: [
     { kind: "assurance", text: "client data stays in the client's environment" },
