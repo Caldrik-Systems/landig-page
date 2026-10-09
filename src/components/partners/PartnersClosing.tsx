@@ -124,21 +124,6 @@ export default function PartnersClosing() {
               >
                 {c.button} <span aria-hidden className="ml-2">→</span>
               </a>
-              <div className="mt-6 space-y-1.5 text-sm text-gray-700 lg:mt-4 lg:space-y-1 lg:text-[13px] lg:leading-5">
-                {c.contacts.map((p) => (
-                  <p key={p.name}>
-                    {p.name}, {p.role} ·{" "}
-                    <a href={p.linkedin} target="_blank" rel="noopener noreferrer" className="font-medium text-[#3b57d6] underline underline-offset-4">
-                      LinkedIn
-                    </a>
-                  </p>
-                ))}
-                <p>
-                  <a href={`mailto:${c.email}`} className="font-medium text-[#3b57d6] underline underline-offset-4">{c.email}</a>
-                  {" · "}
-                  <a href={`tel:${c.phone.tel}`} className="font-medium text-gray-800">{c.phone.display}</a> {c.phone.note}
-                </p>
-              </div>
             </div>
           </div>
         </div>

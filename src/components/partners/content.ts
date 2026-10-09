@@ -159,10 +159,4 @@ export const closing = {
   calendlyUrl: "https://calendly.com/rohan-caldrik/30min",
   // When a model was picked in "Ways to partner", it is shown on the card and passed to Calendly as answer 1.
   interestedIn: "Interested in",
-  contacts: [
-    { name: "Rohan Mashiyava", role: "Founder", linkedin: "https://www.linkedin.com/in/rohan-mashiyava/" },
-    { name: "Ravindra Dhavlesha", role: "Lead Architect", linkedin: "https://www.linkedin.com/in/ravidhavlesha/" },
-  ],
-  email: "hello@caldrik.co",
-  phone: { display: "+1 917 920 9285", tel: "+19179209285", note: "(US)" },
 };
