@@ -60,15 +60,15 @@ export default function Navigation({ links = DEFAULT_NAV_LINKS, cta = DEFAULT_CT
           <Image alt="Caldrik" src="/logo-white.svg" className="h-8 w-auto" width={120} height={32} priority />
         </Link>
 
-        <div className="hidden md:flex md:flex-1 md:items-center md:justify-center md:gap-x-8">
+        <div className="hidden md:flex md:flex-1 md:items-center md:justify-center md:gap-x-5 lg:gap-x-8">
           {links.map((link) => (
-            <a key={link.name} href={href(link)} className="text-sm/6 font-semibold text-white">
+            <a key={link.name} href={href(link)} className="whitespace-nowrap text-sm/6 font-semibold text-white">
               {link.name}
             </a>
           ))}
         </div>
 
-        <a href={href(cta)} className="hidden bg-brand rounded-full px-4 py-1.5 text-sm/6 font-semibold text-white md:block">
+        <a href={href(cta)} className="hidden whitespace-nowrap bg-brand rounded-full px-4 py-1.5 text-sm/6 font-semibold text-white md:block">
           {cta.name}
         </a>
 

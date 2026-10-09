@@ -3,11 +3,11 @@
 import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { faq, models, rules, ways, workingTerms } from "./content";
+import { faq, rules, workingTerms } from "./content";
 
 /* Section label + headline pattern shared with the rest of the site. */
 
-function Reveal({ className, delay = 0.1, children }: { className?: string; delay?: number; children: ReactNode }) {
+export function Reveal({ className, delay = 0.1, children }: { className?: string; delay?: number; children: ReactNode }) {
   const shouldReduceMotion = useReducedMotion();
   if (shouldReduceMotion) return <div className={className}>{children}</div>;
   return (
@@ -23,81 +23,17 @@ function Reveal({ className, delay = 0.1, children }: { className?: string; dela
   );
 }
 
-function SectionHeader({ label, headline, line, className = "max-w-2xl mb-10" }: { label?: string; headline: string; line?: string; className?: string }) {
+export function SectionHeader({ label, headline, line, className = "max-w-2xl mb-10", compact = false }: { label?: string; headline: string; line?: string; className?: string; compact?: boolean }) {
   return (
     <Reveal className={className}>
       {label && <p className="text-base/7 font-semibold text-brand">{label}</p>}
-      <h2 className="mt-2 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">{headline}</h2>
+      <h2 className={`mt-2 font-bold tracking-tight text-white ${compact ? "text-2xl sm:text-3xl md:text-4xl" : "text-3xl md:text-4xl lg:text-5xl"}`}>{headline}</h2>
       {line && <p className="mt-4 text-lg font-medium text-gray-400">{line}</p>}
     </Reveal>
   );
 }
 
 const dashedGrid = "grid grid-cols-1 divide-y divide-dashed divide-white/[0.15] border border-dashed border-white/[0.15]";
-
-/* ── 2. Ways to partner ────────────────────────────────────────────────── */
-
-export function PartnersWays() {
-  return (
-    <section id="models" className="bg-[#080f19] py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionHeader label={ways.label} headline={ways.headline} />
-
-        {/* md and up: table. Columns come from `models`. */}
-        <Reveal delay={0.3} className="hidden md:block">
-          <div className="border border-dashed border-white/[0.15]">
-            <table className="w-full table-fixed border-collapse text-left text-sm">
-              <caption className="sr-only">{ways.headline}</caption>
-              <thead>
-                <tr className="border-b border-dashed border-white/[0.15]">
-                  <th scope="col" className="w-[20%] px-6 py-5">
-                    <span className="sr-only">Model</span>
-                  </th>
-                  {models.map((m) => (
-                    <th key={m.key} scope="col" className="border-l border-dashed border-white/[0.15] px-6 py-5 text-base font-bold text-white">
-                      {m.name}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {ways.rows.map((row) => (
-                  <tr key={row.label} className="border-b border-dashed border-white/[0.15] last:border-b-0">
-                    <th scope="row" className="px-6 py-5 align-top font-mono text-xs font-medium tracking-wide text-brand">
-                      {row.label}
-                    </th>
-                    {models.map((m) => (
-                      <td key={m.key} className="border-l border-dashed border-white/[0.15] px-6 py-5 align-top leading-6 text-gray-400">
-                        {row.values[m.key]}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Reveal>
-
-        {/* Below md: one stacked card per model. */}
-        <div className="space-y-4 md:hidden">
-          {models.map((m) => (
-            <div key={m.key} className="border border-dashed border-white/[0.15] p-6">
-              <h3 className="text-lg font-bold text-white">{m.name}</h3>
-              <dl className="mt-4 space-y-4">
-                {ways.rows.map((row) => (
-                  <div key={row.label}>
-                    <dt className="font-mono text-xs font-medium tracking-wide text-brand">{row.label}</dt>
-                    <dd className="mt-1 text-sm leading-6 text-gray-400">{row.values[m.key]}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ── 3. Rules of engagement ────────────────────────────────────────────── */
 

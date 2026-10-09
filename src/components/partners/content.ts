@@ -27,12 +27,17 @@ export const models = [
   { key: "referral", name: "Referral" },
 ];
 
+export type Owner = "you" | "caldrik" | "shared";
+
 export const ways = {
   label: "Ways to partner",
   headline: "Three models. Your client contract decides.",
+  // `intro: true` marks the "Best when" row, shown in each model's header. `owners` drives the
+  // You / Caldrik / Shared chip in each cell.
   rows: [
     {
       label: "Best when",
+      intro: true,
       values: {
         whiteLabel: "You want to sell AI as your own service",
         coDelivery: "Your client's vendor rules require named subcontractors",
@@ -41,10 +46,12 @@ export const ways = {
     },
     {
       label: "Client relationship",
+      owners: { whiteLabel: "you", coDelivery: "you", referral: "shared" },
       values: { whiteLabel: "Yours", coDelivery: "Yours", referral: "Shared, agreed upfront" },
     },
     {
       label: "Brand on the work",
+      owners: { whiteLabel: "you", coDelivery: "you", referral: "caldrik" },
       values: {
         whiteLabel: "Yours",
         coDelivery: "Yours, with Caldrik named as your engineering partner",
@@ -53,10 +60,12 @@ export const ways = {
     },
     {
       label: "Contract with the client",
+      owners: { whiteLabel: "you", coDelivery: "you", referral: "caldrik" },
       values: { whiteLabel: "Yours", coDelivery: "Yours", referral: "Caldrik's" },
     },
     {
       label: "Pricing to the client",
+      owners: { whiteLabel: "you", coDelivery: "you", referral: "caldrik" },
       values: {
         whiteLabel: "You set it",
         coDelivery: "You set it",
@@ -65,13 +74,19 @@ export const ways = {
     },
     {
       label: "Delivery",
+      owners: { whiteLabel: "caldrik", coDelivery: "caldrik", referral: "caldrik" },
       values: {
         whiteLabel: "Caldrik, as part of your team",
         coDelivery: "Caldrik, alongside your team",
         referral: "Caldrik",
       },
     },
-  ] as { label: string; values: Record<string, string> }[],
+  ] as {
+    label: string;
+    intro?: boolean;
+    owners?: Record<string, Owner>;
+    values: Record<string, string>;
+  }[],
 };
 
 export const rules = {
