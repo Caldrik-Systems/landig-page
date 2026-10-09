@@ -19,13 +19,6 @@ export const hero = {
     "Add AI engineering to what you sell, without building a team. We scope, build and support it as part of yours. You keep the client and the margin.",
   primaryCta: { label: "Discuss a Partnership", href: "#doorway" },
   secondaryCta: { label: "Find your partnership model", href: "#models" },
-  smallLine: {
-    intro: "Built to the same standard as all our work:",
-    links: [
-      { label: "how we engineer production AI →", href: "/#how-we-work" },
-      { label: "what we build →", href: "/#services" },
-    ],
-  },
 };
 
 export const models = [
