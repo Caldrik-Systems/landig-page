@@ -166,9 +166,9 @@ export const closing = {
 };
 
 export const writeUs = {
-  label: "Prefer to write",
-  headline: ["Rather write", "it down?"],
-  line: "Send the client requirement and a few details. We'll reply with a technical response.",
+  label: "Or write to us",
+  headline: ["Not ready to talk?", "Write to us."],
+  line: "Share the client requirement in a few lines. We'll come back with whether AI fits.",
   link: "Prefer to write? Send a message",
   firstName: { label: "First name", placeholder: "First name" },
   lastName: { label: "Last name", placeholder: "Last name" },
