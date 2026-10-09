@@ -30,6 +30,14 @@ const dotStyle: Record<Owner, string> = {
   shared: "bg-gradient-to-r from-brand to-white/60",
 };
 
+// Scrolls to the form and tells it which model was chosen (the form listens for this event).
+function chooseModel(name: string) {
+  events.ctaClicked(`Choose ${name}`, "partners_models");
+  window.dispatchEvent(new CustomEvent("partners:model", { detail: name }));
+  document.getElementById("doorway")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  history.replaceState(null, "", "#doorway");
+}
+
 function OwnerChip({ owner }: { owner: Owner }) {
   return (
     <span
@@ -54,9 +62,19 @@ function ModelHeader({ index, name, modelKey, active }: { index: number; name: s
           active ? "from-brand/[0.16]" : "from-brand/[0.07]",
         )}
       />
-      <div className="relative flex items-baseline gap-3">
-        <span className="font-mono text-xs font-semibold tracking-[0.2em] text-brand/70">{String(index + 1).padStart(2, "0")}</span>
-        <h3 className="text-xl font-bold tracking-tight text-white">{name}</h3>
+      <div className="relative flex items-start justify-between gap-3">
+        <div className="flex items-baseline gap-3">
+          <span className="font-mono text-xs font-semibold tracking-[0.2em] text-brand/70">{String(index + 1).padStart(2, "0")}</span>
+          <h3 className="text-xl font-bold tracking-tight text-white">{name}</h3>
+        </div>
+        <button
+          type="button"
+          onClick={() => chooseModel(name)}
+          aria-label={`Choose ${name}`}
+          className="shrink-0 rounded-full border border-brand/40 px-3.5 py-1.5 text-xs font-semibold text-brand transition-colors hover:bg-brand hover:text-white focus-visible:bg-brand focus-visible:text-white"
+        >
+          Choose <span aria-hidden>→</span>
+        </button>
       </div>
       {intro && (
         <div className="relative mt-3">
