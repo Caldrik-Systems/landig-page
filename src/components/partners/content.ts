@@ -156,8 +156,7 @@ export const closing = {
   line: "Bring one client requirement. We'll tell you if AI fits, and what it takes to deliver it.",
   smallPrint: "No pitch. Just a technical opinion.",
   button: "Book a discovery call",
-  // TODO: replace with the real Calendly event link before launch.
-  calendlyUrl: "https://calendly.com/",
+  calendlyUrl: "https://calendly.com/rohan-caldrik/30min",
   // When a model was picked in "Ways to partner", it is shown on the card and passed to Calendly as answer 1.
   interestedIn: "Interested in",
   contacts: [
