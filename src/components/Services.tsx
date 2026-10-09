@@ -249,8 +249,8 @@ function ServicePanel({ s, i, isActive }: { s: typeof services[0]; i: number; is
 
         {/* Content */}
         <div className="relative z-10 space-y-3">
-          <p className="text-base leading-7 text-gray-300">{s.description}</p>
-          <p className="text-base leading-7 text-white">→ {s.outcome}</p>
+          <p className="text-base leading-7 text-gray-400">{s.description}</p>
+          <Outcome text={s.outcome} />
         </div>
         <div className="relative z-10 flex flex-wrap gap-2">
           {s.tags.map((tag) => (
@@ -273,6 +273,16 @@ function ServicePanel({ s, i, isActive }: { s: typeof services[0]; i: number; is
 }
 
 /* ── Section ── */
+
+/* The result of the scope, set apart from the description so it reads as the payoff. */
+function Outcome({ text }: { text: string }) {
+  return (
+    <div className="mt-5 border-l-2 border-brand bg-gradient-to-r from-brand/[0.12] to-transparent py-3 pl-5 pr-4">
+      <p className="text-sm font-semibold text-brand">Outcome</p>
+      <p className="mt-1 text-lg font-semibold leading-7 text-white">{text}</p>
+    </div>
+  );
+}
 
 export default function Services() {
   const outerRef = useRef<HTMLDivElement>(null);
@@ -379,8 +389,8 @@ export default function Services() {
                 </button>
                 {active === s.id && (
                   <div className="px-5 pb-5 space-y-4">
-                    <p className="text-base leading-7 text-gray-300">{s.description}</p>
-                    <p className="text-base leading-7 text-white">→ {s.outcome}</p>
+                    <p className="text-base leading-7 text-gray-400">{s.description}</p>
+                    <Outcome text={s.outcome} />
                     <div className="flex flex-wrap gap-2">
                       {s.tags.map((tag) => (
                         <span key={tag} className="rounded-full border border-white/[0.25] px-3 py-1 text-xs text-white/70">
