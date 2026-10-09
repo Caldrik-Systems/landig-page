@@ -59,12 +59,6 @@ export function PartnersRules() {
           <Reveal delay={0.2} className="h-full">
             <div className="relative flex h-full min-h-[220px] flex-col justify-between overflow-hidden rounded-2xl border border-brand/30 bg-brand/[0.06] p-7 md:p-8">
               <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_0%_0%,rgba(81,112,255,0.22),transparent_70%)]" />
-              <span
-                aria-hidden
-                className="pointer-events-none absolute right-6 top-3 select-none font-mono text-[88px] font-bold leading-none text-white/[0.05]"
-              >
-                01
-              </span>
               <div className="relative flex size-11 items-center justify-center rounded-xl border border-brand/40 bg-brand/15">
                 <HeroIcon aria-hidden className="size-6 text-brand" />
               </div>
@@ -88,9 +82,6 @@ export function PartnersRules() {
                     <p className="text-sm leading-6 text-gray-400">
                       <span className="font-semibold text-white">{rule.lead}</span> {rule.rest}
                     </p>
-                    <span aria-hidden className="absolute right-4 top-3 font-mono text-[10px] font-semibold tracking-[0.2em] text-white/25">
-                      {String(i + 2).padStart(2, "0")}
-                    </span>
                   </div>
                 </Reveal>
               );
