@@ -1,31 +1,25 @@
 import Image from "next/image";
-import Link from "next/link";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import { getPostsForView, type View } from "@/lib/posts";
 
-export default function Insights({ view = "all" }: { view?: View }) {
-  const posts = getPostsForView(view).slice(0, 3);
-  if (posts.length === 0) return null;
+// The Insights listing. `view` decides which articles it shows (see lib/posts.ts).
+export default function InsightsListing({ view = "all" }: { view?: View }) {
+  const posts = getPostsForView(view);
 
   return (
-    <section className="bg-[#080f19] py-24 md:py-36">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="flex flex-col flex-1 bg-[#080f19]">
+      <Navigation />
 
-        <div className="flex items-end justify-between mb-14 md:mb-20">
-          <div>
-            <p className="text-base/7 font-semibold text-brand">Insights</p>
-            <h2 className="mt-3 text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl lg:text-6xl">
-              From the engineering floor.
-            </h2>
-          </div>
-          <Link
-            href="/insights/"
-            className="hidden sm:inline-flex rounded-full border border-white/20 px-5 py-2 text-sm font-semibold text-gray-400 hover:text-white transition-colors"
-          >
-            Browse all
-          </Link>
+      <div className="mx-auto w-full max-w-7xl px-6 lg:px-8 pt-24 pb-24">
+        <div className="max-w-5xl mb-14 md:mb-20">
+          <p className="text-base/7 font-semibold text-brand">Insights</p>
+          <h1 className="mt-3 text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl lg:text-6xl">
+            From the engineering floor.
+          </h1>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post) => (
             <a
               key={post.slug}
@@ -37,11 +31,11 @@ export default function Insights({ view = "all" }: { view?: View }) {
                   src={post.image}
                   alt={post.title}
                   fill
-                  sizes="(max-width: 640px) 100vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
-              <div className="flex flex-col gap-4 p-6">
+              <div className="flex flex-col gap-4 p-6 flex-1">
                 <div className="flex items-center gap-3">
                   <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-[#5170ff]/70">
                     {post.category}
@@ -51,26 +45,18 @@ export default function Insights({ view = "all" }: { view?: View }) {
                     {new Date(post.date).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
                   </span>
                 </div>
-                <h3 className="text-base font-semibold text-white leading-snug group-hover:text-[#cbd4ff] transition-colors">
+                <h2 className="text-base font-semibold text-white leading-snug group-hover:text-[#cbd4ff] transition-colors">
                   {post.title}
-                </h3>
+                </h2>
                 <p className="text-[15px] text-gray-300 leading-6 flex-1">{post.excerpt}</p>
                 <span className="text-xs font-semibold text-[#5170ff]/80">Read more →</span>
               </div>
             </a>
           ))}
         </div>
-
-        <div className="mt-8 sm:hidden text-center">
-          <Link
-            href="/insights/"
-            className="inline-flex rounded-full border border-white/20 px-5 py-2 text-sm font-semibold text-gray-400"
-          >
-            Browse all insights
-          </Link>
-        </div>
-
       </div>
-    </section>
+
+      <Footer />
+    </div>
   );
 }
