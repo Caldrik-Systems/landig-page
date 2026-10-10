@@ -30,7 +30,7 @@ export const whyName = {
 export const company = {
   label: "Company",
   facts: [
-    { label: "Founded", value: "" /* TODO: year */ },
+    { label: "Founded", value: "2026" },
     { label: "Based in", value: "Mumbai, India" },
     { label: "Working with", value: "Teams worldwide" },
   ],
@@ -49,14 +49,14 @@ export const team = {
       name: "Rohan Mashiyava",
       role: "Leadership · Founder",
       photo: "/team/rohan.webp",
-      line: "12 years building engineering teams. Scaled an offshore software firm to 30+ engineers.",
+      line: "Serial entrepreneur. Three startups built, one exited. 12 years building engineering teams.",
       linkedin: "https://www.linkedin.com/in/rohan-mashiyava/",
     },
     {
       name: "Ravindra Dhavlesha",
-      role: "" /* TODO: "[Function] · [Title]" */,
+      role: "Engineering Leadership · Principal Architect",
       photo: "/team/ravindra.webp",
-      line: "" /* TODO: one line of real experience */,
+      line: "14+ years engineering enterprise software. Cloud, data and AI.",
       linkedin: "https://www.linkedin.com/in/ravidhavlesha/",
     },
     {
@@ -67,10 +67,4 @@ export const team = {
       linkedin: "" /* TODO: LinkedIn URL */,
     },
   ],
-};
-
-export const closing = {
-  headline: { plain: "Know before", accent: "you build." },
-  button: "Discuss a Workflow",
-  href: "/#doorway",
 };
