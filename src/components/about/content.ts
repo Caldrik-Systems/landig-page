@@ -49,14 +49,14 @@ export const team = {
       name: "Rohan Mashiyava",
       role: "Leadership · Founder",
       photo: "/team/rohan.webp",
-      line: "12 years building engineering teams. Scaled an offshore software firm to 30+ engineers.",
+      line: "Serial entrepreneur. Three startups built, one exited. 12 years building engineering teams.",
       linkedin: "https://www.linkedin.com/in/rohan-mashiyava/",
     },
     {
       name: "Ravindra Dhavlesha",
       role: "Engineering Leadership · Principal Architect",
       photo: "/team/ravindra.webp",
-      line: "14+ years of experience in Enterprise software development. Cloud, data and AI",
+      line: "14+ years engineering enterprise software. Cloud, data and AI.",
       linkedin: "https://www.linkedin.com/in/ravidhavlesha/",
     },
     {
