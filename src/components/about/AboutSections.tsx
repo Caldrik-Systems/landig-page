@@ -25,8 +25,8 @@ export function AboutWhy() {
 }
 
 export function AboutTeam() {
-  // A member is shown only once every field is filled in (see content.ts).
-  const members = team.members.filter((m) => m.name && m.role && m.line && m.linkedin);
+  // A member is shown only once every field is filled in and they are not marked hidden (see content.ts).
+  const members = team.members.filter((m) => !("hidden" in m && m.hidden) && m.name && m.role && m.line && m.linkedin);
   const n = members.length;
 
   // Columns: up to 3 on desktop, up to 2 on tablet. The cells are separated by hairlines drawn by the grid gap,
