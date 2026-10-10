@@ -42,22 +42,27 @@ export const team = {
   headline: "The people behind Caldrik.",
   line: "Engineers and operators who have built and run production systems. Calm under pressure, precise by habit.",
   linkedinLabel: "LinkedIn",
+  // `role` is "Department · Title". `photo` is optional: set it to a path or URL (e.g. "/team/rohan.jpg") to show a
+  // portrait; without one the initials are shown. Portraits start in greyscale and colour in on hover.
   members: [
     {
       name: "Rohan Mashiyava",
       role: "Leadership · Founder",
+      photo: "",
       line: "12 years building engineering teams. Scaled an offshore software firm to 30+ engineers.",
       linkedin: "https://www.linkedin.com/in/rohan-mashiyava/",
     },
     {
       name: "Ravindra Dhavlesha",
       role: "" /* TODO: "[Function] · [Title]" */,
+      photo: "",
       line: "" /* TODO: one line of real experience */,
       linkedin: "https://www.linkedin.com/in/ravidhavlesha/",
     },
     {
       name: "" /* TODO: name */,
       role: "" /* TODO: "Engineering · [Title]" */,
+      photo: "",
       line: "" /* TODO: one line of real experience */,
       linkedin: "" /* TODO: LinkedIn URL */,
     },
