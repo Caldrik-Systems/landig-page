@@ -1,10 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getPostsForView, type View } from "@/lib/posts";
+import { getAllPosts } from "@/lib/posts";
 
-export default function Insights({ view = "all" }: { view?: View }) {
-  const posts = getPostsForView(view).slice(0, 3);
-  if (posts.length === 0) return null;
+export default function Insights() {
+  const posts = getAllPosts().slice(0, 3);
 
   return (
     <section className="bg-[#080f19] py-24 md:py-36">
