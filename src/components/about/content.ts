@@ -27,16 +27,6 @@ export const whyName = {
   body: "Most AI is launched on excitement and judged on demos. We set the threshold first, measure against it, and keep measuring long after launch.",
 };
 
-export const company = {
-  label: "Company",
-  facts: [
-    { label: "Founded", value: "2026" },
-    { label: "Based in", value: "Mumbai, India" },
-    { label: "Working with", value: "Teams worldwide" },
-  ],
-  note: "Caldrik is a brand of Revenance Techsol Private Limited.",
-};
-
 export const team = {
   label: "Meet the team",
   headline: "The people behind Caldrik.",
