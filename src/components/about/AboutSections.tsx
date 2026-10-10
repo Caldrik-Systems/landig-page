@@ -1,8 +1,7 @@
-import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Reveal, SectionHeader } from "@/components/partners/PartnersSections";
-import { closing, company, team, whyName } from "./content";
+import { company, team, whyName } from "./content";
 
 const initials = (name: string) =>
   name
@@ -120,26 +119,6 @@ export function AboutTeam() {
               <div key={i} aria-hidden className={`${cls} bg-[#0b1424]`} />
             ))}
           </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-export function AboutClosing() {
-  return (
-    <section className="bg-[#080f19] py-24 md:py-36">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <Reveal>
-          <h2 className="text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl lg:text-6xl">
-            {closing.headline.plain} <span className="block text-brand">{closing.headline.accent}</span>
-          </h2>
-          <Link
-            href={closing.href}
-            className="mt-10 inline-block rounded-full bg-[#5170ff] px-8 py-3 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-          >
-            {closing.button} <span aria-hidden>→</span>
-          </Link>
         </Reveal>
       </div>
     </section>

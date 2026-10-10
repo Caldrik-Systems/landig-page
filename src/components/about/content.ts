@@ -68,9 +68,3 @@ export const team = {
     },
   ],
 };
-
-export const closing = {
-  headline: { plain: "Know before", accent: "you build." },
-  button: "Discuss a Workflow",
-  href: "/#doorway",
-};
