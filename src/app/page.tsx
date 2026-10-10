@@ -40,7 +40,7 @@ export default function Home() {
         <TheProblem />
         <HowWeWork />
         <Services />
-        {isDev && <Partners />}
+        <Partners />
         <Focus />
         <HonestLine />
         <PartnerTeaser />

@@ -1,4 +1,3 @@
-// HIDDEN in production — visible in dev only (see page.tsx)
 import Image from "next/image";
 
 const badges = [
@@ -12,18 +11,18 @@ const badges = [
 
 export default function Partners() {
   return (
-    <section className="bg-[#080f19] py-16 md:py-24">
+    <section className="bg-[#080f19] py-24 md:py-36">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
-        <div className="max-w-2xl mb-12">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#5170ff]/70 mb-2">Partners & Affiliations</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
+        <div className="max-w-5xl mb-14 md:mb-20">
+          <p className="text-base/7 font-semibold text-brand">Partners &amp; Affiliations</p>
+          <h2 className="mt-3 text-balance text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl lg:text-6xl">
             Built with the infrastructure that runs AI.
           </h2>
         </div>
 
         {/* Certification badges */}
-        <div className="flex flex-wrap gap-4 mb-12">
+        <div className="flex flex-wrap gap-4">
           {badges.map((b) => (
             <div
               key={b.name}
