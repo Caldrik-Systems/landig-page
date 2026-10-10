@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 import TrustedClients from "@/components/TrustedClients";
 import Insights from "@/components/Insights";
 import Partners from "@/components/Partners";
+import PartnerTeaser from "@/components/PartnerTeaser";
 import { jsonLdFaq } from "@/lib/home-jsonld";
 import { jsonLdString } from "@/lib/jsonld";
 
@@ -42,6 +43,7 @@ export default function Home() {
         {isDev && <Partners />}
         <Focus />
         <HonestLine />
+        {isDev && <PartnerTeaser />}
         <Insights />
         <TheDoorway />
       </main>
