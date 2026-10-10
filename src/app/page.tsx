@@ -43,7 +43,7 @@ export default function Home() {
         {isDev && <Partners />}
         <Focus />
         <HonestLine />
-        {isDev && <PartnerTeaser />}
+        <PartnerTeaser />
         <Insights />
         <TheDoorway />
       </main>
