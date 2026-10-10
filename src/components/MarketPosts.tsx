@@ -1,62 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { filterForView, type PostMeta, type View } from "@/lib/posts";
+import { filterForView, type PostMeta } from "@/lib/posts";
+import { useMarketView } from "@/lib/use-market-view";
 import { cn } from "@/lib/utils";
-
-// Same crawlers the site has always treated specially: they get the full list.
-const CRAWLER_UA = /googlebot|google-inspectiontool|adsbot-google|mediapartners-google|storebot-google|bingbot|bingpreview|msnbot|slurp|duckduckbot|baiduspider|yandex|applebot|facebookexternalhit|twitterbot|linkedinbot|slackbot|whatsapp|embedly|pinterest|petalbot|semrush|ahrefs|\bbot\b|crawler|spider/i;
-
-const STORAGE_KEY = "caldrik:market";
-const FAIL_OPEN_MS = 1500;
-
-const viewFor = (country: string | null): View => (country ? (country === "IN" ? "india" : "global") : "all");
 
 // The server renders every article (so the page is complete without JavaScript, and for crawlers).
 // In the browser we ask /api/geo/ for the visitor's country and keep only that market's articles
 // (plus those tagged "both"). The list is held invisible until we know, so nothing flashes; if the
 // lookup fails or is slow, everything is shown.
 export default function MarketPosts({ posts, limit, layout }: { posts: PostMeta[]; limit?: number; layout: "home" | "list" }) {
-  const [view, setView] = useState<View>("all");
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    let live = true;
-    const done = (v: View) => {
-      if (!live) return;
-      setView(v);
-      setReady(true);
-    };
-
-    if (CRAWLER_UA.test(navigator.userAgent)) return done("all");
-
-    try {
-      const saved = sessionStorage.getItem(STORAGE_KEY);
-      if (saved === "india" || saved === "global" || saved === "all") return done(saved);
-    } catch {}
-
-    const failOpen = setTimeout(() => done("all"), FAIL_OPEN_MS);
-    fetch("/api/geo/", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data) => {
-        const v = viewFor(typeof data?.country === "string" ? data.country : null);
-        try {
-          sessionStorage.setItem(STORAGE_KEY, v);
-        } catch {}
-        clearTimeout(failOpen);
-        done(v);
-      })
-      .catch(() => {
-        clearTimeout(failOpen);
-        done("all");
-      });
-
-    return () => {
-      live = false;
-      clearTimeout(failOpen);
-    };
-  }, []);
+  const { view, ready } = useMarketView();
 
   let shown = filterForView(posts, view);
   if (shown.length === 0) shown = posts;
