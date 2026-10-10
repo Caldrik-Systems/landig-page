@@ -11,7 +11,6 @@ import TheDoorway from "@/components/TheDoorway";
 import Footer from "@/components/Footer";
 import TrustedClients from "@/components/TrustedClients";
 import Insights from "@/components/Insights";
-import Partners from "@/components/Partners";
 import PartnerTeaser from "@/components/PartnerTeaser";
 import { jsonLdFaq } from "@/lib/home-jsonld";
 import { jsonLdString } from "@/lib/jsonld";
@@ -40,7 +39,6 @@ export default function Home() {
         <TheProblem />
         <HowWeWork />
         <Services />
-        <Partners />
         <Focus />
         <HonestLine />
         <PartnerTeaser />
