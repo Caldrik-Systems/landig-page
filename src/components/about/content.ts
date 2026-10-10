@@ -1,8 +1,7 @@
 /**
  * Copy for /about/. Edit text here; no component changes needed.
  *
- * Anything left as an empty string is simply not shown: a blank `founded` hides that fact, and a team
- * member appears only once every one of their fields is filled in. Fill the blanks in and they go live.
+ * A team member appears only once every one of their fields is filled in, and is skipped while `hidden: true`.
  */
 
 export const aboutMeta = {
@@ -44,6 +43,7 @@ export const team = {
     },
     {
       name: "Ravindra Dhavlesha",
+      hidden: true, // not shown for now; delete this line (or set to false) to show the card again
       role: "Engineering Leadership · Principal Architect",
       photo: "/team/ravindra.webp",
       line: "14+ years engineering enterprise software. Cloud, data and AI.",
