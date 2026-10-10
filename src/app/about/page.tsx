@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import AboutHero from "@/components/about/AboutHero";
-import { AboutCompany, AboutTeam, AboutWhy } from "@/components/about/AboutSections";
+import { AboutTeam, AboutWhy } from "@/components/about/AboutSections";
 import HonestLine from "@/components/HonestLine";
 import TheDoorway from "@/components/TheDoorway";
 import { aboutMeta } from "@/components/about/content";
@@ -26,7 +26,6 @@ export default function AboutPage() {
       <main className="flex flex-col flex-1">
         <AboutHero />
         <AboutWhy />
-        <AboutCompany />
         <AboutTeam />
         {/* The homepage's statement card and enquiry form, as the close of the page */}
         <div className="bg-[#080f19] pt-24 md:pt-36">

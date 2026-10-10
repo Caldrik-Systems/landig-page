@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Reveal, SectionHeader } from "@/components/partners/PartnersSections";
-import { company, team, whyName } from "./content";
+import { team, whyName } from "./content";
 
 const initials = (name: string) =>
   name
@@ -18,32 +18,6 @@ export function AboutWhy() {
         <SectionHeader label={whyName.label} headline={whyName.headline} className="max-w-5xl mb-10 md:mb-14" />
         <Reveal>
           <p className="max-w-3xl text-lg leading-8 text-gray-300 md:text-xl md:leading-9">{whyName.body}</p>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-export function AboutCompany() {
-  const facts = company.facts.filter((f) => f.value);
-  return (
-    <section className="bg-[#080f19] pb-24 md:pb-36">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <Reveal>
-          <p className="text-base/7 font-semibold text-brand">{company.label}</p>
-          <dl
-            // One column per fact that is shown, so a hidden fact leaves no empty cell
-            style={{ "--n": facts.length } as React.CSSProperties}
-            className="mt-6 grid grid-cols-1 divide-y divide-dashed divide-white/[0.15] rounded-2xl border border-dashed border-white/[0.15] sm:divide-x sm:divide-y-0 sm:[grid-template-columns:repeat(var(--n),minmax(0,1fr))]"
-          >
-            {facts.map((f) => (
-              <div key={f.label} className="p-6 md:p-8">
-                <dt className="text-sm font-medium text-gray-400">{f.label}</dt>
-                <dd className="mt-2 text-xl font-semibold text-white md:text-2xl">{f.value}</dd>
-              </div>
-            ))}
-          </dl>
-          <p className="mt-6 text-sm text-gray-400">{company.note}</p>
         </Reveal>
       </div>
     </section>
