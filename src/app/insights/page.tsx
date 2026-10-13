@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { getAllPosts } from "@/lib/posts";
-import MarketPosts from "@/components/MarketPosts";
+import PostGrid from "@/components/PostGrid";
 import { pageUrl, pageOpenGraph } from "@/lib/seo";
 
 const title = "Insights";
@@ -31,7 +31,7 @@ export default function InsightsPage() {
           </h1>
         </div>
 
-        <MarketPosts posts={posts} layout="list" />
+        <PostGrid posts={posts} layout="list" />
       </div>
 
       <Footer />

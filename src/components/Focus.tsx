@@ -1,13 +1,10 @@
-import IndiaOnly from "@/components/IndiaOnly";
-
-const sectors = [
+const sectors: { index: string; name: string; description: string; callout: string; compliance?: string }[] = [
   {
     index: "01",
     name: "BFSI",
     description:
       "AI lives alongside systems a decade older than it. Every output may face an audit.",
     callout: "every output traceable, every eval run logged",
-    indiaOnly: true,
     compliance: "We understand the importance of RBI IT Governance and DPDP requirements — audit trails, data localisation, and access controls are scoped in from day one, not retrofitted.",
   },
   {
@@ -61,14 +58,7 @@ export default function Focus() {
                     {s.description}
                   </p>
                   <p className="text-base font-semibold text-brand">{s.callout}</p>
-                  {"compliance" in s &&
-                    (("indiaOnly" in s && s.indiaOnly) ? (
-                      <IndiaOnly>
-                        <p className="text-sm leading-6 text-gray-400">{(s as typeof s & { compliance: string }).compliance}</p>
-                      </IndiaOnly>
-                    ) : (
-                      <p className="text-sm leading-6 text-gray-400">{(s as typeof s & { compliance: string }).compliance}</p>
-                    ))}
+                  {s.compliance && <p className="text-sm leading-6 text-gray-400">{s.compliance}</p>}
                 </div>
 
               </div>

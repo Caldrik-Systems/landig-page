@@ -1,36 +1,20 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { filterForView, type PostMeta } from "@/lib/posts";
-import { useMarketView } from "@/lib/use-market-view";
+import type { PostMeta } from "@/lib/posts";
 import { cn } from "@/lib/utils";
 
-// The server renders every article (so the page is complete without JavaScript, and for crawlers).
-// In the browser we ask /api/geo/ for the visitor's country and keep only that market's articles
-// (plus those tagged "both"). The list is held invisible until we know, so nothing flashes; if the
-// lookup fails or is slow, everything is shown.
-export default function MarketPosts({ posts, limit, layout }: { posts: PostMeta[]; limit?: number; layout: "home" | "list" }) {
-  const { view, ready } = useMarketView();
-
-  let shown = filterForView(posts, view);
-  if (shown.length === 0) shown = posts;
-  if (limit) shown = shown.slice(0, limit);
+// Fully static: every visitor gets the same list, rendered at build time.
+export default function PostGrid({ posts, limit, layout }: { posts: PostMeta[]; limit?: number; layout: "home" | "list" }) {
+  const shown = limit ? posts.slice(0, limit) : posts;
 
   const home = layout === "home";
 
   return (
     <>
-      {/* Without JavaScript nothing ever marks the list ready, so show it as rendered */}
-      <noscript>
-        <style>{`[data-market-posts]{opacity:1!important}`}</style>
-      </noscript>
       <div
-        data-market-posts
         className={cn(
-          "grid grid-cols-1 gap-6 transition-opacity duration-300",
+          "grid grid-cols-1 gap-6",
           home ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-3",
-          ready ? "opacity-100" : "opacity-0",
         )}
       >
         {shown.map((post) => (
