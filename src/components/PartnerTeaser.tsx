@@ -41,7 +41,7 @@ export default function PartnerTeaser() {
                 <span className="text-white/40"> Only </span>
                 <span className="text-brand">13% earn real revenue from it.</span>
               </h2>
-              <p className="mt-6 text-[10px] uppercase tracking-[0.2em] text-white/30">Source · Kaseya, 2026</p>
+              <p className="mt-6 text-[10px] uppercase tracking-[0.2em] text-white/55">Source · Kaseya, 2026</p>
             </div>
 
             {/* Right: the offer */}

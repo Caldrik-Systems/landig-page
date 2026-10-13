@@ -32,7 +32,7 @@ export default function TermsPage() {
           <div className="mb-14 space-y-3">
             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#5170ff]/70">Legal</p>
             <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl">Terms &amp; Conditions</h1>
-            <p className="text-sm text-gray-500">Effective date: 1 August 2026 &nbsp;·&nbsp; Last updated: 20 August 2026</p>
+            <p className="text-sm text-gray-400">Effective date: 1 August 2026 &nbsp;·&nbsp; Last updated: 20 August 2026</p>
           </div>
 
           {/* Body */}
@@ -58,7 +58,7 @@ export default function TermsPage() {
 
             <Section title="3. Website Use">
               <p>You agree to use this website only for lawful purposes and in a manner that does not infringe the rights of others. You must not:</p>
-              <ul className="list-disc list-inside space-y-1 text-gray-500 ml-2">
+              <ul className="list-disc list-inside space-y-1 text-gray-400 ml-2">
                 <li>Attempt to gain unauthorised access to any part of the website or its underlying systems</li>
                 <li>Transmit any unsolicited commercial communications via the contact form</li>
                 <li>Use automated tools to scrape, crawl, or extract content from the website</li>
@@ -133,7 +133,7 @@ export default function TermsPage() {
               <p>
                 For questions regarding these Terms, please contact us at:
               </p>
-              <div className="mt-2 space-y-1 text-gray-500">
+              <div className="mt-2 space-y-1 text-gray-400">
                 <p><strong className="text-gray-300">Revenance Techsol Private Limited</strong></p>
                 <p>Operating as Caldrik</p>
                 <p>India</p>

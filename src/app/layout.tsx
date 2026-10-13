@@ -7,14 +7,20 @@ import "./globals.css";
 const GA_ID = "G-HHRDT7KR9V";
 const CLARITY_ID = "ymae9ssuz9";
 
+// Geist Sans is the body font (above the fold, so it is preloaded). next/font generates a
+// size-adjusted fallback, which keeps the swap from shifting layout.
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
+// Mono is used only in the below-the-fold product mock-ups, so it is not preloaded.
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  preload: false,
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -92,21 +98,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <head>
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.google-analytics.com" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        <link rel="preconnect" href="https://www.clarity.ms" />
-        <link rel="dns-prefetch" href="https://www.clarity.ms" />
-      </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }} />
         <ScrollToTop />
         {children}
         {GA_ID && (
           <>
-            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+            {/* The tiny stub runs early so gtag() calls (CTA clicks) queue in dataLayer; the heavy
+                library loads when the browser is idle and replays the queue. */}
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="lazyOnload" />
             <Script id="ga4-init" strategy="afterInteractive">{`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
@@ -116,7 +116,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </>
         )}
         {CLARITY_ID && (
-          <Script id="clarity-init" strategy="afterInteractive">{`
+          <Script id="clarity-init" strategy="lazyOnload">{`
             (function(c,l,a,r,i,t,y){
               c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
               t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;

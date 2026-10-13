@@ -6,7 +6,7 @@ import { events } from "@/lib/gtag";
 
 export default function TheDoorway() {
   const inputCls =
-    "w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#5170ff]/50 transition-colors";
+    "w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3.5 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-[#5170ff]/50 transition-colors";
   const labelCls =
     "block text-xs font-medium tracking-wide text-gray-400 uppercase";
 
@@ -27,6 +27,7 @@ export default function TheDoorway() {
           email: fd.get("email"),
           title: fd.get("title"),
           workflow: fd.get("workflow"),
+          website: fd.get("website"),
         }),
       });
       if (res.ok) {
@@ -74,31 +75,34 @@ export default function TheDoorway() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Honeypot for bots; hidden from people and assistive tech */}
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className={labelCls}>First name</label>
-                  <input type="text" name="first_name" required placeholder="First name" className={inputCls} />
+                  <label htmlFor="d-first" className={labelCls}>First name</label>
+                  <input id="d-first" type="text" name="first_name" required placeholder="First name" className={inputCls} />
                 </div>
                 <div className="space-y-1.5">
-                  <label className={labelCls}>Last name</label>
-                  <input type="text" name="last_name" required placeholder="Last name" className={inputCls} />
+                  <label htmlFor="d-last" className={labelCls}>Last name</label>
+                  <input id="d-last" type="text" name="last_name" required placeholder="Last name" className={inputCls} />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className={labelCls}>Company name</label>
-                  <input type="text" name="company" placeholder="Company name" className={inputCls} />
+                  <label htmlFor="d-company" className={labelCls}>Company name</label>
+                  <input id="d-company" type="text" name="company" placeholder="Company name" className={inputCls} />
                 </div>
                 <div className="space-y-1.5">
-                  <label className={labelCls}>Work email</label>
-                  <input type="email" name="email" required placeholder="you@company.com" className={inputCls} />
+                  <label htmlFor="d-email" className={labelCls}>Work email</label>
+                  <input id="d-email" type="email" name="email" required placeholder="you@company.com" className={inputCls} />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className={labelCls}>Your title</label>
+                <label htmlFor="d-title" className={labelCls}>Your title</label>
                 <input
+                  id="d-title"
                   type="text"
                   name="title"
                   required
@@ -108,11 +112,12 @@ export default function TheDoorway() {
               </div>
 
               <div className="space-y-1.5">
-                <label className={labelCls}>
+                <label htmlFor="d-workflow" className={labelCls}>
                   The workflow{" "}
                   <span className="normal-case font-normal text-gray-400">— in a sentence (optional)</span>
                 </label>
                 <textarea
+                  id="d-workflow"
                   name="workflow"
                   rows={3}
                   placeholder="e.g. We manually review 400 supplier invoices a week and flag exceptions for the finance team."

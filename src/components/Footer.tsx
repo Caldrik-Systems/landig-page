@@ -1,6 +1,6 @@
-"use client";
 import { useId } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function FooterGrid() {
   const id = useId();
@@ -91,13 +91,13 @@ export default function Footer() {
         {/* Nav links — 2-col grid on mobile, single row on md+ */}
         <nav className="grid grid-cols-2 gap-x-4 gap-y-3 sm:flex sm:flex-wrap sm:gap-x-6 sm:gap-y-2">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-sm text-gray-400 hover:text-white transition-colors"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -107,20 +107,20 @@ export default function Footer() {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="space-y-1">
             <p className="text-sm text-gray-400">© 2026 Caldrik Systems</p>
-            <p className="text-xs text-gray-600 leading-relaxed max-w-xs sm:max-w-none">
+            <p className="text-xs text-gray-400 leading-relaxed max-w-xs sm:max-w-none">
               Caldrik is a brand of Revenance Techsol Private Limited.
               <span className="hidden sm:inline"> All rights reserved.</span>
             </p>
           </div>
           <div className="flex gap-5 sm:flex-col sm:items-end sm:gap-1.5">
             {legalLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-gray-600 hover:text-gray-400 transition-colors"
+                className="text-sm text-gray-400 hover:text-white transition-colors"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

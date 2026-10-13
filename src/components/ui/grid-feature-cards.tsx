@@ -1,7 +1,6 @@
-"use client";
-
 import { cn } from '@/lib/utils';
-import React, { useState, useEffect } from 'react';
+import { seededSquares } from '@/lib/grid-squares';
+import React from 'react';
 
 type FeatureType = {
 	title: string;
@@ -11,15 +10,12 @@ type FeatureType = {
 
 type FeatureCardProps = React.ComponentProps<'div'> & {
 	feature: FeatureType;
+	/** Varies which grid squares are highlighted, so neighbouring cards differ. */
+	seed?: number;
 };
 
-export function FeatureCard({ feature, className, ...props }: FeatureCardProps) {
-	const [squares, setSquares] = useState<number[][]>([]);
-
-	useEffect(() => {
-		const id = requestAnimationFrame(() => setSquares(genRandomPattern()));
-		return () => cancelAnimationFrame(id);
-	}, []);
+export function FeatureCard({ feature, seed = 0, className, ...props }: FeatureCardProps) {
+	const squares = seededSquares(seed, 5, 7, 4, 1, 6);
 
 	return (
 		<div className={cn('relative overflow-hidden p-6 md:p-8', className)} {...props}>
@@ -69,12 +65,4 @@ function GridPattern({
 			)}
 		</svg>
 	);
-}
-
-function genRandomPattern(length?: number): number[][] {
-	length = length ?? 5;
-	return Array.from({ length }, () => [
-		Math.floor(Math.random() * 4) + 7,
-		Math.floor(Math.random() * 6) + 1,
-	]);
 }

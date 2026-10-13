@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getAllPosts } from "@/lib/posts";
-import MarketPosts from "@/components/MarketPosts";
+import PostGrid from "@/components/PostGrid";
 
 export default function Insights() {
   return (
@@ -22,7 +22,7 @@ export default function Insights() {
           </Link>
         </div>
 
-        <MarketPosts posts={getAllPosts()} limit={3} layout="home" />
+        <PostGrid posts={getAllPosts()} limit={3} layout="home" />
 
         <div className="mt-8 sm:hidden text-center">
           <Link

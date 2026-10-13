@@ -9,6 +9,10 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
+  // Without this binding the OpenNext adapter serves /_next/image originals as-is (no resizing).
+  "images": {
+    "binding": "IMAGES"
+  },
   "observability": {
     "enabled": false,
     "head_sampling_rate": 1,

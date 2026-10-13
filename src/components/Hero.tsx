@@ -1,8 +1,5 @@
-"use client";
-
 import { useId } from "react";
-import { events } from "@/lib/gtag";
-import { motion } from "motion/react";
+import TrackedLink from "@/components/TrackedLink";
 
 function HeroGrid() {
   const id = useId();
@@ -44,11 +41,7 @@ export default function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#080f19]" />
 
       <div className="mx-auto max-w-5xl px-6 pt-32 pb-24 sm:pt-40 sm:pb-28 lg:px-8 lg:pt-48 lg:pb-36 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        >
+        <div className="hero-in">
           <p className="mb-5 text-base/7 font-semibold text-brand">
             AI Engineering · Enterprise Systems
           </p>
@@ -63,12 +56,12 @@ export default function Hero() {
           </p>
 
           <div className="mt-12 flex flex-col items-center gap-y-4 sm:flex-row sm:justify-center sm:gap-x-8 sm:gap-y-0">
-            <a href="#doorway" onClick={() => events.ctaClicked("Discuss a Workflow", "hero")} className="rounded-full bg-[#5170ff] px-8 py-3 text-sm font-semibold text-white">Discuss a Workflow</a>
+            <TrackedLink href="#doorway" label="Discuss a Workflow" location="hero" className="rounded-full bg-[#5170ff] px-8 py-3 text-sm font-semibold text-white">Discuss a Workflow</TrackedLink>
             <a href="#how-we-work" className="text-sm/6 font-semibold text-white/80 transition-colors hover:text-white">
               See How We Work <span aria-hidden>&rarr;</span>
             </a>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

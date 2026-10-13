@@ -1,8 +1,5 @@
-"use client";
-
 import { useId } from "react";
-import { motion } from "motion/react";
-import { events } from "@/lib/gtag";
+import TrackedLink from "@/components/TrackedLink";
 import { hero } from "./content";
 
 function HeroGrid() {
@@ -44,12 +41,7 @@ export default function PartnersHero() {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-[#080f19]" />
 
       <div className="mx-auto max-w-7xl px-6 pt-32 pb-20 sm:pt-40 sm:pb-28 lg:px-8 lg:pt-48 lg:pb-36">
-        <motion.div
-          className="max-w-4xl"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        >
+        <div className="hero-in max-w-4xl">
           <p className="mb-3 text-base/7 font-semibold text-brand">{hero.eyebrow}</p>
 
           <h1 className="text-balance text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
@@ -61,22 +53,24 @@ export default function PartnersHero() {
           <p className="mt-8 max-w-2xl text-xl leading-9 text-gray-300">{hero.subhead}</p>
 
           <div className="mt-12 flex flex-col items-start gap-y-4 sm:flex-row sm:items-center sm:gap-x-8 sm:gap-y-0">
-            <a
+            <TrackedLink
               href={hero.primaryCta.href}
-              onClick={() => events.ctaClicked(hero.primaryCta.label, "partners_hero")}
+              label={hero.primaryCta.label}
+              location="partners_hero"
               className="rounded-full bg-[#5170ff] px-8 py-3 text-sm font-semibold text-white"
             >
               {hero.primaryCta.label}
-            </a>
-            <a
+            </TrackedLink>
+            <TrackedLink
               href={hero.secondaryCta.href}
-              onClick={() => events.ctaClicked(hero.secondaryCta.label, "partners_hero")}
+              label={hero.secondaryCta.label}
+              location="partners_hero"
               className="text-sm/6 font-semibold text-white/80 transition-colors hover:text-white"
             >
               {hero.secondaryCta.label} <span aria-hidden>&rarr;</span>
-            </a>
+            </TrackedLink>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -16,7 +16,7 @@ export default function TrustedClients() {
   return (
     <section className="bg-[#080f19] pb-10 md:pb-14">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <p className="text-center text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-500 mb-8">
+        <p className="text-center text-[10px] font-semibold tracking-[0.25em] uppercase text-gray-400 mb-8">
           Trusted by
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">

@@ -1,7 +1,4 @@
-"use client";
-
 import { useId } from "react";
-import { motion } from "motion/react";
 import { hero } from "./content";
 
 function HeroGrid() {
@@ -43,12 +40,7 @@ export default function AboutHero() {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-[#080f19]" />
 
       <div className="mx-auto max-w-7xl px-6 pt-32 pb-20 sm:pt-40 sm:pb-28 lg:px-8 lg:pt-48 lg:pb-36">
-        <motion.div
-          className="max-w-4xl"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        >
+        <div className="hero-in max-w-4xl">
           <p className="text-base/7 font-semibold text-brand">{hero.label}</p>
 
           <h1 className="mt-3 text-6xl font-bold tracking-tight text-white sm:text-7xl lg:text-8xl">
@@ -72,7 +64,7 @@ export default function AboutHero() {
           <p className="mt-12 text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
             {d.plain} <span className="text-brand">{d.accent}</span>
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -19,6 +19,12 @@ const DEFAULT_NAV_LINKS: NavLink[] = [
 
 const DEFAULT_CTA: NavLink = { name: "Discuss a Workflow", anchor: "doorway" };
 
+// Same-page anchors stay plain <a>; anything that changes page goes through <Link> (client navigation + prefetch).
+function NavA({ link, isHome, ...props }: { link: NavLink; isHome: boolean } & Omit<React.ComponentProps<"a">, "href">) {
+  const href = link.href ?? (isHome ? `#${link.anchor}` : `/#${link.anchor}`);
+  return link.href || !isHome ? <Link href={href} {...props} /> : <a href={href} {...props} />;
+}
+
 type NavigationProps = {
   links?: NavLink[];
   /** Menu button; defaults to the homepage's "Discuss a Workflow". */
@@ -38,7 +44,6 @@ export default function Navigation({ links = DEFAULT_NAV_LINKS, cta = DEFAULT_CT
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const href = (link: NavLink) => link.href ?? (isHome ? `#${link.anchor}` : `/#${link.anchor}`);
   const isSolid = scrolled || mobileMenuOpen;
 
   return (
@@ -47,14 +52,6 @@ export default function Navigation({ links = DEFAULT_NAV_LINKS, cta = DEFAULT_CT
         isSolid ? "liquid-glass bg-gray-900/50 border-b border-white/10" : "bg-transparent"
       }`}
     >
-      <svg className="absolute h-0 w-0" aria-hidden="true">
-        <filter id="liquid-glass-distortion" x="-20%" y="-20%" width="140%" height="140%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="8" result="noise" />
-          <feGaussianBlur in="noise" stdDeviation="2" result="blurredNoise" />
-          <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="40" xChannelSelector="R" yChannelSelector="G" />
-        </filter>
-      </svg>
-
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 px-6 py-3 lg:px-8">
         <Link href="/" className="-m-1.5 p-1.5">
           <Image alt="Caldrik" src="/logo-white.svg" className="h-8 w-auto" width={120} height={32} priority />
@@ -62,15 +59,15 @@ export default function Navigation({ links = DEFAULT_NAV_LINKS, cta = DEFAULT_CT
 
         <div className="hidden md:flex md:flex-1 md:items-center md:justify-center md:gap-x-5 lg:gap-x-8">
           {links.map((link) => (
-            <a key={link.name} href={href(link)} className="whitespace-nowrap text-sm/6 font-semibold text-white">
+            <NavA key={link.name} link={link} isHome={isHome} className="whitespace-nowrap text-sm/6 font-semibold text-white">
               {link.name}
-            </a>
+            </NavA>
           ))}
         </div>
 
-        <a href={href(cta)} className="hidden whitespace-nowrap bg-brand rounded-full px-4 py-1.5 text-sm/6 font-semibold text-white md:block">
+        <NavA link={cta} isHome={isHome} className="hidden whitespace-nowrap bg-brand rounded-full px-4 py-1.5 text-sm/6 font-semibold text-white md:block">
           {cta.name}
-        </a>
+        </NavA>
 
         <button
           type="button"
@@ -90,22 +87,24 @@ export default function Navigation({ links = DEFAULT_NAV_LINKS, cta = DEFAULT_CT
         <div className="border-t border-white/10 px-6 py-4 md:hidden">
           <div className="flex flex-col gap-y-1">
             {links.map((link) => (
-              <a
+              <NavA
                 key={link.name}
-                href={href(link)}
+                link={link}
+                isHome={isHome}
                 onClick={() => setMobileMenuOpen(false)}
                 className="rounded-lg px-3 py-2 text-base font-semibold text-white hover:bg-white/5"
               >
                 {link.name}
-              </a>
+              </NavA>
             ))}
-            <a
-              href={href(cta)}
+            <NavA
+              link={cta}
+              isHome={isHome}
               onClick={() => setMobileMenuOpen(false)}
               className="rounded-lg px-3 py-2 text-base font-semibold text-white hover:bg-white/5"
             >
               {cta.name}
-            </a>
+            </NavA>
           </div>
         </div>
       )}
