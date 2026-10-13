@@ -5,7 +5,7 @@ import { events } from "@/lib/gtag";
 import { models, writeUs as w } from "./content";
 
 const inputCls =
-  "w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3.5 text-sm text-white placeholder-gray-600 transition-colors focus:border-[#5170ff]/50 focus:outline-none";
+  "w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3.5 text-sm text-white placeholder-gray-400 transition-colors focus:border-[#5170ff]/50 focus:outline-none";
 const labelCls = "block text-xs font-medium uppercase tracking-wide text-gray-400";
 
 export default function PartnersForm() {
@@ -36,6 +36,7 @@ export default function PartnersForm() {
           model: fd.get("model"),
           requirement: fd.get("requirement"),
           source: "partners",
+          website: fd.get("website"),
         }),
       });
       if (res.ok) {
@@ -70,6 +71,8 @@ export default function PartnersForm() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Honeypot for bots; hidden from people and assistive tech */}
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-1.5">
                   <label htmlFor="w-first" className={labelCls}>{w.firstName.label}</label>

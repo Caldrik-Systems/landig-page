@@ -32,7 +32,7 @@ export default function PrivacyPage() {
           <div className="mb-14 space-y-3">
             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#5170ff]/70">Legal</p>
             <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl">Privacy Policy</h1>
-            <p className="text-sm text-gray-500">Effective date: 1 August 2026 &nbsp;·&nbsp; Last updated: 22 September 2026</p>
+            <p className="text-sm text-gray-400">Effective date: 1 August 2026 &nbsp;·&nbsp; Last updated: 22 September 2026</p>
           </div>
 
           {/* Body */}
@@ -49,7 +49,7 @@ export default function PrivacyPage() {
 
             <Section title="2. Information We Collect">
               <p><strong className="text-gray-300">Information you provide.</strong> We collect information only when you voluntarily submit our contact form. This may include:</p>
-              <ul className="list-disc list-inside space-y-1 text-gray-500 ml-2">
+              <ul className="list-disc list-inside space-y-1 text-gray-400 ml-2">
                 <li>First and last name</li>
                 <li>Work email address</li>
                 <li>Company name</li>
@@ -61,7 +61,7 @@ export default function PrivacyPage() {
 
             <Section title="3. Analytics and Session Recording">
               <p>We use the following third-party tools to understand how visitors use our website and to improve its content and performance:</p>
-              <ul className="list-disc list-inside space-y-2 text-gray-500 ml-2">
+              <ul className="list-disc list-inside space-y-2 text-gray-400 ml-2">
                 <li>
                   <strong className="text-gray-300">Google Analytics 4 (GA4)</strong> — provided by Google LLC. GA4 uses cookies and similar technologies to collect anonymised usage data including pages visited, session duration, device type, and approximate geographic location. Data is processed by Google under its Analytics Terms of Service and Privacy Policy. You may opt out using the{" "}
                   <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" className="text-[#5170ff] hover:underline">Google Analytics Opt-out Browser Add-on</a>.
@@ -81,7 +81,7 @@ export default function PrivacyPage() {
 
             <Section title="4. How We Use Your Information">
               <p>Information submitted through our contact form is used solely to:</p>
-              <ul className="list-disc list-inside space-y-1 text-gray-500 ml-2">
+              <ul className="list-disc list-inside space-y-1 text-gray-400 ml-2">
                 <li>Respond to your inquiry regarding our AI engineering services</li>
                 <li>Conduct an initial assessment of AI applicability to your described workflow</li>
                 <li>Communicate with you about a potential engagement</li>
@@ -104,7 +104,7 @@ export default function PrivacyPage() {
               <p>
                 We do not sell, rent, or trade your personal data. We do not share contact form information with third parties except in the following limited circumstances:
               </p>
-              <ul className="list-disc list-inside space-y-1 text-gray-500 ml-2">
+              <ul className="list-disc list-inside space-y-1 text-gray-400 ml-2">
                 <li><strong className="text-gray-300">Analytics processors:</strong> Google LLC (GA4) and Microsoft Corporation (Clarity) receive anonymised, non-personally-identifiable analytics data as described in Section 3. Both act as independent data controllers for their respective platforms.</li>
                 <li><strong className="text-gray-300">Service providers:</strong> We may use trusted email or CRM tools to manage communications. These processors are contractually bound to handle data solely on our behalf.</li>
                 <li><strong className="text-gray-300">Legal obligation:</strong> We may disclose information where required to do so by law or in response to valid requests by public authorities.</li>
@@ -122,7 +122,7 @@ export default function PrivacyPage() {
 
             <Section title="8. Your Rights">
               <p>Under the DPDP Act, 2023, you have the right to:</p>
-              <ul className="list-disc list-inside space-y-1 text-gray-500 ml-2">
+              <ul className="list-disc list-inside space-y-1 text-gray-400 ml-2">
                 <li>Access the personal data we hold about you</li>
                 <li>Correct inaccurate or incomplete data</li>
                 <li>Request erasure of your personal data</li>
@@ -159,7 +159,7 @@ export default function PrivacyPage() {
               <p>
                 For questions, concerns, or to exercise your data rights, contact our designated point of contact:
               </p>
-              <div className="mt-2 space-y-1 text-gray-500">
+              <div className="mt-2 space-y-1 text-gray-400">
                 <p><strong className="text-gray-300">Revenance Techsol Private Limited</strong></p>
                 <p>Operating as Caldrik</p>
                 <p>India</p>

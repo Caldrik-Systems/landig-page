@@ -1,28 +1,12 @@
-"use client";
-
-import { useId, type ReactNode } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { useId } from "react";
+import { Reveal } from "@/components/Reveal";
 import { ArrowsRightLeftIcon, CheckIcon, DocumentTextIcon, EyeSlashIcon, InformationCircleIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import { cn } from "@/lib/utils";
 import { type Headline, rules, workingTerms } from "./content";
 
 /* Section label + headline pattern shared with the rest of the site. */
 
-export function Reveal({ className, delay = 0.1, children }: { className?: string; delay?: number; children: ReactNode }) {
-  const shouldReduceMotion = useReducedMotion();
-  if (shouldReduceMotion) return <div className={className}>{children}</div>;
-  return (
-    <motion.div
-      initial={{ filter: "blur(4px)", translateY: -8, opacity: 0 }}
-      whileInView={{ filter: "blur(0px)", translateY: 0, opacity: 1 }}
-      viewport={{ once: true, amount: 0 }}
-      transition={{ delay, duration: 0.8 }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+export { Reveal };
 
 export function SectionHeader({ label, headline, line, className = "max-w-5xl mb-14 md:mb-20" }: { label?: string; headline: Headline; line?: string; className?: string }) {
   return (

@@ -225,7 +225,8 @@ function ServicePanel({ s, i, isActive }: { s: typeof services[0]; i: number; is
     >
       {/* Left: copy + grid bg */}
       <div className="relative flex flex-col justify-center gap-5 flex-1 min-w-0 px-10 py-10 overflow-hidden">
-        {/* Double-mask grid pattern */}
+        {/* Double-mask grid pattern: mounted for the active panel only (blend + masks are costly to paint) */}
+        {isActive && (
         <div className="pointer-events-none absolute inset-0 [mask-image:linear-gradient(white,transparent)]">
           <div className="absolute inset-0 bg-gradient-to-r from-white/[0.04] to-white/[0.01] [mask-image:radial-gradient(farthest-side_at_top,white,transparent)]">
             <svg className="absolute inset-0 h-full w-full fill-brand/[0.14] stroke-brand/20 mix-blend-overlay" aria-hidden>
@@ -238,6 +239,7 @@ function ServicePanel({ s, i, isActive }: { s: typeof services[0]; i: number; is
             </svg>
           </div>
         </div>
+        )}
 
         {/* Large number watermark — reinforces position in sequence */}
         <span
@@ -266,7 +268,7 @@ function ServicePanel({ s, i, isActive }: { s: typeof services[0]; i: number; is
 
       {/* Right: mockup — decorative UI representation, not real content */}
       <div aria-hidden="true" className="shrink-0 w-[42%] border-l border-dashed border-white/[0.10] bg-white/[0.015]">
-        <Mockup />
+        {isActive && <Mockup />}
       </div>
     </div>
   );
@@ -288,19 +290,60 @@ export default function Services() {
   const outerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState("01");
 
+  // Desktop only: the sticky stage maps scroll position to the active tab. Geometry is measured
+  // once (and on resize) instead of on every scroll event, updates are batched to one per frame,
+  // and the listener only exists while the section is on screen.
   useEffect(() => {
-    const onScroll = () => {
-      const el = outerRef.current;
-      if (!el) return;
-      const { top, height } = el.getBoundingClientRect();
-      const scrollable = height - window.innerHeight;
-      if (scrollable <= 0) return;
-      const progress = (-top) / scrollable;
+    const el = outerRef.current;
+    if (!el) return;
+    const desktop = window.matchMedia("(min-width: 768px)");
+
+    let top = 0;
+    let scrollable = 0;
+    let frame = 0;
+    let listening = false;
+
+    const measure = () => {
+      top = el.getBoundingClientRect().top + window.scrollY;
+      scrollable = el.offsetHeight - window.innerHeight;
+    };
+    const update = () => {
+      frame = 0;
+      if (!desktop.matches || scrollable <= 0) return;
+      const progress = (window.scrollY - top) / scrollable;
       const clamped = Math.max(0, Math.min(0.999, progress));
       setActive(services[Math.floor(clamped * services.length)].id);
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    const start = () => {
+      if (listening) return;
+      measure();
+      update();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      listening = true;
+    };
+    const stop = () => {
+      if (!listening) return;
+      window.removeEventListener("scroll", onScroll);
+      listening = false;
+    };
+
+    const io = new IntersectionObserver(([entry]) => (entry.isIntersecting ? start() : stop()));
+    const ro = new ResizeObserver(() => {
+      measure();
+      onScroll();
+    });
+    io.observe(el);
+    ro.observe(el);
+
+    return () => {
+      stop();
+      io.disconnect();
+      ro.disconnect();
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   return (

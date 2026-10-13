@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { events } from "@/lib/gtag";
 import { headlineText, models, ways, type Owner } from "./content";
@@ -185,15 +184,12 @@ function WaysTabs() {
         ))}
       </div>
 
-      <motion.div
+      <div
         key={model.key}
         role="tabpanel"
         id={`ways-panel-${model.key}`}
         aria-labelledby={`ways-tab-${model.key}`}
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        className="mt-3 overflow-hidden rounded-2xl border border-dashed border-white/[0.15]"
+        className="animate-in fade-in slide-in-from-bottom-2 duration-300 mt-3 overflow-hidden rounded-2xl border border-dashed border-white/[0.15]"
       >
         <ModelHeader index={index} name={model.name} modelKey={model.key} active />
         <dl className="divide-y divide-dashed divide-white/[0.15] border-t border-dashed border-white/[0.15]">
@@ -206,7 +202,7 @@ function WaysTabs() {
             </div>
           ))}
         </dl>
-      </motion.div>
+      </div>
     </div>
   );
 }

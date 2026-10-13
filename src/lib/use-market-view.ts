@@ -11,6 +11,24 @@ const FAIL_OPEN_MS = 1500;
 
 const viewFor = (country: string | null): View => (country ? (country === "IN" ? "india" : "global") : "all");
 
+// One lookup per page load, shared by every component that asks (IndiaOnly + MarketPosts both mount
+// at once; each used to fire its own request to the Worker).
+let inflight: Promise<View> | null = null;
+
+function lookupView(): Promise<View> {
+  inflight ??= fetch("/api/geo/", { cache: "no-store" })
+    .then((r) => (r.ok ? r.json() : null))
+    .then((data) => {
+      const v = viewFor(typeof data?.country === "string" ? data.country : null);
+      try {
+        sessionStorage.setItem(STORAGE_KEY, v);
+      } catch {}
+      return v;
+    })
+    .catch((): View => "all");
+  return inflight;
+}
+
 // Which market the visitor is in, worked out in the browser from /api/geo/ (Cloudflare's country header).
 //   india  - visitor in India
 //   global - visitor elsewhere
@@ -36,20 +54,10 @@ export function useMarketView(): { view: View; ready: boolean } {
     } catch {}
 
     const failOpen = setTimeout(() => done("all"), FAIL_OPEN_MS);
-    fetch("/api/geo/", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data) => {
-        const v = viewFor(typeof data?.country === "string" ? data.country : null);
-        try {
-          sessionStorage.setItem(STORAGE_KEY, v);
-        } catch {}
-        clearTimeout(failOpen);
-        done(v);
-      })
-      .catch(() => {
-        clearTimeout(failOpen);
-        done("all");
-      });
+    lookupView().then((v) => {
+      clearTimeout(failOpen);
+      done(v);
+    });
 
     return () => {
       live = false;

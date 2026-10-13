@@ -1,25 +1,12 @@
-"use client";
-
-import { useState, useEffect, useId } from "react";
+import { useId } from "react";
+import { seededSquares } from "@/lib/grid-squares";
 import Link from "next/link";
 
 function Grid() {
-  const [squares, setSquares] = useState<number[][]>([]);
   const patternId = useId();
   const W = 24;
   const H = 24;
-
-  useEffect(() => {
-    const id = requestAnimationFrame(() => {
-      setSquares(
-        Array.from({ length: 10 }, () => [
-          Math.floor(Math.random() * 8),
-          Math.floor(Math.random() * 10) + 1,
-        ])
-      );
-    });
-    return () => cancelAnimationFrame(id);
-  }, []);
+  const squares = seededSquares(3, 10, 0, 8, 1, 10);
 
   return (
     <div

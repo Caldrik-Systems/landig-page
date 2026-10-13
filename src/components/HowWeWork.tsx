@@ -1,6 +1,4 @@
-"use client";
-
-import { motion, useReducedMotion } from "motion/react";
+import { Reveal } from "@/components/Reveal";
 import { HowItWorks } from "@/components/ui/how-it-works";
 import type { HowItWorksStep } from "@/components/ui/how-it-works";
 
@@ -25,28 +23,12 @@ const steps: HowItWorksStep[] = [
 ];
 
 export default function HowWeWork() {
-  const shouldReduceMotion = useReducedMotion();
-
-  const wrapper = (children: React.ReactNode) =>
-    shouldReduceMotion ? (
-      <>{children}</>
-    ) : (
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0 }}
-        transition={{ duration: 0.7 }}
-      >
-        {children}
-      </motion.div>
-    );
-
   return (
     <section id="how-we-work" className="bg-[#080f19] py-24 md:py-36">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
-        {wrapper(
-          <div className="max-w-3xl mb-14 md:mb-20">
+        <Reveal className="max-w-3xl mb-14 md:mb-20">
+          <div>
             <p className="text-base/7 font-semibold text-brand">The Lifecycle</p>
             <h2 className="mt-3 text-4xl font-bold leading-[1.06] tracking-tight text-white md:text-5xl lg:text-6xl">
               Engineered. Not promised.
@@ -56,9 +38,11 @@ export default function HowWeWork() {
               <span className="font-medium text-white">AI behavior treated like uptime: defined, measured, maintained.</span>
             </p>
           </div>
-        )}
+        </Reveal>
 
-        {wrapper(<HowItWorks steps={steps} />)}
+        <Reveal>
+          <HowItWorks steps={steps} />
+        </Reveal>
 
       </div>
     </section>
