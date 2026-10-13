@@ -44,13 +44,14 @@ summary:focus-visible {
   --color-brand-dark: #202c65;
   --color-primary: #5170ff;
   --color-primary-foreground: #ffffff;
+  --font-sans: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
 
 /* Hero entrance: pure CSS so it plays on first paint and never waits for JavaScript. */

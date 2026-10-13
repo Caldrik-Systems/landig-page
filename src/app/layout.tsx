@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
@@ -7,8 +7,15 @@ import "./globals.css";
 const GA_ID = "G-HHRDT7KR9V";
 const CLARITY_ID = "ymae9ssuz9";
 
-// Body copy renders in the system sans stack (see globals.css), so only the mono face is loaded.
-// It is used just in the below-the-fold product mock-ups, so it is not preloaded.
+// Geist Sans is the body font (above the fold, so it is preloaded). next/font generates a
+// size-adjusted fallback, which keeps the swap from shifting layout.
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Mono is used only in the below-the-fold product mock-ups, so it is not preloaded.
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -89,7 +96,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }} />
