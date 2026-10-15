@@ -32,7 +32,7 @@ export default function PrivacyPage() {
           <div className="mb-14 space-y-3">
             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#5170ff]/70">Legal</p>
             <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl">Privacy Policy</h1>
-            <p className="text-sm text-gray-400">Effective date: 1 August 2026 &nbsp;·&nbsp; Last updated: 22 September 2026</p>
+            <p className="text-sm text-gray-400">Effective date: 1 August 2026 &nbsp;·&nbsp; Last updated: 15 October 2026</p>
           </div>
 
           {/* Body */}
@@ -70,12 +70,16 @@ export default function PrivacyPage() {
                   <strong className="text-gray-300">Microsoft Clarity</strong> — provided by Microsoft Corporation. Clarity uses cookies and browser storage to record anonymised session replays and generate heatmaps that show how visitors interact with our pages. No personally identifiable information is transmitted to Clarity. You may opt out at{" "}
                   <a href="https://privacy.microsoft.com/en-us/privacystatement" target="_blank" rel="noopener noreferrer" className="text-[#5170ff] hover:underline">Microsoft&rsquo;s Privacy Statement</a>.
                 </li>
+                <li>
+                  <strong className="text-gray-300">Apollo.io website tracker</strong> — provided by Apollo.io, Inc. It helps us identify the organisations that visit our website, using cookies and similar technologies together with technical data such as your IP address, browser details and the pages you view. See{" "}
+                  <a href="https://www.apollo.io/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[#5170ff] hover:underline">Apollo&rsquo;s Privacy Policy</a>.
+                </li>
               </ul>
               <p>
-                Both tools operate by setting cookies or using local storage in your browser. By continuing to use our website, you consent to this use. You may manage or disable cookies through your browser settings at any time; doing so may affect site functionality.
+                These tools operate by setting cookies or using local storage in your browser. By continuing to use our website, you consent to this use. You may manage or disable cookies through your browser settings at any time; doing so may affect site functionality.
               </p>
               <p>
-                Neither tool receives the personal data you submit through our contact form, and neither is used for advertising or cross-site tracking.
+                None of these tools receives the personal data you submit through our contact form, and we do not use them for advertising.
               </p>
             </Section>
 
@@ -96,7 +100,7 @@ export default function PrivacyPage() {
                 We process contact form data on the basis of your explicit consent, given when you check the consent box and submit the form. You may withdraw this consent at any time by contacting us at <a href="mailto:hello@caldrik.co" className="text-[#5170ff] hover:underline">hello@caldrik.co</a>.
               </p>
               <p>
-                Analytics data collected via GA4 and Microsoft Clarity is processed on the basis of your implied consent through continued use of the website. Our processing is governed by the <strong className="text-gray-300">Digital Personal Data Protection Act, 2023</strong> (DPDP Act) of India.
+                Analytics data collected via GA4, Microsoft Clarity and the Apollo.io website tracker is processed on the basis of your implied consent through continued use of the website. Our processing is governed by the <strong className="text-gray-300">Digital Personal Data Protection Act, 2023</strong> (DPDP Act) of India.
               </p>
             </Section>
 
@@ -106,6 +110,7 @@ export default function PrivacyPage() {
               </p>
               <ul className="list-disc list-inside space-y-1 text-gray-400 ml-2">
                 <li><strong className="text-gray-300">Analytics processors:</strong> Google LLC (GA4) and Microsoft Corporation (Clarity) receive anonymised, non-personally-identifiable analytics data as described in Section 3. Both act as independent data controllers for their respective platforms.</li>
+                <li><strong className="text-gray-300">Visitor-identification processor:</strong> Apollo.io, Inc. receives technical data (such as IP address, cookie identifiers and pages viewed) to identify visiting organisations, as described in Section 3.</li>
                 <li><strong className="text-gray-300">Service providers:</strong> We may use trusted email or CRM tools to manage communications. These processors are contractually bound to handle data solely on our behalf.</li>
                 <li><strong className="text-gray-300">Legal obligation:</strong> We may disclose information where required to do so by law or in response to valid requests by public authorities.</li>
               </ul>
