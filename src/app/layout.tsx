@@ -6,6 +6,7 @@ import "./globals.css";
 
 const GA_ID = "G-HHRDT7KR9V";
 const CLARITY_ID = "ymae9ssuz9";
+const APOLLO_APP_ID = "69a5f2459b236900213eff85";
 
 // Geist Sans is the body font (above the fold, so it is preloaded). next/font generates a
 // size-adjusted fallback, which keeps the swap from shifting layout.
@@ -114,6 +115,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               gtag('config', '${GA_ID}');
             `}</Script>
           </>
+        )}
+        {APOLLO_APP_ID && (
+          // Apollo website tracker (visitor identification). Same loader Apollo provides, but via
+          // next/script on idle so it never competes with hydration; still async and non-blocking.
+          <Script id="apollo-init" strategy="lazyOnload">{`
+            (function () {
+              var n = Math.random().toString(36).substring(7),
+                  o = document.createElement("script");
+              o.src = "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" + n;
+              o.async = true;
+              o.defer = true;
+              o.onload = function () {
+                window.trackingFunctions.onLoad({ appId: "${APOLLO_APP_ID}" });
+              };
+              document.head.appendChild(o);
+            })();
+          `}</Script>
         )}
         {CLARITY_ID && (
           <Script id="clarity-init" strategy="lazyOnload">{`
